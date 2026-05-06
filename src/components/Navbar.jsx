@@ -15,21 +15,15 @@ export default function Navbar() {
 					className="nav-logo"
 					onClick={() => window.open(PORTFOLIO_URL, '_blank')}
 				>
-					<img src="../../../assets/MecitLogo.png" alt="" />
+					<img src="src/assets/MecitLogo.png" alt="" />
 				</button>
 				<div className="nav-links">
-					<button
-						className="nl"
-						onClick={() => window.open(PORTFOLIO_URL, '_blank')}
-					>
-						Portfolyo ↗
-					</button>
 					<span className="nl act">Projeler</span>
 					<button
 						className="nav-cta"
 						onClick={() => window.open(PORTFOLIO_URL, '_blank')}
 					>
-						Portfolio ↗
+						Portfolyo ↗
 					</button>
 				</div>
 			</div>
