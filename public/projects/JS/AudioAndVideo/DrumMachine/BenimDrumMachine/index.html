@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Drum Machine</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="keys-container">
+				<button class="key" id="q">
+					<div class="key-inner">
+						<p class="key-value">Q</p>
+					</div>
+				</button>
+				<button class="key" id="w">
+					<div class="key-inner">
+						<p class="key-value">W</p>
+					</div>
+				</button>
+				<button class="key" id="e">
+					<div class="key-inner">
+						<p class="key-value">E</p>
+					</div>
+				</button>
+				<button class="key" id="a">
+					<div class="key-inner">
+						<p class="key-value">A</p>
+					</div>
+				</button>
+				<button class="key" id="s">
+					<div class="key-inner">
+						<p class="key-value">S</p>
+					</div>
+				</button>
+				<button class="key" id="d">
+					<div class="key-inner">
+						<p class="key-value">D</p>
+					</div>
+				</button>
+
+				<button class="key" id="z">
+					<div class="key-inner">
+						<p class="key-value">Z</p>
+					</div>
+				</button>
+				<button class="key" id="x">
+					<div class="key-inner">
+						<p class="key-value">X</p>
+					</div>
+				</button>
+				<button class="key" id="c">
+					<div class="key-inner">
+						<p class="key-value">C</p>
+					</div>
+				</button>
+			</div>
+			<div class="power-container">
+				<p>Power: <span class="power-state">On</span></p>
+				<button id="btn-power" class="btn active"></button>
+			</div>
+			<div class="audio-title-container">
+				<p class="audio-title">Örnek Audio</p>
+			</div>
+			<div class="volumebar-container">
+				<p>Volume</p>
+				<input type="range" min="0" max="100" value="20" id="slider" />
+			</div>
+			<div class="bank-container">
+				<p>Bank: <span class="bank-state">Heater Kit</span></p>
+				<button id="btn-bank" class="btn active"></button>
+			</div>
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>

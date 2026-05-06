@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="tr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Map ile Sipariş / Stok Yönetimi</title>
+		<style>
+			body {
+				margin: 0;
+				font-family: Inter, system-ui, Arial, sans-serif;
+				background: #0f1322;
+				color: #eef2ff;
+			}
+			.app {
+				max-width: 1240px;
+				margin: 24px auto;
+				padding: 0 16px;
+			}
+			.hero,
+			.card {
+				background: #171c31;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 18px;
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+			}
+			.hero {
+				padding: 24px;
+				margin-bottom: 16px;
+			}
+			.grid {
+				display: grid;
+				grid-template-columns: 1.05fr 0.95fr;
+				gap: 16px;
+			}
+			.card {
+				padding: 18px;
+			}
+			h1,
+			h2 {
+				margin: 0 0 10px;
+			}
+			p {
+				line-height: 1.7;
+				color: #b8c2e7;
+			}
+			.row {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+			}
+			.row > * {
+				flex: 1 1 160px;
+			}
+			input,
+			button,
+			select {
+				font: inherit;
+			}
+			input,
+			select {
+				width: 100%;
+				box-sizing: border-box;
+				background: #0e1427;
+				color: #fff;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: 12px;
+				padding: 12px;
+			}
+			button {
+				background: #7c8cff;
+				color: #0d1020;
+				border: 0;
+				border-radius: 12px;
+				padding: 11px 14px;
+				font-weight: 700;
+				cursor: pointer;
+			}
+			button.secondary {
+				background: #232b45;
+				color: #eef2ff;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+			}
+			button.danger {
+				background: #ff6b8b;
+				color: #fff;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				overflow: hidden;
+			}
+			th,
+			td {
+				padding: 12px 12px;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+				text-align: left;
+				vertical-align: top;
+			}
+			th {
+				font-size: 12px;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				color: #cbd4ff;
+				background: #11182c;
+				position: sticky;
+				top: 0;
+			}
+			.tableWrap {
+				max-height: 430px;
+				overflow: auto;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 14px;
+			}
+			.stats {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 10px;
+				margin-top: 12px;
+			}
+			.stat {
+				background: #10162a;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 14px;
+				padding: 12px;
+			}
+			.stat b {
+				display: block;
+				font-size: 22px;
+				margin-top: 6px;
+			}
+			.muted {
+				color: #9fa9cf;
+				font-size: 14px;
+				line-height: 1.65;
+			}
+			.log {
+				background: #0d1425;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 14px;
+				padding: 12px;
+				min-height: 135px;
+				white-space: pre-wrap;
+				line-height: 1.7;
+			}
+			.badge {
+				display: inline-block;
+				padding: 4px 8px;
+				border-radius: 999px;
+				background: #243458;
+				color: #d5ddff;
+				font-size: 12px;
+			}
+			.small {
+				font-size: 13px;
+				color: #9fa9cf;
+			}
+			@media (max-width: 980px) {
+				.grid {
+					grid-template-columns: 1fr;
+				}
+				.stats {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="app">
+			<section class="hero">
+				<h1>Map ile gerçek hayat: Sipariş, stok ve hızlı arama paneli</h1>
+				<p>
+					Bu örnek bir operasyon ekranı gibi çalışır. Ürün kodu ile stok ve
+					fiyat tutulur, kodlar anlık güncellenir ve arama yapılır. Map burada
+					mantıklı çünkü bu senaryoda işimiz tam olarak anahtar-değer ilişkisi
+					kurmaktır.
+				</p>
+			</section>
+
+			<section class="grid">
+				<article class="card">
+					<h2>Ürün yönetimi</h2>
+					<p class="muted">
+						<b>Neden Map?</b> Çünkü her ürün kodunun karşılığında birden fazla
+						alanı olan kayıt tutuyoruz ve doğrudan iterasyon yapıyoruz. <br /><b
+							>Neden Object değil?</b
+						>
+						Object key sınırlamaları ve prototip detayları nedeniyle bu işte
+						daha zayıf kalır. <br /><b>Neden Set değil?</b> Çünkü burada
+						benzersiz tek değer değil, kod → veri eşleşmesi var.
+					</p>
+					<div class="row" style="margin-bottom: 10px">
+						<input id="sku" placeholder="SKU / Kod" />
+						<input id="name" placeholder="Ürün adı" />
+						<input id="stock" type="number" placeholder="Stok" />
+						<input id="price" type="number" step="0.01" placeholder="Fiyat" />
+					</div>
+					<div class="row" style="margin-bottom: 12px">
+						<button id="addBtn">Kaydet / Güncelle</button>
+						<button id="removeBtn" class="danger">Kodu Sil</button>
+						<button id="demoBtn" class="secondary">Demo verisi yükle</button>
+						<button id="clearBtn" class="secondary">Temizle</button>
+					</div>
+					<div class="stats">
+						<div class="stat">
+							<span class="small">Ürün sayısı</span><b id="count">0</b>
+						</div>
+						<div class="stat">
+							<span class="small">Toplam stok</span><b id="totalStock">0</b>
+						</div>
+						<div class="stat">
+							<span class="small">Ortalama fiyat</span><b id="avgPrice">0</b>
+						</div>
+						<div class="stat">
+							<span class="small">Arama sonucu</span><b id="foundCount">0</b>
+						</div>
+					</div>
+				</article>
+
+				<article class="card">
+					<h2>Arama / Liste</h2>
+					<div class="row" style="margin-bottom: 12px">
+						<input id="search" placeholder="Kod veya ürün adına göre ara" />
+						<select id="sortBy">
+							<option value="sku">Koda göre</option>
+							<option value="stock">Stoka göre</option>
+							<option value="price">Fiyata göre</option>
+						</select>
+					</div>
+					<div class="tableWrap">
+						<table>
+							<thead>
+								<tr>
+									<th>SKU</th>
+									<th>Ad</th>
+									<th>Stok</th>
+									<th>Fiyat</th>
+								</tr>
+							</thead>
+							<tbody id="tbody"></tbody>
+						</table>
+					</div>
+					<div style="margin-top: 12px" class="log" id="log"></div>
+				</article>
+			</section>
+		</main>
+
+		<script>
+			const products = new Map();
+			const tbody = document.getElementById('tbody');
+			const log = document.getElementById('log');
+			const search = document.getElementById('search');
+			const sortBy = document.getElementById('sortBy');
+			const count = document.getElementById('count');
+			const totalStock = document.getElementById('totalStock');
+			const avgPrice = document.getElementById('avgPrice');
+			const foundCount = document.getElementById('foundCount');
+
+			function addOrUpdate() {
+				const sku = document.getElementById('sku').value.trim();
+				const name = document.getElementById('name').value.trim();
+				const stock = Number(document.getElementById('stock').value);
+				const price = Number(document.getElementById('price').value);
+				if (!sku || !name || Number.isNaN(stock) || Number.isNaN(price)) return;
+				products.set(sku, { sku, name, stock, price });
+				clearInputs();
+				render();
+				log.textContent = `"${sku}" kaydedildi/güncellendi. Map burada çok uygun çünkü aynı kod varsa doğrudan üzerine yazabiliyoruz.`;
+			}
+
+			function removeSku() {
+				const sku = document.getElementById('sku').value.trim();
+				if (!sku) return;
+				const ok = products.delete(sku);
+				render();
+				log.textContent = ok ? `"${sku}" silindi.` : `"${sku}" bulunamadı.`;
+			}
+
+			function clearInputs() {
+				document.getElementById('sku').value = '';
+				document.getElementById('name').value = '';
+				document.getElementById('stock').value = '';
+				document.getElementById('price').value = '';
+			}
+
+			function getVisibleItems() {
+				const q = search.value.trim().toLowerCase();
+				let items = [...products.values()];
+				if (q)
+					items = items.filter(
+						(p) =>
+							p.sku.toLowerCase().includes(q) ||
+							p.name.toLowerCase().includes(q),
+					);
+				const mode = sortBy.value;
+				items.sort((a, b) => {
+					if (mode === 'stock') return b.stock - a.stock;
+					if (mode === 'price') return b.price - a.price;
+					return a.sku.localeCompare(b.sku);
+				});
+				return items;
+			}
+
+			function render() {
+				const items = getVisibleItems();
+				tbody.innerHTML = '';
+				for (const p of items) {
+					const tr = document.createElement('tr');
+					tr.innerHTML = `
+      <td><b>${escapeHtml(p.sku)}</b></td>
+      <td>${escapeHtml(p.name)}</td>
+      <td>${p.stock}</td>
+      <td>${p.price.toFixed(2)} ₺</td>
+    `;
+					tbody.appendChild(tr);
+				}
+				count.textContent = products.size;
+				totalStock.textContent = [...products.values()].reduce(
+					(sum, p) => sum + p.stock,
+					0,
+				);
+				const prices = [...products.values()].map((p) => p.price);
+				avgPrice.textContent = prices.length
+					? (prices.reduce((a, b) => a + b, 0) / prices.length).toFixed(2) +
+						' ₺'
+					: '0';
+				foundCount.textContent = items.length;
+			}
+
+			function loadDemo() {
+				products.clear();
+				[
+					{ sku: 'SKU-1001', name: 'Kablosuz Mouse', stock: 42, price: 499.9 },
+					{ sku: 'SKU-1002', name: 'Mekanik Klavye', stock: 18, price: 1999.0 },
+					{ sku: 'SKU-1003', name: '27" Monitör', stock: 9, price: 7499.5 },
+					{ sku: 'SKU-1004', name: 'Kulaklık', stock: 55, price: 1299.0 },
+				].forEach((p) => products.set(p.sku, p));
+				render();
+				log.textContent =
+					'Demo ürünleri yüklendi. Map burada stok yönetimi için kullanılıyor; çünkü kod üzerinden hızlı erişim ve güncelleme gerekiyor.';
+			}
+
+			function escapeHtml(str) {
+				return String(str)
+					.replaceAll('&', '&amp;')
+					.replaceAll('<', '&lt;')
+					.replaceAll('>', '&gt;')
+					.replaceAll('"', '&quot;')
+					.replaceAll("'", '&#39;');
+			}
+
+			document.getElementById('addBtn').onclick = addOrUpdate;
+			document.getElementById('removeBtn').onclick = removeSku;
+			document.getElementById('demoBtn').onclick = loadDemo;
+			document.getElementById('clearBtn').onclick = () => {
+				products.clear();
+				clearInputs();
+				render();
+				log.textContent = 'Temizlendi.';
+			};
+			search.oninput = render;
+			sortBy.onchange = render;
+			loadDemo();
+		</script>
+	</body>
+</html>

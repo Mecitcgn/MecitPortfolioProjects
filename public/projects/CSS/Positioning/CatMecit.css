@@ -1,0 +1,232 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #C9D2FD;
+    }
+
+    .main-cat {
+      width: 14rem;
+      height: 12.625rem;
+      margin: 125px auto;
+      position: relative;
+    }
+
+    .cat-head {
+      width: 100%;
+      height: 100%;
+      background-color: #5E5F5D;
+      border-radius: 45%;
+      border: 1px solid black;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ---------- KULAKLAR ---------- */
+    .cat-left-ear {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+      border-bottom: 60px solid #5E5F5D;
+      top: -15px;
+      left: -10px;
+      z-index: 1;
+      transform: rotate(80deg);
+    }
+
+    .cat-right-ear {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+      border-bottom: 60px solid #5E5F5D;
+      top: -15px;
+      right: -10px;
+      z-index: 1;
+      transform: rotate(-80deg);
+    }
+
+    .cat-left-ear-inside {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-bottom: 40px solid #3d3d3d;
+      top: 10px;
+      left: -25px;
+    }
+
+    .cat-right-ear-inside {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-bottom: 40px solid #3d3d3d;
+      top: 10px;
+      right: -25px;
+    }
+
+    /* ---------- GÖZLER ---------- */
+    .cat-left-eye-white {
+      position: relative;
+      width: 10px;
+      height: 20px;
+      top: 70px;
+      left: 45px;
+      border-radius: 50%;
+      background: #fff;
+      transform: rotate(40deg);
+      z-index: 5;
+    }
+
+    .cat-right-eye-white {
+      position: relative;
+      width: 10px;
+      height: 20px;
+      top: 5px;
+      left: 145px;
+      border-radius: 50%;
+      background: #fff;
+      transform: rotate(40deg);
+      z-index: 5;
+    }
+
+    .cat-left-eye-black {
+      position: relative;
+      width: 30px;
+      height: 43px;
+      top: 45px;
+      left: 40px;
+      border-radius: 50%;
+      background: #000;
+      transform: rotate(30deg);
+      z-index: 1;
+    }
+
+    .cat-right-eye-black {
+      position: relative;
+      width: 30px;
+      height: 43px;
+      top: -20px;
+      left: 140px;
+      border-radius: 50%;
+      background: #000;
+      transform: rotate(30deg);
+      z-index: 1;
+    }
+
+    /* ---------- BURUN ---------- */
+    .cat-nose-main {
+      position: relative;
+      width: 25px;
+      height: 25px;
+      background: #432C2D;
+      border-radius: 50%;
+      left: 95px;
+      top: 0px;
+      z-index: 2;
+    }
+
+    .cat-nose-cut-1 {
+      position: relative;
+      width: 15px;
+      height: 50px;
+      top: -10px;
+      left: 17px;
+      transform: rotate(35deg);
+      background: #5E5E5E;
+      z-index: 15;
+    }
+
+    .cat-nose-cut-2 {
+      position: relative;
+      width: 15px;
+      height: 50px;
+      top: -65px;
+      left: -12px;
+      transform: rotate(-35deg);
+      background: #5E5E5E;
+      z-index: 15;
+    }
+
+    /* ---------- AĞIZ ---------- */
+    .cat-main-mouth {
+      position: relative;
+      background: #5E5F5D;
+      width: 25px;
+      height: 25px;
+      top: -15px;
+      left: 81px;
+      border-radius: 50%;
+      box-shadow: 0px 2px black;
+      z-index: 1928;
+      transform: rotate(-10deg);
+    }
+
+    .cat-main-mouth-2 {
+      position: relative;
+      background: #5E5F5D;
+      width: 25px;
+      height: 25px;
+      top: -38px;
+      left: 112px;
+      border-radius: 50%;
+      box-shadow: 0px 2px black;
+      z-index: 1928;
+      transform: rotate(-20deg);
+    }
+
+    /* ---------- BIYIKLAR ---------- */
+    .cat-1 {
+      position: relative;
+      width: 45px;
+      height: 1px;
+      background-color: black;
+      z-index: 124124124;
+      top: -58px;
+      left: 55px;
+      transform: rotate(10deg);
+    }
+
+    .cat-2 {
+      position: relative;
+      width: 45px;
+      height: 1px;
+      background-color: black;
+      z-index: 124124124;
+      top: -50px;
+      left: 55px;
+    }
+
+    .cat-3 {
+      position: relative;
+      width: 45px;
+      height: 1px;
+      background-color: black;
+      z-index: 124124124;
+      top: -42px;
+      left: 55px;
+      transform: rotate(-10deg);
+    }
+
+    .cat-beard-right {
+      position: relative;
+      z-index: 124124124;
+      top: -102px;
+      left: -8px;
+      transform: rotate(180deg);
+    }
+
+    .cat-main-main {
+      position: relative;
+      top: -5px;
+      left: 1px;
+    }

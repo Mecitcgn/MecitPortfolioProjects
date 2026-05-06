@@ -1,0 +1,163 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  max-inline-size: 1100px;
+  margin-inline: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table caption {
+  text-align: start;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-block: 15px;
+}
+
+.headers {
+  font-weight: bold;
+  font-size: 1.1rem;
+  background: linear-gradient(to bottom, #BBE8FC 50%, #86D2FA 100%);
+}
+
+.data {
+  height: 40px;
+}
+
+.status-data {
+  width: 75%;
+  height: 100%;
+  border-radius: 30px;
+  margin-inline: auto;
+}
+
+.green-status {
+  background: linear-gradient(to bottom, #8DED8D 50%, #21DF20 100%);
+  border: 1px solid #1EC91C;
+}
+
+.red-status {
+  background: linear-gradient(to bottom, #FF887E 50%, #FF1B09 100%);
+  border: 1px solid #E71604;
+}
+
+.yellow-status {
+
+  background: linear-gradient(to bottom, #F8D184 50%, #F2A60E 100%);
+  border: 1px solid #C28508;
+}
+
+.green-box,
+.white-box,
+.yellow-box {
+  background: linear-gradient(to bottom, #D1FFD1 50%, #A2FF9B 100%);
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.white-box {
+  background: linear-gradient(to bottom, #F4F8F5 50%, #D3E1D3 100%);
+}
+
+.yellow-box {
+  background: linear-gradient(to bottom, #FFEFD1 50%, #FFDB9A 100%);
+}
+
+.rate-data {
+  height: 40px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-left: 2px;
+  background-color: white;
+  border: 1px solid black
+}
+
+.fill {
+  background-color: #FEDE37;
+}
+
+.empty {
+  background-color: #F4F0F0;
+}

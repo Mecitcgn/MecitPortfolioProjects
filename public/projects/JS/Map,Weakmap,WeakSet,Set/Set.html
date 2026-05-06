@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="tr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Set ile Kayıt Tekilleştirme</title>
+		<style>
+			body {
+				margin: 0;
+				font-family: Inter, system-ui, Arial, sans-serif;
+				background: #0f1220;
+				color: #eef2ff;
+			}
+			.app {
+				max-width: 1100px;
+				margin: 24px auto;
+				padding: 0 16px;
+			}
+			.hero,
+			.card {
+				background: #171b2e;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 18px;
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+			}
+			.hero {
+				padding: 24px;
+				margin-bottom: 16px;
+			}
+			.grid {
+				display: grid;
+				grid-template-columns: 1.1fr 0.9fr;
+				gap: 16px;
+			}
+			.card {
+				padding: 18px;
+			}
+			h1,
+			h2 {
+				margin: 0 0 10px;
+			}
+			p {
+				line-height: 1.7;
+				color: #b9c2e6;
+			}
+			textarea,
+			input,
+			button,
+			select {
+				font: inherit;
+			}
+			textarea,
+			input {
+				width: 100%;
+				box-sizing: border-box;
+				background: #0e1324;
+				color: #fff;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: 12px;
+				padding: 12px;
+			}
+			button {
+				background: #7c8cff;
+				color: #0d1020;
+				border: 0;
+				border-radius: 12px;
+				padding: 11px 14px;
+				font-weight: 700;
+				cursor: pointer;
+			}
+			button.secondary {
+				background: #232a45;
+				color: #e8ecff;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+			}
+			.row {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+			}
+			.row > * {
+				flex: 1 1 180px;
+			}
+			.list {
+				display: grid;
+				gap: 8px;
+				margin-top: 12px;
+				max-height: 320px;
+				overflow: auto;
+			}
+			.item {
+				display: flex;
+				justify-content: space-between;
+				gap: 12px;
+				align-items: center;
+				background: #101629;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 12px;
+				padding: 10px 12px;
+			}
+			.pill {
+				display: inline-flex;
+				gap: 8px;
+				align-items: center;
+				background: rgba(124, 140, 255, 0.14);
+				border: 1px solid rgba(124, 140, 255, 0.22);
+				padding: 6px 10px;
+				border-radius: 999px;
+				margin: 4px 6px 0 0;
+			}
+			.muted {
+				color: #9ca6cf;
+				font-size: 14px;
+				line-height: 1.65;
+			}
+			.stats {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 10px;
+				margin-top: 12px;
+			}
+			.stat {
+				background: #101629;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 14px;
+				padding: 12px;
+			}
+			.stat b {
+				display: block;
+				font-size: 22px;
+				margin-top: 6px;
+			}
+			.small {
+				font-size: 13px;
+				color: #9ca6cf;
+			}
+			.tag {
+				display: inline-block;
+				padding: 4px 8px;
+				border-radius: 999px;
+				background: #233055;
+				color: #cfd7ff;
+				font-size: 12px;
+				margin-left: 6px;
+			}
+			@media (max-width: 900px) {
+				.grid {
+					grid-template-columns: 1fr;
+				}
+				.stats {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="app">
+			<section class="hero">
+				<h1>
+					Set ile gerçek hayat: Toplu kişi / müşteri listesi tekilleştirme
+				</h1>
+				<p>
+					Bu örnek, bir CSV ya da kopyala-yapıştır listeden gelen tekrar eden
+					kayıtları temizleyen bir iç araçtır. Kişi import ederken aynı e-posta
+					veya telefon birden fazla gelirse Set sayesinde otomatik
+					tekilleştirilir.
+				</p>
+			</section>
+
+			<section class="grid">
+				<article class="card">
+					<h2>Veri girişi</h2>
+					<p class="muted">
+						Her satıra <b>isim, e-posta</b> formatında kayıt yaz. Tekrar eden
+						e-postalar ikinci kez eklenmez.
+					</p>
+					<textarea
+						id="input"
+						rows="12"
+						placeholder="Ayşe, ayse@mail.com\nMehmet, mehmet@mail.com\nAyşe Tekrar, ayse@mail.com"
+					></textarea>
+					<div class="row" style="margin-top: 12px">
+						<button id="loadBtn">Satırları işle</button>
+						<button id="demoBtn" class="secondary">Demo verisi yükle</button>
+						<button id="clearBtn" class="secondary">Temizle</button>
+					</div>
+					<div class="stats">
+						<div class="stat">
+							<span class="small">Toplam satır</span><b id="totalCount">0</b>
+						</div>
+						<div class="stat">
+							<span class="small">Benzersiz kayıt</span
+							><b id="uniqueCount">0</b>
+						</div>
+						<div class="stat">
+							<span class="small">Tekrar atılan</span><b id="dupCount">0</b>
+						</div>
+					</div>
+				</article>
+
+				<article class="card">
+					<h2>Sonuçlar</h2>
+					<p class="muted">
+						<b>Neden Set?</b> Çünkü amaç tek bir e-posta için sadece bir kayıt
+						tutmak. <br /><b>Neden Array değil?</b> Duplicates kontrolü için
+						ekstra döngü gerekir. <br /><b>Neden Map değil?</b> Burada
+						anahtar-değer ilişkisi değil, sadece benzersiz değer kümesi var.
+					</p>
+					<div id="summary" class="muted"></div>
+					<div class="list" id="output"></div>
+				</article>
+			</section>
+		</main>
+
+		<script>
+			const input = document.getElementById('input');
+			const output = document.getElementById('output');
+			const summary = document.getElementById('summary');
+			const totalCount = document.getElementById('totalCount');
+			const uniqueCount = document.getElementById('uniqueCount');
+			const dupCount = document.getElementById('dupCount');
+			const seenEmails = new Set();
+			let accepted = [];
+			let duplicateRows = 0;
+
+			function parseLines() {
+				seenEmails.clear();
+				accepted = [];
+				duplicateRows = 0;
+				const lines = input.value
+					.split('\n')
+					.map((s) => s.trim())
+					.filter(Boolean);
+				totalCount.textContent = lines.length;
+
+				for (const line of lines) {
+					const [namePart, emailPart] = line
+						.split(',')
+						.map((s) => (s || '').trim());
+					if (!namePart || !emailPart) continue;
+					const email = emailPart.toLowerCase();
+					if (seenEmails.has(email)) {
+						duplicateRows++;
+						continue;
+					}
+					seenEmails.add(email);
+					accepted.push({ name: namePart, email });
+				}
+
+				render();
+			}
+
+			function render() {
+				output.innerHTML = '';
+				uniqueCount.textContent = accepted.length;
+				dupCount.textContent = duplicateRows;
+				summary.innerHTML = `
+    <div class="tag">Gerçek kullanım</div> CRM import, müşteri aktarımı, e-posta listesi temizleme.
+    <br><br>
+    <b>Set burada neden doğru?</b> Aynı e-posta ikinci kez geldiğinde otomatik reddediyoruz.
+    <br><b>Neden Array kullanmıyoruz?</b> Çünkü her yeni kayıtta <code>includes</code> kontrolü yapmak gerekir; liste büyüdükçe maliyet artar.
+    <br><b>Neden Map kullanmıyoruz?</b> İlişki kurmuyoruz; yalnızca tekrar eden ana değeri engelliyoruz.
+  `;
+				for (const row of accepted) {
+					const div = document.createElement('div');
+					div.className = 'item';
+					div.innerHTML = `<div><b>${escapeHtml(row.name)}</b><div class="small">${escapeHtml(row.email)}</div></div><div class="pill">unique</div>`;
+					output.appendChild(div);
+				}
+			}
+
+			document.getElementById('loadBtn').onclick = parseLines;
+			document.getElementById('clearBtn').onclick = () => {
+				input.value = '';
+				renderClear();
+			};
+			document.getElementById('demoBtn').onclick = () => {
+				input.value = [
+					'Ayşe Yılmaz, ayse@mail.com',
+					'Mehmet Demir, mehmet@mail.com',
+					'Ayşe Yılmaz Tekrar, ayse@mail.com',
+					'Elif Kaya, elif@mail.com',
+					'Elif Kaya 2, elif@mail.com',
+					'Can Uzun, can@mail.com',
+				].join('\n');
+				parseLines();
+			};
+
+			function renderClear() {
+				seenEmails.clear();
+				accepted = [];
+				duplicateRows = 0;
+				output.innerHTML = '';
+				summary.textContent = 'Veri temizlendi.';
+				totalCount.textContent = '0';
+				uniqueCount.textContent = '0';
+				dupCount.textContent = '0';
+			}
+
+			function escapeHtml(str) {
+				return str
+					.replaceAll('&', '&amp;')
+					.replaceAll('<', '&lt;')
+					.replaceAll('>', '&gt;')
+					.replaceAll('"', '&quot;')
+					.replaceAll("'", '&#39;');
+			}
+		</script>
+	</body>
+</html>

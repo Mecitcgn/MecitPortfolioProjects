@@ -1,0 +1,294 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  padding-top: 80px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: #fff;
+}
+
+header>nav>ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  list-style-type: none;
+  margin-inline-end: 2rem;
+
+}
+
+.links {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.links:hover {
+  color: blue;
+}
+
+
+.logo {
+  width: 350px;
+  margin-inline-start: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.form-label {
+  font-size: 3rem;
+  font-weight: bolder;
+}
+
+.email-input {
+  width: 35%;
+  font-size: 1.5rem;
+}
+
+.form-button {
+  background-color: #F1C40F;
+  border: none;
+  padding: 0.5rem 2rem;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.form-button:hover {
+  cursor: pointer;
+  background: #f18b0f;
+  transform: scale(1.2);
+}
+
+
+#features {
+  margin-block-start: 5rem;
+  margin-inline: 2rem;
+}
+
+.layout {
+  display: flex;
+  gap: 2rem;
+}
+
+.layout>div>h2 {
+  margin-block-start: 1rem;
+  font-weight: bolder;
+  font-size: 2rem;
+}
+
+.layout>div>p {
+  margin-block-start: -0.5rem;
+}
+
+#works {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: 3rem;
+}
+
+#video {
+  max-width: 900px;
+  width: 100%;
+}
+
+#pricing {
+  width: 95%;
+  height: 500px;
+  margin-inline: auto;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.pricing-div {
+  height: 100%;
+  width: 25%;
+  border: 2px solid grey;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.first-e {
+  text-transform: uppercase;
+  background: #DDDDDD;
+  width: 100%;
+  height: 15%;
+  font-size: 1.75rem;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.second-e {
+  font-size: 2.25rem;
+  font-weight: bolder;
+
+}
+.bos{
+  position: relative;
+  bottom: 1rem;
+}
+.element-p {
+  font-size: 1.75rem;
+}
+
+.seventh-e {
+  width: 40%;
+  height: 50px;
+  border-radius: 15px;
+  border: none;
+  position: relative;
+  bottom: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer{
+  width: 100%;
+  height: 100px;
+  margin-block-start: 5rem;
+  background: #DDDDDD;
+  display: flex;
+  justify-content: end;
+}
+
+.flex-footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-inline-end: 2rem;
+}
+
+.flex-footer div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-footer > * > a{
+  color: black;
+  text-decoration: none;
+  font-size: 1.5rem;
+font-weight: bold;
+}
+@media (width<1500px){
+  html{
+    font-size: 14px;
+  }
+}
+@media (width<1000px){
+  html{ 
+    font-size: 12px;
+  }
+}
+
+@media (width<800px){
+  html{
+    font-size: 10px;
+  }
+}
+
+@media (width<600px){
+  html{
+    font-size: 8px;
+  }
+}

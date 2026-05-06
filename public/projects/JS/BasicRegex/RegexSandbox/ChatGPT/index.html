@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Regex Sandbox</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h1>Regex Sandbox</h1>
+
+			<div class="input-group">
+				<label>Pattern:</label>
+				<input type="text" id="pattern" placeholder="Enter regex pattern" />
+			</div>
+
+			<div class="flags">
+				<label>
+					<input type="checkbox" id="i" />
+					i (case insensitive)
+				</label>
+
+				<label>
+					<input type="checkbox" id="g" />
+					g (global)
+				</label>
+			</div>
+
+			<div class="input-group">
+				<label>Test String:</label>
+				<div id="test-string" contenteditable="true" class="test-box">
+					Type your test string here...
+				</div>
+			</div>
+
+			<button id="test-btn">Test Regex</button>
+
+			<div class="result-box">
+				<strong>Result:</strong>
+				<span id="result"></span>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>

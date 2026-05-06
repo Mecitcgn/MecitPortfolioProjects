@@ -1,0 +1,41 @@
+/* Tablolar, metinler vs için temel stil */
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+/* .status span’ları için örnek */
+.status {
+  font-weight: bold;
+}
+
+/* Rate span’larının içindeki span’lar için genel stil */
+.rate span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: lightgray;
+  margin-right: 2px;
+}
+
+/* Şimdi testlere uygun attribute selector + pseudo-class’lar */
+
+/* “one” class’lı rate span içindeki ilk child span’a gradient ver */
+span[class~="one"] :first-child {
+  background-image: linear-gradient(to bottom, #f0f0f0, #888);
+}
+
+/* “two” class’lı rate span içindeki ilk iki span */
+span[class~="two"] :nth-child(-n+2) {
+  background-image: linear-gradient(to bottom, #f0f0f0, #888);
+}
+
+/* “three” class’lı rate span içindeki tüm span’lara uygula (3’ü) */
+span[class~="three"] span {
+  background-image: linear-gradient(to bottom, #f0f0f0, #888);
+}

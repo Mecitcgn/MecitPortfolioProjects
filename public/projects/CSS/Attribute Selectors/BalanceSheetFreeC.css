@@ -1,0 +1,295 @@
+/* -----------------------------------------------------------
+   sr-only için seçici:
+   span[class~="sr-only"]
+   - Bu seçici: "class" özniteliğinde boşlukla ayrılmış bir liste içinde
+     'sr-only' değeri bulunan span elemanlarını hedefler.
+   - Neden böyle? Bazı projelerde .sr-only yerine farklı sınıf isimleri olabiliyor;
+     attribute selector ile daha katı hedefleme yapılmış.
+   - Önemli: Bu seçici sadece <span> içindeki sınıfları kontrol eder.
+----------------------------------------------------------- */
+span[class~="sr-only"] {
+  /* Aşağıdaki tüm stiller, elemanı görsel olarak gizler ama ekran okuyuculara okunur
+     hale getirmek için kullanılan klasik (ve geniş destekli) tekniktir. */
+
+  border: 0 !important;                /* 1) Kenarlığı sıfırlar; !important ile override edilir */
+  clip: rect(1px, 1px, 1px, 1px) !important;
+    /* 2) Eski tarayıcılarla uyum: clip() eski bir clipping metodudur.
+       clip ile içerik dikdörtgen dışına alınır. Bazı eski ekran okuyucu kombinasyonları
+       bununla daha güvenilir çalışır. */
+
+  clip-path: inset(50%) !important;
+    /* 3) Modern tarayıcılar için clip-path. inset(50%) içerikten ortasını gösterir (kısmi),
+       pratikte görünür alanı yok eder. Daha modern ve daha kesin bir yöntemdir. */
+
+  height: 1px !important;              /* 4) Çok küçük yüksekliğe indirerek görünmemesini sağlar */
+  width: 1px !important;               /* 5) Çok küçük genişlik */
+  position: absolute !important;       /* 6) Normal akıştan çıkar, sayfayı etkilemez */
+  overflow: hidden !important;         /* 7) Taşan içeriği gizler */
+  white-space: nowrap !important;      /* 8) Satır kırılmasını engeller (tek satır) */
+  padding: 0 !important;               /* 9) İç boşluk sıfırlanır */
+  margin: -1px !important;             /* 10) Negatif margin ile görünüm tamamen ortadan kaldırılır */
+}
+
+/* -----------------------------------------------------------
+   html { box-sizing: border-box; }
+   - Amaç: box-sizing hesaplamasını daha kontrollü yapmak.
+   - Not: box-sizing kalıtılmaz; yaygın kalıp:
+       html { box-sizing: border-box; }
+       *, *::before, *::after { box-sizing: inherit; }
+     şeklinde yazmak tavsiye edilir. Burada sadece html tanımlanmış.
+----------------------------------------------------------- */
+html {
+  box-sizing: border-box;
+}
+
+/* -----------------------------------------------------------
+   Temel sayfa typografi ve renk
+----------------------------------------------------------- */
+body {
+  font-family: sans-serif; /* 1) Varsayılan düz sans-serif: cross-platform uyumlu */
+  color: #0a0a23;          /* 2) Metin rengi: koyu lacivert / neredeyse siyah.
+                              - Hex seçimi: #0a0a23 görsel kontrast sağlar.
+                              - Alternatif: erişilebilirlik için kontrast test edilmelidir. */
+}
+
+/* -----------------------------------------------------------
+   H1 başlık ana kapsayıcı
+   - max-width: satırı taşırmamak için
+   - margin: 0 auto -> ortalama yatay merkezleme
+   - padding: iç boşluk
+----------------------------------------------------------- */
+h1 {
+  max-width: 37.25rem;          /* Başlık genişliğini sınırla: satır uzunluğunu kontrol eder */
+  margin: 0 auto;               /* Ekranda ortalanır (yatay) */
+  padding: 1.5rem 1.25rem;      /* Üst/alt 1.5rem, sağ/sol 1.25rem */
+}
+
+/* -----------------------------------------------------------
+   h1 içindeki .flex sınıfı:
+   - burada iki <span> (AcmeWidgetCorp ve Balance Sheet) varsa
+     column-reverse ile sırayı ters çevirir, böylece ikinci span üstte görünür.
+   - gap ile iki satır arası boşluk verilir.
+----------------------------------------------------------- */
+h1 .flex {
+  display: flex;                   /* Flex konteyner */
+  flex-direction: column-reverse;  /* Eleman sırasını ters çevirir: son eleman üstte görünür */
+  gap: 1rem;                       /* Elemanlar arası boşluk */
+}
+
+/* -----------------------------------------------------------
+   h1 içindeki ilk span (şirket adı) küçültülüyor.
+   - first-of-type seçici satır bazlı değil, ilk span'ı hedefler.
+----------------------------------------------------------- */
+h1 .flex span:first-of-type {
+  font-size: 0.7em; /* Şirket adı daha küçük yazılır; böylece başlık okunur kalır. */
+}
+
+/* -----------------------------------------------------------
+   h1 içindeki son span (başlık) daha büyük.
+----------------------------------------------------------- */
+h1 .flex span:last-of-type {
+  font-size: 1.2em; /* Başlığın daha öne çıkması için büyültülmüş */
+}
+
+/* -----------------------------------------------------------
+   section (içeriğin ana kutusu) ayarları:
+   - max-width: içeriğin satır uzunluğunu sınırlamak için
+   - margin: ortalamak
+   - border: bilişsel bir kart/çerçeve etkisi
+----------------------------------------------------------- */
+section {
+  max-width: 40rem;
+  margin: 0 auto;
+  border: 2px solid #d0d0d5; /* Hafif gri çerçeve */
+}
+
+/* -----------------------------------------------------------
+   #years üst bar:
+   - Sticky üst çubuk gibi davranır (scroll ile sabit kalır).
+   - aria-hidden="true" HTML'de ayarlı: yani görsel amaçlı; ekran
+     okuyuculardan çıkarılmış. (Aşağıda bunun etkisini tartışacağım.)
+----------------------------------------------------------- */
+#years {
+  display: flex;                       /* Yatay sıralama */
+  justify-content: flex-end;           /* Yıl etiketleri sağa yaslanır */
+  position: sticky;                    /* Scroll ile sabitlenir (top:0 ile) */
+  z-index: 999;                        /* Üstte kalması için yüksek z-index */
+  top: 0;                              /* Üstten 0 konumunda */
+  background: #0a0a23;                 /* Arkaplan koyu, metinler beyaz */
+  color: #fff;
+  padding: 0.5rem calc(1.25rem + 2px) 0.5rem 0; /* Sağa doğru iç boşluk hesaplaması */
+  margin: 0 -2px;                      /* Kenar taşmasını dengelemek için negatif marjin */
+    /* Açıklama: margin negatif olması border ile birleşen alanda daha estetik görünmesi
+       için yapılmış olabilir; aynı zamanda section'ın border'ına hizalamaya yardımcı olur. */
+}
+
+/* -----------------------------------------------------------
+   #years içindeki span[class] için stil:
+   - font-weight kalın, sabit genişlik, sağa hizalama
+----------------------------------------------------------- */
+#years span[class] {
+  font-weight: bold;
+  width: 4.5rem;     /* Sabit genişlik: yıl sütunlarına denk gelmesi amaçlanmış */
+  text-align: right; /* Sayıları sağa hizala (monetary değerlerle uyumlu) */
+}
+
+/* -----------------------------------------------------------
+   .table-wrap: tablolar çevresine padding koyuyor
+----------------------------------------------------------- */
+.table-wrap {
+  padding: 0 0.75rem 1.5rem 0.75rem; /* Sağ-sol 0.75rem, alt 1.5rem */
+}
+
+/* -----------------------------------------------------------
+   table genel ayarları:
+   - border-collapse: hücre kenarlıklarını birleştirir
+   - width: %100 (ebeveyn div'e göre)
+   - position: relative (caption için absolute pozisyon gerekebilir)
+   - margin-top: tablolar arasında boşluk
+----------------------------------------------------------- */
+table {
+  border-collapse: collapse;
+  border: 0;
+  width: 100%;
+  position: relative;
+  margin-top: 3rem;
+}
+
+/* -----------------------------------------------------------
+   caption: tablonun başlığı (semantik)
+   - position:absolute ile tabloda solda üstte gösteriliyor
+   - top negatif: caption'u tablonun üstüne taşır
+----------------------------------------------------------- */
+table caption {
+  color: #356eaf;
+  font-size: 1.3em;
+  font-weight: normal;
+  position: absolute;
+  top: -2.25rem; /* Tablo üstünde gözükmesi için negatif top */
+  left: 0.5rem;
+}
+
+/* -----------------------------------------------------------
+   tbody td: burada ilginç bir kullanım var:
+   width: 100vw;
+   min-width & max-width: 4rem
+   - 100vw: hücreyi tüm viewport genişliğine zorlamaya çalışır; bu
+     responsive tasarımda yatay kaydırmaya sebep olabilir.
+   - min/max ile daraltılmış: muhtemelen yıllık sütunların sabit
+     genişlikte olmasını garanti etmek istiyor.
+   - Bu satırın olası yan etkisi: mobilde yatay scroll oluşması.
+----------------------------------------------------------- */
+tbody td {
+  width: 100vw;
+  min-width: 4rem;
+  max-width: 4rem;
+}
+
+/* -----------------------------------------------------------
+   tbody th: sol sütun (açıklama / başlık) genişliği hesaplanmış
+   - calc(100% - 12rem) -> sağdaki 3 sütun (4rem x3) çıkarılıyor
+----------------------------------------------------------- */
+tbody th {
+  width: calc(100% - 12rem);
+}
+
+/* -----------------------------------------------------------
+   tr.total için stil:
+   - altına çift çizgi (double) ve kalın yazı
+----------------------------------------------------------- */
+tr[class="total"] {
+  border-bottom: 4px double #0a0a23;
+  font-weight: bold;
+}
+
+/* -----------------------------------------------------------
+   tr.total th: toplam satırındaki başlık hücresi hizalama
+----------------------------------------------------------- */
+tr[class="total"] th {
+  text-align: left;
+  padding: 0.5rem 0 0.25rem 0.5rem;
+}
+
+/* -----------------------------------------------------------
+   tr.total td: toplam satırındaki veri hücreleri sağa hizalanmış
+----------------------------------------------------------- */
+tr.total td {
+  text-align: right;
+  padding: 0 0.25rem;
+}
+
+/* -----------------------------------------------------------
+   tr.total td:nth-of-type(3): son sütuna ekstra sağ boşluk
+----------------------------------------------------------- */
+tr.total td:nth-of-type(3) {
+  padding-right: 0.5rem;
+}
+
+/* -----------------------------------------------------------
+   tr.total:hover: fareyle üzerine gelince vurgu
+   - küçük etkileşimsel görsel geri bildirim
+----------------------------------------------------------- */
+tr.total:hover {
+  background-color: #99c9ff;
+}
+
+/* -----------------------------------------------------------
+   td.current: güncel (current) hücreleri italik yapıyor
+----------------------------------------------------------- */
+td.current {
+  font-style: italic;
+}
+
+/* -----------------------------------------------------------
+   tr.data: veri satırlarına çizgili arkaplan efekti
+   - linear-gradient: ilk 1.845rem yukarıda hafif gri, altı beyaz
+   - amaç: sola düşen başlık + açıklama kısmını görsel olarak ayırmak
+----------------------------------------------------------- */
+tr.data {
+  background-image: linear-gradient(to bottom, #dfdfe2 1.845rem, white 1.845rem);
+}
+
+/* -----------------------------------------------------------
+   tr.data th: veri satırlarındaki başlık hücresi düzeni
+----------------------------------------------------------- */
+tr.data th {
+  text-align: left;
+  padding-top: 0.3rem;
+  padding-left: 0.5rem;
+}
+
+/* -----------------------------------------------------------
+   tr.data th .description: satır içindeki açıklamanın stili
+   - display:block: satırın altında yeni satır açar
+   - font-style: italic: küçük açıklama görünümü
+   - margin-right: -13.5rem: büyük negatif marjin ile açıklama
+     görsel olarak sağdaki hücreler üzerine taşır / kapatır.
+   - Bu teknik biraz kırılgan: farklı ekran genişliklerinde açıklama
+     beklenmeyen şekilde örtüşebilir.
+----------------------------------------------------------- */
+tr.data th .description {
+  display: block;
+  font-weight: normal;
+  font-style: italic;
+  padding: 1rem 0 0.75rem;
+  margin-right: -13.5rem;
+}
+
+/* -----------------------------------------------------------
+   tr.data td: veri hücrelerinin hizalanması
+   - vertical-align: top -> hücredeki içerikleri üstte hizalar
+   - padding: hücre iç boşluğu
+   - text-align: right -> rakamlar sağa hizalanır
+----------------------------------------------------------- */
+tr.data td {
+  vertical-align: top;
+  padding: 0.3rem 0.25rem 0;
+  text-align: right;
+}
+
+/* -----------------------------------------------------------
+   tr.data td:last-of-type: son sütunun sağ boşluğu
+----------------------------------------------------------- */
+tr.data td:last-of-type{
+  padding-right: 0.5rem;
+}

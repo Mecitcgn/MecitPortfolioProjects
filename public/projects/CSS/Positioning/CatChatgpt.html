@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Kedi</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #b8a9e8, #d4c7f0);
+            font-family: Arial, sans-serif;
+        }
+
+        .cat-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Ana kedi yüzü */
+        .cat-face {
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            background-color: #6b6b6b;
+            border-radius: 50%;
+            border: 3px solid #2c2c2c;
+            top: 60px;
+            left: 30px;
+        }
+
+        /* Sol kulak */
+        .ear-left {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 60px solid #6b6b6b;
+            border-radius: 20px;
+            top: 20px;
+            left: 60px;
+            transform: rotate(-20deg);
+        }
+
+        .ear-left::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 40px solid #4a4a6b;
+            border-radius: 15px;
+            top: 15px;
+            left: -25px;
+        }
+
+        /* Sağ kulak */
+        .ear-right {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 60px solid #6b6b6b;
+            border-radius: 20px;
+            top: 20px;
+            right: 60px;
+            transform: rotate(20deg);
+        }
+
+        .ear-right::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 40px solid #4a4a6b;
+            border-radius: 15px;
+            top: 15px;
+            left: -25px;
+        }
+
+        /* Sol göz */
+        .eye-left {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background-color: #000;
+            border-radius: 50%;
+            top: 140px;
+            left: 80px;
+        }
+
+        .eye-left::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 18px;
+            background-color: #fff;
+            border-radius: 50%;
+            top: 5px;
+            left: 8px;
+        }
+
+        /* Sağ göz */
+        .eye-right {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background-color: #000;
+            border-radius: 50%;
+            top: 140px;
+            right: 80px;
+        }
+
+        .eye-right::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 18px;
+            background-color: #fff;
+            border-radius: 50%;
+            top: 5px;
+            left: 8px;
+        }
+
+        /* Burun */
+        .nose {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 12px solid #8b5a6b;
+            border-radius: 50%;
+            top: 190px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Ağız */
+        .mouth {
+            position: absolute;
+            top: 205px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .mouth-line {
+            position: absolute;
+            width: 2px;
+            height: 15px;
+            background-color: #2c2c2c;
+            border-radius: 2px;
+        }
+
+        .mouth-left {
+            width: 20px;
+            height: 2px;
+            background-color: #2c2c2c;
+            border-radius: 2px;
+            position: absolute;
+            top: 15px;
+            left: -30px;
+            transform: rotate(15deg);
+        }
+
+        .mouth-right {
+            width: 20px;
+            height: 2px;
+            background-color: #2c2c2c;
+            border-radius: 2px;
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            transform: rotate(-15deg);
+        }
+
+        /* Bıyıklar */
+        .whisker {
+            position: absolute;
+            height: 2px;
+            background-color: #2c2c2c;
+            border-radius: 1px;
+        }
+
+        .whisker-left-1 {
+            width: 40px;
+            top: 175px;
+            left: 20px;
+            transform: rotate(-5deg);
+        }
+
+        .whisker-left-2 {
+            width: 35px;
+            top: 190px;
+            left: 15px;
+            transform: rotate(-10deg);
+        }
+
+        .whisker-left-3 {
+            width: 30px;
+            top: 205px;
+            left: 20px;
+            transform: rotate(-15deg);
+        }
+
+        .whisker-right-1 {
+            width: 40px;
+            top: 175px;
+            right: 20px;
+            transform: rotate(5deg);
+        }
+
+        .whisker-right-2 {
+            width: 35px;
+            top: 190px;
+            right: 15px;
+            transform: rotate(10deg);
+        }
+
+        .whisker-right-3 {
+            width: 30px;
+            top: 205px;
+            right: 20px;
+            transform: rotate(15deg);
+        }
+
+        /* Animasyon */
+        .cat-container:hover .eye-left::before,
+        .cat-container:hover .eye-right::before {
+            animation: blink 0.5s ease-in-out;
+        }
+
+        @keyframes blink {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="cat-container">
+        <!-- Kulaklar -->
+        <div class="ear-left"></div>
+        <div class="ear-right"></div>
+        
+        <!-- Ana yüz -->
+        <div class="cat-face"></div>
+        
+        <!-- Gözler -->
+        <div class="eye-left"></div>
+        <div class="eye-right"></div>
+        
+        <!-- Burun -->
+        <div class="nose"></div>
+        
+        <!-- Ağız -->
+        <div class="mouth">
+            <div class="mouth-line"></div>
+            <div class="mouth-left"></div>
+            <div class="mouth-right"></div>
+        </div>
+        
+        <!-- Bıyıklar -->
+        <div class="whisker whisker-left-1"></div>
+        <div class="whisker whisker-left-2"></div>
+        <div class="whisker whisker-left-3"></div>
+        <div class="whisker whisker-right-1"></div>
+        <div class="whisker whisker-right-2"></div>
+        <div class="whisker whisker-right-3"></div>
+    </div>
+</body>
+</html>

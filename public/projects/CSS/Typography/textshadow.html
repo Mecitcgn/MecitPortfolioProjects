@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Shadow Örneği</title>
+    <style>
+        h1 {
+            font-size: 50px;
+            color: #333;
+            /* text-shadow: x-offset y-offset blur-radius color */
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+        }
+
+        p {
+            font-size: 24px;
+            color: #555;
+  text-shadow: 
+    3px 2px 3px #00ffc3,   /* 1. gölge: sağa 3px, aşağı 2px, 3px bulanıklık, turkuaz */
+    -3px -2px 3px #0077ff, /* 2. gölge: sola 3px, yukarı 2px, 3px bulanıklık, mavi */
+    5px 4px 3px #dee7e5;   /* 3. gölge: sağa 5px, aşağı 4px, 3px bulanıklık, açık gri */
+        }
+    </style>
+</head>
+<body>
+    <h1>Merhaba Dünya!</h1>
+    <p>Bu bir text-shadow örneğidir.</p>
+</body>
+</html>

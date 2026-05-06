@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Drum Machine</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="keys-container">
+				<button class="key" id="q"><span>Q</span></button>
+				<button class="key" id="w"><span>W</span></button>
+				<button class="key" id="e"><span>E</span></button>
+				<button class="key" id="a"><span>A</span></button>
+				<button class="key" id="s"><span>S</span></button>
+				<button class="key" id="d"><span>D</span></button>
+				<button class="key" id="z"><span>Z</span></button>
+				<button class="key" id="x"><span>X</span></button>
+				<button class="key" id="c"><span>C</span></button>
+			</div>
+
+			<div class="power-container">
+				<p>Power: <span id="power-state">On</span></p>
+				<button id="btn-power" class="toggle active"></button>
+			</div>
+
+			<div class="display" id="display">Ready</div>
+
+			<div class="volume-container">
+				<p>Volume</p>
+				<input type="range" min="0" max="100" value="50" id="slider" />
+			</div>
+
+			<div class="bank-container">
+				<p>Bank: <span id="bank-state">Heater Kit</span></p>
+				<button id="btn-bank" class="toggle active"></button>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>

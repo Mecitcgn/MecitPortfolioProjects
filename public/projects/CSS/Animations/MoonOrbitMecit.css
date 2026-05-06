@@ -1,0 +1,46 @@
+body {
+  height: 100dvh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.galaxy {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  border-radius: 50%;
+  position: absolute;
+  animation: galaxy-spin 10s linear infinite;
+}
+
+.moon-invis {
+  display: none;
+  background-color: gray;
+  width: 200%;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+}
+
+.moon {
+  background-color: grey;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  top: 40%;
+  left: 300%;
+}
+
+@keyframes galaxy-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

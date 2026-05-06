@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="title-container">
+				<h1>Regex Sandbox</h1>
+			</div>
+			<div class="bottom-container">
+				<div class="pattern-container">
+					<div>
+						<label class="pattern-text" for="regexInput">Regex Pattern:</label>
+						<div class="input-wrapper">
+							<input
+								type="text"
+								class="regexInput"
+								name="regexInput"
+								id="regexInput"
+								placeholder="Enter your regex pattern"
+							/>
+						</div>
+					</div>
+					<div>
+						<p class="flag-text">Flags:</p>
+						<input type="checkbox" class="i-checkbox" name="iFlag" id="iFlag" />
+						<label for="iFlag">i</label>
+						<input type="checkbox" class="g-checkbox" name="gFlag" id="gFlag" />
+						<label for="gFlag">g</label>
+					</div>
+				</div>
+				<div class="test-container">
+					<p>Test String:</p>
+					<textarea
+						rows="4"
+						type="text"
+						class="testInput"
+						placeholwder="Enter your test String"
+					></textarea>
+				</div>
+				<button class="btn-RegExTest">Test Regex</button>
+				<div class="result-container">
+					<h2>Result:</h2>
+					<div class="result-div">
+						<p class="result-text"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>

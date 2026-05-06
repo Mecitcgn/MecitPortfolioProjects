@@ -1,0 +1,100 @@
+/* CSS Tasarımı */
+:root {
+	--primary: #6366f1;
+	--bg: rgba(255, 255, 255, 0.9);
+}
+
+#proDialog {
+	border: none;
+	border-radius: 24px;
+	padding: 0;
+	background: var(--bg);
+	backdrop-filter: blur(15px);
+	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+	width: 90%;
+	max-width: 400px;
+}
+
+/* AÇILIŞ Animasyonu */
+#proDialog[open] {
+	animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* KAPANIŞ Animasyonu (JS ile tetiklenecek) */
+#proDialog.hide {
+	animation: slide-down 0.3s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+}
+
+/* Backdrop Animasyonları */
+#proDialog::backdrop {
+	background: rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+#proDialog[open]::backdrop {
+	opacity: 1;
+}
+
+#proDialog.hide::backdrop {
+	opacity: 0;
+}
+
+/* Keyframes */
+@keyframes slide-up {
+	from {
+		opacity: 0;
+		transform: translateY(30px) scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@keyframes slide-down {
+	from {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(20px) scale(0.95);
+	}
+}
+
+/* Estetik Detaylar */
+.dialog-content {
+	padding: 2rem;
+	text-align: center;
+	font-family: 'Inter', sans-serif;
+}
+.icon-header {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+.actions {
+	display: flex;
+	gap: 1rem;
+	margin-top: 2rem;
+}
+.trigger-btn,
+.primary-btn {
+	flex: 1;
+	background: var(--primary);
+	color: white;
+	border: none;
+	padding: 12px;
+	border-radius: 12px;
+	cursor: pointer;
+	font-weight: 600;
+}
+.close-btn {
+	flex: 1;
+	background: #f1f5f9;
+	color: #64748b;
+	border: none;
+	border-radius: 12px;
+	cursor: pointer;
+	font-weight: 600;
+}

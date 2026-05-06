@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="tr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WeakSet ile Akış İşleme</title>
+		<style>
+			body {
+				margin: 0;
+				font-family: Inter, system-ui, Arial, sans-serif;
+				background: #11131d;
+				color: #eef2ff;
+			}
+			.app {
+				max-width: 1200px;
+				margin: 24px auto;
+				padding: 0 16px;
+			}
+			.hero,
+			.card {
+				background: #181b28;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 18px;
+				box-shadow: 0 18px 45px rgba(0, 0, 0, 0.26);
+			}
+			.hero {
+				padding: 24px;
+				margin-bottom: 16px;
+			}
+			.grid {
+				display: grid;
+				grid-template-columns: 1fr 0.95fr;
+				gap: 16px;
+			}
+			.card {
+				padding: 18px;
+			}
+			h1,
+			h2 {
+				margin: 0 0 10px;
+			}
+			p {
+				line-height: 1.7;
+				color: #b8c0df;
+			}
+			.feed {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+				gap: 12px;
+				max-height: 520px;
+				overflow: auto;
+				padding-right: 4px;
+			}
+			.cardItem {
+				background: #101524;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 16px;
+				padding: 14px;
+				transition:
+					transform 0.15s ease,
+					opacity 0.15s ease;
+			}
+			.cardItem.enhanced {
+				outline: 1px solid rgba(124, 140, 255, 0.35);
+				background: linear-gradient(
+					180deg,
+					rgba(124, 140, 255, 0.08),
+					rgba(255, 255, 255, 0.03)
+				);
+			}
+			.title {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 10px;
+				font-weight: 700;
+				margin-bottom: 8px;
+			}
+			.chip {
+				font-size: 12px;
+				border-radius: 999px;
+				padding: 4px 8px;
+				background: #253258;
+				color: #cfd7ff;
+			}
+			.muted {
+				color: #9ea8cc;
+				font-size: 14px;
+				line-height: 1.65;
+			}
+			button,
+			input,
+			select {
+				font: inherit;
+			}
+			button {
+				background: #7c8cff;
+				color: #0d1020;
+				border: 0;
+				border-radius: 12px;
+				padding: 11px 14px;
+				font-weight: 700;
+				cursor: pointer;
+			}
+			button.secondary {
+				background: #232b44;
+				color: #eef2ff;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+			}
+			.row {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+			}
+			.row > * {
+				flex: 1 1 180px;
+			}
+			.stats {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 10px;
+				margin-top: 12px;
+			}
+			.stat {
+				background: #101524;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 14px;
+				padding: 12px;
+			}
+			.stat b {
+				display: block;
+				font-size: 22px;
+				margin-top: 6px;
+			}
+			.log {
+				background: #0e1321;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 14px;
+				padding: 12px;
+				white-space: pre-wrap;
+				line-height: 1.7;
+				min-height: 140px;
+				max-height: 260px;
+				overflow: auto;
+			}
+			.small {
+				font-size: 13px;
+				color: #9ea8cc;
+			}
+			@media (max-width: 950px) {
+				.grid {
+					grid-template-columns: 1fr;
+				}
+				.stats {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="app">
+			<section class="hero">
+				<h1>
+					WeakSet ile gerçek hayat: Bir feed'de kartı yalnızca bir kez işleme
+				</h1>
+				<p>
+					Bu örnek, sonsuz kaydırmalı bir arayüzde aynı kartı iki kez enhance
+					etmemek için WeakSet kullanır. Kart DOM'dan silinirse, WeakSet onu
+					zorla yaşatmaz; bu da onu UI tarafında çok uygun yapar.
+				</p>
+			</section>
+
+			<section class="grid">
+				<article class="card">
+					<h2>Akış</h2>
+					<p class="muted">
+						Dışarıdan gelen kartlar sayfaya eklenir. Aynı kart yeniden taransa
+						bile WeakSet sayesinde ikinci kez işlenmez.
+					</p>
+					<div class="row" style="margin-bottom: 12px">
+						<button id="loadBtn">Yeni kartlar yükle</button>
+						<button id="scanBtn" class="secondary">Kartları tara</button>
+						<button id="resetBtn" class="secondary">Sıfırla</button>
+					</div>
+					<div class="feed" id="feed"></div>
+				</article>
+
+				<article class="card">
+					<h2>Durum / Neden WeakSet?</h2>
+					<p class="muted">
+						<b>Gerçek kullanım:</b> Infinite scroll, dashboard widget enhancer,
+						DOM sanitizer, form field decorator. <br /><b>Neden WeakSet?</b>
+						Çünkü işaretlenen şeyler DOM node. Node sayfadan kalktığında state
+						de gereksiz yere tutulmamalı. <br /><b>Neden Set değil?</b> Set,
+						node referanslarını güçlü tutar ve bu da büyük UI’larda memory leak
+						riskini artırır. <br /><b>Neden Array değil?</b> Üyelik kontrolü
+						yavaştır ve GC ile uyumlu değildir.
+					</p>
+					<div class="stats">
+						<div class="stat">
+							<span class="small">Toplam kart</span><b id="total">0</b>
+						</div>
+						<div class="stat">
+							<span class="small">İşlenen kart</span><b id="processed">0</b>
+						</div>
+						<div class="stat">
+							<span class="small">Tekrar atlanan</span><b id="skipped">0</b>
+						</div>
+					</div>
+					<div style="margin-top: 12px" class="log" id="log"></div>
+				</article>
+			</section>
+		</main>
+
+		<script>
+			const feed = document.getElementById('feed');
+			const log = document.getElementById('log');
+			const totalEl = document.getElementById('total');
+			const processedEl = document.getElementById('processed');
+			const skippedEl = document.getElementById('skipped');
+			let cards = [];
+			let seen = new WeakSet();
+			let processedCount = 0;
+			let skippedCount = 0;
+			let idSeed = 1;
+
+			function createCard(title) {
+				return {
+					id: idSeed++,
+					title,
+					likes: Math.floor(Math.random() * 1000),
+					author: ['Mina', 'Eren', 'Zeynep', 'Ali', 'Deniz'][
+						Math.floor(Math.random() * 5)
+					],
+				};
+			}
+
+			function renderFeed() {
+				feed.innerHTML = '';
+				for (const card of cards) {
+					const el = document.createElement('div');
+					el.className = 'cardItem';
+					el.dataset.cardId = card.id;
+					el.innerHTML = `
+      <div class="title"><span>${escapeHtml(card.title)}</span><span class="chip">#${card.id}</span></div>
+      <div class="small">Yazar: ${escapeHtml(card.author)}</div>
+      <div class="small">Beğeni: ${card.likes}</div>
+      <div class="small">Durum: <span class="status">işlenmedi</span></div>
+    `;
+					feed.appendChild(el);
+				}
+				totalEl.textContent = cards.length;
+			}
+
+			function scanCards() {
+				const elements = [...feed.querySelectorAll('.cardItem')];
+				let localProcessed = 0;
+				let localSkipped = 0;
+
+				for (const el of elements) {
+					if (seen.has(el)) {
+						localSkipped++;
+						skippedCount++;
+						continue;
+					}
+					seen.add(el);
+					localProcessed++;
+					processedCount++;
+					el.classList.add('enhanced');
+					el.querySelector('.status').textContent = 'enhanced';
+					el.querySelector('.status').style.color = '#8de1ff';
+				}
+
+				processedEl.textContent = processedCount;
+				skippedEl.textContent = skippedCount;
+				log.textContent = [
+					`Tarama sonucu: +${localProcessed} yeni kart işlendi, ${localSkipped} kart atlandı.`,
+					`WeakSet burada bir node'un daha önce enhance edilip edilmediğini tutuyor.`,
+					`Kart DOM'dan silinirse WeakSet onu zorla tutmaz; bu yüzden büyük akışlarda doğru seçimdir.`,
+				].join('\n');
+			}
+
+			function loadMore() {
+				const batch = [
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+					createCard('Bugün okunacak 5 yeni fikir'),
+					createCard('UI tasarımında küçük ama etkili detaylar'),
+					createCard('Performans için hızlı ipuçları'),
+					createCard('Takip edilen içerik önerileri'),
+				];
+				cards = cards.concat(batch);
+				renderFeed();
+			}
+
+			function resetAll() {
+				cards = [];
+				seen = new WeakSet();
+				processedCount = 0;
+				skippedCount = 0;
+				idSeed = 1;
+				processedEl.textContent = '0';
+				skippedEl.textContent = '0';
+				totalEl.textContent = '0';
+				log.textContent =
+					'Sıfırlandı. Kart yüklemek için "Yeni kartlar yükle" butonuna bas.';
+				feed.innerHTML = '';
+			}
+
+			document.getElementById('loadBtn').onclick = loadMore;
+			document.getElementById('scanBtn').onclick = scanCards;
+			document.getElementById('resetBtn').onclick = resetAll;
+
+			loadMore();
+			loadMore();
+			scanCards();
+
+			function escapeHtml(str) {
+				return String(str)
+					.replaceAll('&', '&amp;')
+					.replaceAll('<', '&lt;')
+					.replaceAll('>', '&gt;')
+					.replaceAll('"', '&quot;')
+					.replaceAll("'", '&#39;');
+			}
+		</script>
+	</body>
+</html>

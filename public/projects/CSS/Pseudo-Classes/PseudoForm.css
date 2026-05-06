@@ -1,0 +1,43 @@
+.block{
+    display:block;
+}
+
+input:focus, 
+textarea:focus{
+    border: 2px solid lightblue;
+}
+
+input:invalid,
+select:invalid,
+textarea:invalid{
+    border: 2px solid red;
+}
+
+input:valid,
+select:valid,
+textarea:valid{
+    border: 2px solid green;
+}
+
+button:hover{
+    background-color: orangered;
+}
+
+/* Radio button seçili olduğunda yeşil gözüksün */
+.radio-group input[type="radio"] {
+    accent-color: green; /* modern tarayıcılar için */
+}
+
+.radio-group input[type="radio"]:checked {
+   border: 2px solid green;
+   background-color: green;
+   box-shadow: 10px 10px 5px red;
+}
+
+.radio-group input[type="radio"]:checked + label {
+    color:green;
+}
+
+input:first-of-type{
+    border-radius: 2px;
+}

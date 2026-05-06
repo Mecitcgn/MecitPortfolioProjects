@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<button id="openBtn" class="trigger-btn">Transition'ı Başlat</button>
+
+		<dialog id="smoothDialog">
+			<div class="dialog-content">
+				<h2>Neden Şimdi Oldu?</h2>
+				<p>
+					JavaScript, CSS geçişinin (transition) bittiğini
+					<code>transitionend</code> ile anlar ve dialogu ancak o zaman kapatır.
+				</p>
+				<div class="actions">
+					<button id="closeBtn" class="close-btn">Kapat</button>
+				</div>
+			</div>
+		</dialog>
+		<script src="script.js"></script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="PseudoForm.css">
+</head>
+<body>
+    <div class="container">
+        <form action="">
+            <label class="block" for="name">Full Name:</label>
+            <input class="block" type="text" name="name" id="name">
+
+            <label class="block" for="email">Email:</label>
+            <input class="block" type="email" name="email" id="email">
+
+            <label class="block" for="position">Position:</label>
+            <select class="block" name="position" id="position">
+                <option value="" disabled selected>Select a position</option>
+                <option value="developer">Developer</option>
+                <option value="designer">Designer</option>
+                <option value="manager">Manager</option>
+            </select>
+
+            <!-- class düzeltildi -->
+            <fieldset class="block radio-group">
+                <legend>Availability:</legend>
+               
+                <input type="radio" name="availability" id="availability-full" value="fulltime">
+                 <label for="availability-full">Full-Time</label>
+                
+                <input type="radio" name="availability" id="availability-part" value="parttime">
+                <label for="availability-part">Part-Time</label>
+            </fieldset>
+
+            <label class="block" for="message">Why do you want this job?</label>
+            <textarea class="block" name="message" id="message"></textarea>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+</body>
+</html>

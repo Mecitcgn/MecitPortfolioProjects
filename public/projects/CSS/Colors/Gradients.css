@@ -1,0 +1,23 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.linear-gradient{
+    width: 100vw;
+    height: 20vh;
+    background: linear-gradient(to right,rgba(0,255,255, 0) 25%, rgba(255,0,0,0.5) 25% 50%, rgba(0,0,0)50% 100%);
+}
+
+.radial-gradient{
+    width: 100vw;
+    height: 20vh;
+    background: radial-gradient(circle, red, blue)
+}
+
+.linear-gradientdegree{
+    width: 100vw;
+    height: 20vh;
+    background: linear-gradient(180deg, red, blue);
+}
+

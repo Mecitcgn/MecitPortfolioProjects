@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.title-photo {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    color: white;
+    height: 30vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid orange;
+}
+
+.photo-text {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.photo-flex {
+    display: flex;
+    height: 70vh;
+    width: 100vw;
+    flex-direction: row;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.photo-area {
+    background-color: red;
+    width: 350px;
+    height: 350px;
+    border-radius: 5%;
+}

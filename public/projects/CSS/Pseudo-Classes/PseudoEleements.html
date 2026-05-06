@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Pseudo-Elements Öğrenme Sitesi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1 { text-align: center; }
+    section {
+      margin: 20px 0;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    label {
+      display: inline-block;
+      background: #007BFF;
+      color: white;
+      padding: 4px 8px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    /* ======================
+       PSEUDO-ELEMENTS
+       ====================== */
+
+    /* ::before → Elemandan önce içerik ekler */
+    .before::before {
+      content: "👉 Önce ";
+      color: blue;
+    }
+
+    /* ::after → Elemandan sonra içerik ekler */
+    .after::after {
+      content: " 🔚 Sonra";
+      color: red;
+    }
+
+    /* ::first-letter → İlk harfi seçer */
+    .first-letter::first-letter {
+      font-size: 200%;
+      color: crimson;
+      font-weight: bold;
+    }
+
+    /* ::first-line → İlk satırı seçer */
+    .first-line::first-line {
+      background: #ffffcc;
+      font-style: italic;
+    }
+
+    /* ::selection → Kullanıcı seçtiğinde */
+    .selection::selection {
+      background: black;
+      color: yellow;
+    }
+
+    /* ::marker → Liste işaretlerini seçer */
+    ul.marker li::marker {
+      color: red;
+      font-size: 20px;
+    }
+
+    /* ::placeholder → Input yazısı */
+    input::placeholder, textarea::placeholder {
+      color: gray;
+      font-style: italic;
+    }
+
+    /* ::file-selector-button → File input butonu */
+    input[type="file"]::file-selector-button {
+      background: navy;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    /* ::backdrop → <dialog> arka planı */
+    dialog::backdrop {
+      background: rgba(0,0,0,0.5);
+    }
+
+    /* ::cue → <track> altyazıları */
+    video::cue {
+      color: yellow;
+      background: rgba(0,0,0,0.7);
+    }
+
+    /* ::spelling-error ve ::grammar-error → Tarayıcı işaretlemeleri */
+    .errors p::spelling-error { text-decoration: underline red wavy; }
+    .errors p::grammar-error { text-decoration: underline blue wavy; }
+  </style>
+</head>
+<body>
+  <h1>Pseudo-Elements Öğrenme</h1>
+
+  <section>
+    <label>::before</label>
+    <p class="before">Benim başımda ekstra içerik var</p>
+  </section>
+
+  <section>
+    <label>::after</label>
+    <p class="after">Benim sonunda ekstra içerik var</p>
+  </section>
+
+  <section>
+    <label>::first-letter</label>
+    <p class="first-letter">Bu paragrafın ilk harfi büyütülüp renklendirildi.</p>
+  </section>
+
+  <section>
+    <label>::first-line</label>
+    <p class="first-line">
+      Bu paragrafın sadece ilk satırı farklı bir arka plana sahip olacak.  
+      Diğer satırlar normal şekilde görünecek.
+      Selamlar bu ikinci satır.
+    </p>
+  </section>
+
+  <section>
+    <label>::selection</label>
+    <p class="selection">Bu yazıyı seçmeyi dene!</p>
+  </section>
+
+  <section>
+    <label>::marker</label>
+    <ul class="marker">
+      <li>Birinci</li>
+      <li>İkinci</li>
+      <li>Üçüncü</li>
+    </ul>
+  </section>
+
+  <section>
+    <label>::placeholder</label>
+    <input type="text" placeholder="Placeholder örneği">
+    <textarea placeholder="Textarea placeholder örneği"></textarea>
+  </section>
+
+  <section>
+    <label>::file-selector-button</label>
+    <input type="file">
+  </section>
+
+  <section>
+    <label>::backdrop</label>
+    <dialog id="dlg">
+      <p>Ben bir dialog’um</p>
+      <button onclick="document.getElementById('dlg').close()">Kapat</button>
+    </dialog>
+    <button onclick="document.getElementById('dlg').showModal()">Dialog Aç</button>
+  </section>
+
+  <section>
+    <label>::cue</label>
+    <video controls width="300">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm">
+      <track kind="subtitles" src="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/video-and-audio-content/video-with-subtitles/vtt/example.vtt" srclang="en" default>
+    </video>
+  </section>
+
+  <section class="errors">
+    <label>::spelling-error / ::grammar-error</label>
+    <p contenteditable="true">Buraada yazım htaası yap.</p>
+  </section>
+
+</body>
+</html>
