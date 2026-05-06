@@ -3,6 +3,7 @@
  * Portfolyo sitesine geri dönmek için link içerir.
  * PORTFOLIO_URL'yi portfolyo sitenizin gerçek adresiyle değiştirin.
  */
+import logo from '../assets/MecitLogo.png';
 
 // Portfolyo sitenizin Vercel URL'si — deploy ettikten sonra güncelleyin
 export const PORTFOLIO_URL = 'https://mecit-portfolio.vercel.app/';
@@ -15,10 +16,9 @@ export default function Navbar() {
 					className="nav-logo"
 					onClick={() => window.open(PORTFOLIO_URL, '_blank')}
 				>
-					<img src="src/assets/MecitLogo.png" alt="" />
+					<img src={logo} alt="Mecit Logo" />
 				</button>
 				<div className="nav-links">
-					<span className="nl act">Projeler</span>
 					<button
 						className="nav-cta"
 						onClick={() => window.open(PORTFOLIO_URL, '_blank')}
