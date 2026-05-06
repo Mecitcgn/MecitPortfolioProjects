@@ -1,5 +1,5 @@
 /**
- * ProjectCard — Demo Hub proje kartı.
+ * ProjectCard — Projeler proje kartı.
  * ProjectCover bileşeni portfolyodaki ile aynı pattern sistemini kullanır.
  */
 

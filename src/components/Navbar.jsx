@@ -1,5 +1,5 @@
 /**
- * Demo Hub Navbar
+ * Projeler Navbar
  * Portfolyo sitesine geri dönmek için link içerir.
  * PORTFOLIO_URL'yi portfolyo sitenizin gerçek adresiyle değiştirin.
  */
@@ -15,7 +15,7 @@ export default function Navbar() {
 					className="nav-logo"
 					onClick={() => window.open(PORTFOLIO_URL, '_blank')}
 				>
-					MC
+					<img src="../../../assets/MecitLogo.png" alt="" />
 				</button>
 				<div className="nav-links">
 					<button
@@ -24,7 +24,7 @@ export default function Navbar() {
 					>
 						Portfolyo ↗
 					</button>
-					<span className="nl act">Demo Hub</span>
+					<span className="nl act">Projeler</span>
 					<button
 						className="nav-cta"
 						onClick={() => window.open(PORTFOLIO_URL, '_blank')}

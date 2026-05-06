@@ -7,7 +7,7 @@ import { PROJECTS, CATEGORIES, CSS_SUBS, JS_SUBS } from './data/projects';
 import './styles/globals.css';
 
 /**
- * Demo Hub — Ana sayfa.
+ * Projeler — Ana sayfa.
  * Tüm projeler filtrelenebilir ve iframe modal ile görüntülenebilir.
  */
 export default function App() {
@@ -55,7 +55,7 @@ export default function App() {
           <div className="a1" style={{ display:'flex', alignItems:'center', gap:12, marginBottom:28 }}>
             <span style={{ width:32, height:1, background:'var(--acc)', display:'block' }}/>
             <span style={{ fontFamily:"'DM Mono',monospace", fontSize:11, letterSpacing:'.22em', textTransform:'uppercase', color:'var(--acc)' }}>
-              Demo Hub
+              Projeler
             </span>
           </div>
           <div className="a2" style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:'clamp(60px,9vw,130px)', lineHeight:.9, letterSpacing:'.01em', marginBottom:24 }}>
@@ -167,7 +167,7 @@ export default function App() {
         <footer style={{ borderTop:'1px solid var(--b1)', padding:'32px 24px', maxWidth:1200, margin:'0 auto' }}>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:12 }}>
             <span style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:'var(--t3)', letterSpacing:'.12em', textTransform:'uppercase' }}>
-              © 2024 Mecit Çağan — Demo Hub
+              © 2024 Mecit Çağan — Projeler
             </span>
             <span style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:'var(--t3)' }}>
               Frontend Developer
