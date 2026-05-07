@@ -449,17 +449,52 @@ button {
 .modal-header {
 	padding: 16px 20px;
 	border-bottom: 1px solid var(--b1);
+	flex-shrink: 0;
+}
+/* Desktop: orijinal tek satır */
+.modal-header-desktop {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	flex-shrink: 0;
 }
-.modal-iframe {
-	width: 100%;
-	flex: 1;
-	border: none;
-	background: #fff;
-	min-height: 500px;
+/* Mobile: gizli */
+.modal-header-mobile {
+	display: none;
+	flex-direction: column;
+	gap: 6px;
+}
+.modal-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+.modal-label {
+	font-family: 'DM Mono', monospace;
+	font-size: 10px;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--acc);
+}
+.modal-title {
+	font-family: 'Bebas Neue', sans-serif;
+	font-size: 22px;
+	letter-spacing: 0.03em;
+	line-height: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.modal-sub {
+	display: inline-flex;
+	align-items: center;
+	padding: 3px 10px;
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid var(--b2);
+	font-family: 'DM Mono', monospace;
+	font-size: 10px;
+	color: var(--t2);
+	border-radius: 2px;
 }
 .modal-close {
 	background: none;
@@ -474,7 +509,13 @@ button {
 .modal-close:hover {
 	color: var(--t);
 }
-
+.modal-iframe {
+	width: 100%;
+	flex: 1;
+	border: none;
+	background: #fff;
+	min-height: 500px;
+}
 /* ── TOAST ── */
 .toast-wrap {
 	position: fixed;
@@ -518,5 +559,15 @@ button {
 		left: 12px;
 		right: 12px;
 		width: auto;
+	}
+	/* Modal: desktop header gizle, mobile header göster */
+	.modal-header-desktop {
+		display: none;
+	}
+	.modal-header-mobile {
+		display: flex;
+	}
+	.modal-overlay {
+		padding: 12px;
 	}
 }

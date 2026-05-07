@@ -1,102 +1,101 @@
 .wheel {
-  width: 55vw;
-  height: 55vw;
-  border: 2px solid black;
-  border-radius: 50%;
-  margin-inline-start: 5rem;
-  max-width: 500px;
-  max-height: 500px;
-  position: absolute;
-  animation: wheelspin 10s linear infinite;
+	width: 55vw;
+	height: 55vw;
+	border: 2px solid black;
+	border-radius: 50%;
+	margin-inline-start: 5rem;
+	max-width: 500px;
+	max-height: 500px;
+	position: absolute;
+	animation: wheelspin 10s linear infinite;
 }
 
 .lines {
-  width: 50%;
-  height: 2px;
-  background-color: black;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-origin: 0% 0%;
+	width: 50%;
+	height: 2px;
+	background-color: black;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform-origin: 0% 0%;
 }
 
 .lines:nth-of-type(2) {
-  transform: rotate(60deg);
+	transform: rotate(60deg);
 }
 
 .lines:nth-of-type(3) {
-  transform: rotate(120deg);
+	transform: rotate(120deg);
 }
 
 .lines:nth-of-type(4) {
-  transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 
 .lines:nth-of-type(5) {
-  transform: rotate(240deg);
+	transform: rotate(240deg);
 }
 
 .lines:nth-of-type(6) {
-  transform: rotate(300deg);
+	transform: rotate(300deg);
 }
 
 .cabin {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-  transform-origin: 50% 0%;
+	width: clamp(40px, 10vw, 100px);
+	height: clamp(40px, 10vw, 100px);
+	background-color: red;
+	transform-origin: 50% 0%;
 
-  position: absolute;
-  animation: cabinspin 10s linear infinite;
-
+	position: absolute;
+	animation: cabinspin 10s linear infinite;
 }
 
 .cabin:nth-of-type(1) {
-  left: -8.5%;
-  top: 50%;
+	left: -8.5%;
+	top: 50%;
 }
 
 .cabin:nth-of-type(2) {
-  right: -8.5%;
-  top: 50%;
+	right: -8.5%;
+	top: 50%;
 }
 
 .cabin:nth-of-type(3) {
-  left: 15%;
-  top: 7%;
+	left: 15%;
+	top: 7%;
 }
 
 .cabin:nth-of-type(4) {
-  right: 15%;
-  top: 7%;
+	right: 15%;
+	top: 7%;
 }
 
 .cabin:nth-of-type(5) {
-  right: 15%;
-  top: 93%;
+	right: 15%;
+	top: 93%;
 }
 
 .cabin:nth-of-type(6) {
-  left: 15%;
-  top: 93%;
+	left: 15%;
+	top: 93%;
 }
 
 @keyframes wheelspin {
-  0% {
-    transform: rotate(0deg);
-  }
+	0% {
+		transform: rotate(0deg);
+	}
 
-  100% {
-    transform: rotate(360deg);
-  }
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 @keyframes cabinspin {
-  0% {
-    transform: rotate(0deg);
-  }
+	0% {
+		transform: rotate(0deg);
+	}
 
-  100% {
-    transform: rotate(-360deg);
-  }
+	100% {
+		transform: rotate(-360deg);
+	}
 }

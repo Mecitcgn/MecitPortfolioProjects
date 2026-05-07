@@ -1,27 +1,27 @@
 :root {
-  --header-color: #BE3144;
-  --text-white-color: #EEEEEE;
+	--header-color: #be3144;
+	--text-white-color: #eeeeee;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 * {
-  margin: 0;
+	margin: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html {
-    interpolate-size: allow-keywords;
-  }
+	html {
+		interpolate-size: allow-keywords;
+	}
 }
 
 body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
 }
 
 img,
@@ -29,15 +29,15 @@ picture,
 video,
 canvas,
 svg {
-  display: block;
-  max-width: 100%;
+	display: block;
+	max-width: 100%;
 }
 
 input,
 button,
 textarea,
 select {
-  font: inherit;
+	font: inherit;
 }
 
 p,
@@ -47,11 +47,11 @@ h3,
 h4,
 h5,
 h6 {
-  overflow-wrap: break-word;
+	overflow-wrap: break-word;
 }
 
 p {
-  text-wrap: pretty;
+	text-wrap: pretty;
 }
 
 h1,
@@ -60,186 +60,292 @@ h3,
 h4,
 h5,
 h6 {
-  text-wrap: balance;
+	text-wrap: balance;
 }
 
 #root,
 #__next {
-  isolation: isolate;
+	isolation: isolate;
 }
 
 .wrapper {
-  margin-inline: auto;
-  padding-inline: 1rem;
+	margin-inline: auto;
+	padding-inline: 1rem;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 
 header {
-  background-color: var(--header-color);
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
+	background-color: var(--header-color);
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
 
 .navbar {
-  width: 100%;
-  display: flex;
-  justify-content: end;
-  align-items: center;
+	width: 100%;
+	display: flex;
+	justify-content: end;
+	align-items: center;
 }
 
 .header-list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
+	width: 50%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	list-style: none;
+	padding: 0;
 }
 
 .header-list li a {
-  color: var(--text-white-color);
-  display: block;
-  text-decoration: none;
-  font-size: 1.4rem;
-  padding: 1.2rem;
-  font-weight: 600;
+	color: var(--text-white-color);
+	display: block;
+	text-decoration: none;
+	font-size: 1.4rem;
+	padding: 1.2rem;
+	font-weight: 600;
 }
 
 .header-list li a:hover {
-  background-color: darkslateblue;
+	background-color: darkslateblue;
 }
 
 #hello-section {
-  background-image: linear-gradient(90deg, #4d4f54 20%, #1F1F22 100%);
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+	background-image: linear-gradient(90deg, #4d4f54 20%, #1f1f22 100%);
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .dev-name-text {
-  color: var(--text-white-color);
-  font-family: "Raleway", sans-serif;
-  font-weight: 600;
-  font-size: 5rem;
+	color: var(--text-white-color);
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+	font-size: 5rem;
 }
 
 .dev-job-text {
-  color: var(--header-color);
-  font-family: "Raleway", sans-serif;
-  font-size: 3rem;
-  font-style: italic;
+	color: var(--header-color);
+	font-family: 'Raleway', sans-serif;
+	font-size: 3rem;
+	font-style: italic;
 }
 
 #my-projects {
-  background-color: #46557D;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-flow: column wrap;
+	background-color: #46557d;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-flow: column wrap;
 }
 
 .projects-title {
-  display: flex;
-  color: var(--text-white-color);
-  font-size: 3rem;
-  font-weight: 600;
-  border-bottom: white solid 1px;
-  line-height: 1;
-  margin-block-start: 5rem;
-  margin-block-end: 2rem;
+	display: flex;
+	color: var(--text-white-color);
+	font-size: 3rem;
+	font-weight: 600;
+	border-bottom: white solid 1px;
+	line-height: 1;
+	margin-block-start: 5rem;
+	margin-block-end: 2rem;
 }
 
 .main-grid-projects {
-  width: 100%;
-  height: 75%;
-  padding: 1.5rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
-
+	width: 100%;
+	height: 75%;
+	padding: 1.5rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 1rem;
 }
 
 .card {
-  background: #313841;
+	background: #313841;
 }
 
 .show-all-button {
-  padding: 0.5rem 2rem;
-  background: #313841;
-  font-size: 1.5rem;
-  font-family: "Raleway", sans-serif;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  transition: 0.3s ease all;
+	padding: 0.5rem 2rem;
+	background: #313841;
+	font-size: 1.5rem;
+	font-family: 'Raleway', sans-serif;
+	border: none;
+	color: white;
+	border-radius: 5px;
+	transition: 0.3s ease all;
 }
 
 .show-all-button:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-
+	transform: scale(1.1);
+	cursor: pointer;
 }
 
 .show-all-button:active {
-  filter: opacity(0.85);
-
+	filter: opacity(0.85);
 }
 
 #contact-section {
-  background-image: linear-gradient(90deg, #4d4f54 20%, #1F1F22 100%);
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+	background-image: linear-gradient(90deg, #4d4f54 20%, #1f1f22 100%);
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .contact-text-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .contact-big-text {
-  color: var(--text-white-color);
-  font-family: "Raleway", sans-serif;
-  font-weight: bolder;
-  font-size: 4rem;
+	color: var(--text-white-color);
+	font-family: 'Raleway', sans-serif;
+	font-weight: bolder;
+	font-size: 4rem;
 }
 
 .contact-small-text {
-  color: var(--text-white-color);
-  font-family: "Raleway", sans-serif;
-  font-size: 1rem;
-  font-style: italic;
+	color: var(--text-white-color);
+	font-family: 'Raleway', sans-serif;
+	font-size: 1rem;
+	font-style: italic;
 }
 
 .contact-list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  list-style-type: none;
-  gap: 3rem;
-  margin-block-start: 2rem;
-  padding: 0 !important;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	list-style-type: none;
+	gap: 3rem;
+	margin-block-start: 2rem;
+	padding: 0 !important;
 }
 
 .contact-list-items {
-  color: var(--text-white-color);
-  font-size: 1.5rem;
-  font-family: "Raleway", sans-serif;
-  font-weight: bold;
+	color: var(--text-white-color);
+	font-size: 1.5rem;
+	font-family: 'Raleway', sans-serif;
+	font-weight: bold;
+}
+
+/* ================================
+   RESPONSIVE — sadece layout
+   ================================ */
+
+/* Tablet: 768px ve altı */
+@media (max-width: 768px) {
+	.header-list {
+		width: 100%;
+		padding-inline: 1rem;
+	}
+
+	.header-list li a {
+		font-size: 1.1rem;
+		padding: 0.8rem 0.6rem;
+	}
+
+	.dev-name-text {
+		font-size: 3.2rem;
+		text-align: center;
+		padding-inline: 1rem;
+	}
+
+	.dev-job-text {
+		font-size: 2rem;
+		text-align: center;
+	}
+
+	.projects-title {
+		font-size: 2rem;
+		text-align: center;
+		margin-block-start: 4rem;
+	}
+
+	.main-grid-projects {
+		grid-template-columns: 1fr 1fr;
+		height: auto;
+		padding: 1rem;
+	}
+
+	#my-projects {
+		height: auto;
+		padding-block-end: 2rem;
+	}
+
+	.contact-big-text {
+		font-size: 2.8rem;
+		text-align: center;
+		padding-inline: 1rem;
+	}
+
+	.contact-small-text {
+		text-align: center;
+	}
+
+	.contact-list {
+		flex-direction: column;
+		gap: 1rem;
+		align-items: center;
+	}
+}
+
+/* Mobil: 480px ve altı */
+@media (max-width: 480px) {
+	.header-list {
+		width: 100%;
+		justify-content: space-around;
+		padding-inline: 0.5rem;
+	}
+
+	.header-list li a {
+		font-size: 0.95rem;
+		padding: 0.6rem 0.4rem;
+	}
+
+	.dev-name-text {
+		font-size: 2.2rem;
+	}
+
+	.dev-job-text {
+		font-size: 1.4rem;
+	}
+
+	.projects-title {
+		font-size: 1.4rem;
+		margin-block-start: 4rem;
+		text-align: center;
+	}
+
+	.main-grid-projects {
+		grid-template-columns: 1fr;
+		padding: 0.75rem;
+		gap: 0.75rem;
+	}
+
+	.card {
+		min-height: 120px;
+	}
+
+	.contact-big-text {
+		font-size: 1.8rem;
+	}
+
+	.contact-list-items {
+		font-size: 1.2rem;
+	}
 }
