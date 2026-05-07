@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../FontAwesomeWeb/css/all.css" />
+		<link rel="stylesheet" href="../FontAwesomeWeb/css/all.min.css" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Enter Password Forum</title>
+	</head>
+	<body>
+		<div class="card">
+			<h1>Enter your password</h1>
+			<div class="profile-card">
+				<img src="FriendImage.png" alt="" />
+				<div class="name-container">
+					<p>Business Account</p>
+					<h2>Sarah Bills</h2>
+				</div>
+			</div>
+			<div class="input-container">
+				<label for="passwordinput">Password</label>
+				<div class="input-cnt-main">
+					<i class="fa fa-lock"></i>
+					<input type="password" name="passwordinput" id="passwordinput" />
+					<i class="fa fa-eye"></i>
+				</div>
+			</div>
+			<div class="btn-container">
+				<div class="btn-wrapper">
+					<div class="signed-btn"></div>
+					<p>Stay signed in</p>
+				</div>
+				<button class="continue-btn">Continue</button>
+			</div>
+			<a href="#" class="anchor-pswrd">Reset password</a>
+		</div>
+
+		<script>
+			const signBtn = document.querySelector('.signed-btn');
+			signBtn.addEventListener('click', () => {
+				if (signBtn.classList.contains('active')) {
+					signBtn.classList.remove('active');
+				} else {
+					signBtn.classList.add('active');
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,564 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+:root {
+	/* ============================================ */
+	/* BASE COLORS (DARK MODE)                     */
+	/* ============================================ */
+
+	--bg-darker: hsl(210, 20%, 2%);
+	--bg-dark: hsl(210, 25%, 5%);
+	--bg: hsl(210, 30%, 8%);
+	--bg-light: hsl(210, 35%, 12%);
+	--bg-lighter: hsl(210, 40%, 16%);
+	--text: hsl(210, 20%, 95%);
+	--text-muted: hsl(210, 25%, 70%);
+	--text-subtle: hsl(210, 30%, 50%);
+	--border: hsl(210, 35%, 20%);
+	--border-light: hsl(210, 30%, 15%);
+	--border-hover: hsl(210, 40%, 25%);
+	--primary: hsl(210, 100%, 55%);
+	--primary-hover: hsl(210, 100%, 65%);
+	--primary-light: hsl(210, 80%, 22%);
+	--secondary: hsl(330, 90%, 72%);
+	--secondary-hover: hsl(330, 100%, 70%);
+	--accent: hsl(90, 95%, 66%);
+	--accent-hover: hsl(90, 100%, 65%);
+	--success: hsl(142, 76%, 36%);
+	--success-light: hsl(142, 76%, 20%);
+	--warning: hsl(38, 92%, 50%);
+	--warning-light: hsl(38, 92%, 30%);
+	--danger: hsl(0, 84%, 60%);
+	--danger-light: hsl(0, 84%, 35%);
+	--info: hsl(199, 89%, 48%);
+	--info-light: hsl(199, 89%, 28%);
+
+	--bg-darker: oklch(0.01 0.002 210);
+	--bg-dark: oklch(0.03 0.007 210);
+	--bg: oklch(0.06 0.02 210);
+	--bg-light: oklch(0.11 0.035 210);
+	--bg-lighter: oklch(0.16 0.051 210);
+	--text: oklch(0.95 0.006 210);
+	--text-muted: oklch(0.72 0.049 210);
+	--text-subtle: oklch(0.52 0.099 210);
+	--border: oklch(0.21 0.054 210);
+	--border-light: oklch(0.15 0.037 210);
+	--border-hover: oklch(0.26 0.073 210);
+	--primary: oklch(0.58 0.265 210);
+	--primary-hover: oklch(0.66 0.208 210);
+	--primary-light: oklch(0.23 0.123 210);
+	--secondary: oklch(0.67 0.232 330);
+	--secondary-hover: oklch(0.65 0.265 330);
+	--accent: oklch(0.91 0.339 90);
+	--accent-hover: oklch(0.92 0.361 90);
+	--success: oklch(0.58 0.26 142);
+	--success-light: oklch(0.33 0.163 142);
+	--warning: oklch(0.72 0.315 38);
+	--warning-light: oklch(0.45 0.213 38);
+	--danger: oklch(0.55 0.303 0);
+	--danger-light: oklch(0.35 0.281 0);
+	--info: oklch(0.63 0.182 199);
+	--info-light: oklch(0.38 0.119 199);
+
+	/* ============================================ */
+	/* SEMANTIC TOKENS (DARK MODE)                 */
+	/* ============================================ */
+
+	/* Surface */
+	--surface-app: hsl(210, 20%, 2%);
+	--surface-sidebar: hsl(210, 25%, 5%);
+	--surface-base: hsl(210, 30%, 8%);
+	--surface-section: hsl(210, 35%, 12%);
+	--surface-card: hsl(210, 40%, 16%);
+
+	--surface-app: oklch(0.01 0.002 210);
+	--surface-sidebar: oklch(0.03 0.007 210);
+	--surface-base: oklch(0.06 0.02 210);
+	--surface-section: oklch(0.11 0.035 210);
+	--surface-card: oklch(0.16 0.051 210);
+
+	/* Text */
+	--text-primary: hsl(210, 20%, 95%);
+	--text-secondary: hsl(210, 25%, 70%);
+	--text-tertiary: hsl(210, 30%, 50%);
+	--text-disabled: hsl(210, 30%, 50%);
+	--text-on-brand: hsl(210, 20%, 95%);
+
+	--text-primary: oklch(0.95 0.006 210);
+	--text-secondary: oklch(0.72 0.049 210);
+	--text-tertiary: oklch(0.52 0.099 210);
+	--text-disabled: oklch(0.52 0.099 210);
+	--text-on-brand: oklch(0.95 0.006 210);
+
+	/* Border */
+	--border-default: hsl(210, 35%, 20%);
+	--border-subtle: hsl(210, 30%, 15%);
+	--border-hovered: hsl(210, 40%, 25%);
+
+	--border-default: oklch(0.21 0.054 210);
+	--border-subtle: oklch(0.15 0.037 210);
+	--border-hovered: oklch(0.26 0.073 210);
+
+	/* Brand */
+	--brand-primary: hsl(210, 100%, 55%);
+	--brand-primary-hover: hsl(210, 100%, 65%);
+	--brand-primary-bg: hsl(210, 80%, 22%);
+
+	--brand-primary: oklch(0.58 0.265 210);
+	--brand-primary-hover: oklch(0.66 0.208 210);
+	--brand-primary-bg: oklch(0.23 0.123 210);
+
+	/* Status */
+	--status-success: hsl(142, 76%, 36%);
+	--status-success-bg: hsl(142, 76%, 20%);
+	--status-warning: hsl(38, 92%, 50%);
+	--status-warning-bg: hsl(38, 92%, 30%);
+	--status-danger: hsl(0, 84%, 60%);
+	--status-danger-bg: hsl(0, 84%, 35%);
+	--status-info: hsl(199, 89%, 48%);
+	--status-info-bg: hsl(199, 89%, 28%);
+
+	--status-success: oklch(0.58 0.26 142);
+	--status-success-bg: oklch(0.33 0.163 142);
+	--status-warning: oklch(0.72 0.315 38);
+	--status-warning-bg: oklch(0.45 0.213 38);
+	--status-danger: oklch(0.55 0.303 0);
+	--status-danger-bg: oklch(0.35 0.281 0);
+	--status-info: oklch(0.63 0.182 199);
+	--status-info-bg: oklch(0.38 0.119 199);
+
+	/* Elevation (Simple Shadows) */
+	--elevation-xs: 0 1px 2px #00000020;
+	--elevation-sm: 0 2px 4px #00000025, 0 1px 2px #00000020;
+	--elevation-md: 0 4px 8px #00000030, 0 2px 4px #00000025;
+	--elevation-lg: 0 8px 16px #00000035, 0 4px 8px #00000030;
+	--elevation-xl: 0 16px 32px #00000040, 0 8px 16px #00000035;
+
+	/* Elevation (Layered Shadows) */
+	--elevation-layered-sm: inset 0 1px 2px #ffffff30, 0 1px 2px #00000030,
+		0 2px 4px #00000015;
+	--elevation-layered-md: inset 0 1px 2px #ffffff50, 0 2px 4px #00000030,
+		0 4px 8px #00000015;
+	--elevation-layered-lg: inset 0 1px 2px #ffffff70, 0 4px 6px #00000030,
+		0 6px 10px #00000015;
+
+	/* Inset Shadows */
+	--inset-sm: inset 0 1px 3px #00000050;
+	--inset-md: inset 0 2px 6px #00000060;
+	--inset-lg: inset 0 4px 12px #00000070;
+
+	/* Glow Effects */
+	--glow-sm: 0 0 8px #ffffff15;
+	--glow-md: 0 0 16px #ffffff20;
+	--glow-lg: 0 0 24px #ffffff25;
+
+	/* Brand Shadows */
+	--brand-shadow-sm: inset 0 1px 2px hsla(210, 100%, 55%, 0.3),
+		0 1px 2px hsla(210, 100%, 55%, 0.3), 0 2px 4px hsla(210, 100%, 55%, 0.15);
+	--brand-shadow-md: inset 0 1px 2px hsla(210, 100%, 55%, 0.5),
+		0 2px 4px hsla(210, 100%, 55%, 0.3), 0 4px 8px hsla(210, 100%, 55%, 0.15);
+	--brand-shadow-lg: inset 0 1px 2px hsla(210, 100%, 55%, 0.7),
+		0 4px 6px hsla(210, 100%, 55%, 0.3), 0 6px 10px hsla(210, 100%, 55%, 0.15);
+
+	/* Status Shadows */
+	--success-shadow: inset 0 1px 2px #00ff0050, 0 2px 4px #00ff0030,
+		0 4px 8px #00ff0015;
+	--warning-shadow: inset 0 1px 2px #ffaa0050, 0 2px 4px #ffaa0030,
+		0 4px 8px #ffaa0015;
+	--danger-shadow: inset 0 1px 2px #ff000050, 0 2px 4px #ff000030,
+		0 4px 8px #ff000015;
+	--info-shadow: inset 0 1px 2px #0088ff50, 0 2px 4px #0088ff30,
+		0 4px 8px #0088ff15;
+
+	/* Interactive Elements */
+	--button-bg: hsl(210, 100%, 55%);
+	--button-bg-hover: hsl(210, 100%, 65%);
+	--button-text: hsl(210, 20%, 95%);
+	--input-bg: hsl(210, 40%, 16%);
+	--input-border: hsl(210, 35%, 20%);
+	--input-border-focus: hsl(210, 100%, 55%);
+
+	--button-bg: oklch(0.58 0.265 210);
+	--button-bg-hover: oklch(0.66 0.208 210);
+	--button-text: oklch(0.95 0.006 210);
+	--input-bg: oklch(0.16 0.051 210);
+	--input-border: oklch(0.21 0.054 210);
+	--input-border-focus: oklch(0.58 0.265 210);
+}
+
+body.light {
+	/* ============================================ */
+	/* BASE COLORS (LIGHT MODE)                    */
+	/* ============================================ */
+
+	--bg-darker: hsl(210, 15%, 96%);
+	--bg-dark: hsl(210, 20%, 93%);
+	--bg: hsl(210, 25%, 98%);
+	--bg-light: hsl(210, 30%, 100%);
+	--bg-lighter: hsl(210, 35%, 100%);
+	--text: hsl(210, 40%, 10%);
+	--text-muted: hsl(210, 30%, 40%);
+	--text-subtle: hsl(210, 20%, 60%);
+	--border: hsl(210, 25%, 85%);
+	--border-light: hsl(210, 20%, 90%);
+	--border-hover: hsl(210, 30%, 75%);
+	--primary: hsl(210, 100%, 44%);
+	--primary-hover: hsl(210, 100%, 39%);
+	--primary-light: hsl(210, 60%, 90%);
+	--secondary: hsl(330, 85%, 39%);
+	--secondary-hover: hsl(330, 95%, 33%);
+	--accent: hsl(90, 90%, 41%);
+	--accent-hover: hsl(90, 100%, 36%);
+	--success: hsl(142, 71%, 45%);
+	--success-light: hsl(142, 76%, 92%);
+	--warning: hsl(38, 92%, 50%);
+	--warning-light: hsl(38, 92%, 95%);
+	--danger: hsl(0, 72%, 51%);
+	--danger-light: hsl(0, 84%, 95%);
+	--info: hsl(199, 89%, 48%);
+	--info-light: hsl(199, 89%, 94%);
+
+	--bg-darker: oklch(0.96 0.004 210);
+	--bg-dark: oklch(0.94 0.009 210);
+	--bg: oklch(0.98 0.003 210);
+	--bg-light: oklch(1 0 210);
+	--bg-lighter: oklch(1 0 210);
+	--text: oklch(0.09 0.034 210);
+	--text-muted: oklch(0.42 0.082 210);
+	--text-subtle: oklch(0.62 0.053 210);
+	--border: oklch(0.86 0.024 210);
+	--border-light: oklch(0.91 0.013 210);
+	--border-hover: oklch(0.77 0.048 210);
+	--primary: oklch(0.48 0.266 210);
+	--primary-hover: oklch(0.42 0.238 210);
+	--primary-light: oklch(0.9 0.038 210);
+	--secondary: oklch(0.4 0.258 330);
+	--secondary-hover: oklch(0.35 0.242 330);
+	--accent: oklch(0.72 0.356 90);
+	--accent-hover: oklch(0.66 0.339 90);
+	--success: oklch(0.7 0.295 142);
+	--success-light: oklch(0.96 0.06 142);
+	--warning: oklch(0.72 0.315 38);
+	--warning-light: oklch(0.97 0.033 38);
+	--danger: oklch(0.48 0.324 0);
+	--danger-light: oklch(0.94 0.031 0);
+	--info: oklch(0.63 0.182 199);
+	--info-light: oklch(0.95 0.031 199);
+
+	/* ============================================ */
+	/* SEMANTIC TOKENS (LIGHT MODE)                */
+	/* ============================================ */
+
+	/* Surface */
+	--surface-app: hsl(210, 15%, 96%);
+	--surface-sidebar: hsl(210, 20%, 93%);
+	--surface-base: hsl(210, 25%, 98%);
+	--surface-section: hsl(210, 30%, 100%);
+	--surface-card: hsl(210, 35%, 100%);
+
+	--surface-app: oklch(0.96 0.004 210);
+	--surface-sidebar: oklch(0.94 0.009 210);
+	--surface-base: oklch(0.98 0.003 210);
+	--surface-section: oklch(1 0 210);
+	--surface-card: oklch(1 0 210);
+
+	/* Text */
+	--text-primary: hsl(210, 40%, 10%);
+	--text-secondary: hsl(210, 30%, 40%);
+	--text-tertiary: hsl(210, 20%, 60%);
+	--text-disabled: hsl(210, 20%, 60%);
+	--text-on-brand: hsl(210, 40%, 10%);
+
+	--text-primary: oklch(0.09 0.034 210);
+	--text-secondary: oklch(0.42 0.082 210);
+	--text-tertiary: oklch(0.62 0.053 210);
+	--text-disabled: oklch(0.62 0.053 210);
+	--text-on-brand: oklch(0.09 0.034 210);
+
+	/* Border */
+	--border-default: hsl(210, 25%, 85%);
+	--border-subtle: hsl(210, 20%, 90%);
+	--border-hovered: hsl(210, 30%, 75%);
+
+	--border-default: oklch(0.86 0.024 210);
+	--border-subtle: oklch(0.91 0.013 210);
+	--border-hovered: oklch(0.77 0.048 210);
+
+	/* Brand */
+	--brand-primary: hsl(210, 100%, 44%);
+	--brand-primary-hover: hsl(210, 100%, 39%);
+	--brand-primary-bg: hsl(210, 60%, 90%);
+
+	--brand-primary: oklch(0.48 0.266 210);
+	--brand-primary-hover: oklch(0.42 0.238 210);
+	--brand-primary-bg: oklch(0.9 0.038 210);
+
+	/* Status */
+	--status-success: hsl(142, 71%, 45%);
+	--status-success-bg: hsl(142, 76%, 92%);
+	--status-warning: hsl(38, 92%, 50%);
+	--status-warning-bg: hsl(38, 92%, 95%);
+	--status-danger: hsl(0, 72%, 51%);
+	--status-danger-bg: hsl(0, 84%, 95%);
+	--status-info: hsl(199, 89%, 48%);
+	--status-info-bg: hsl(199, 89%, 94%);
+
+	--status-success: oklch(0.7 0.295 142);
+	--status-success-bg: oklch(0.96 0.06 142);
+	--status-warning: oklch(0.72 0.315 38);
+	--status-warning-bg: oklch(0.97 0.033 38);
+	--status-danger: oklch(0.48 0.324 0);
+	--status-danger-bg: oklch(0.94 0.031 0);
+	--status-info: oklch(0.63 0.182 199);
+	--status-info-bg: oklch(0.95 0.031 199);
+
+	/* Elevation (Simple Shadows) */
+	--elevation-xs: 0 1px 2px #00000008;
+	--elevation-sm: 0 2px 4px #00000010, 0 1px 2px #00000008;
+	--elevation-md: 0 4px 8px #00000012, 0 2px 4px #00000010;
+	--elevation-lg: 0 8px 16px #00000015, 0 4px 8px #00000012;
+	--elevation-xl: 0 16px 32px #00000020, 0 8px 16px #00000015;
+
+	/* Elevation (Layered Shadows) */
+	--elevation-layered-sm: inset 0 1px 2px #00000008, 0 1px 2px #00000010,
+		0 2px 4px #00000008;
+	--elevation-layered-md: inset 0 1px 2px #00000010, 0 2px 4px #00000012,
+		0 4px 8px #00000008;
+	--elevation-layered-lg: inset 0 1px 2px #00000015, 0 4px 6px #00000015,
+		0 6px 10px #00000010;
+
+	/* Inset Shadows */
+	--inset-sm: inset 0 1px 3px #00000010;
+	--inset-md: inset 0 2px 6px #00000012;
+	--inset-lg: inset 0 4px 12px #00000015;
+
+	/* Glow Effects */
+	--glow-sm: 0 0 8px #00000008;
+	--glow-md: 0 0 16px #00000010;
+	--glow-lg: 0 0 24px #00000012;
+
+	/* Brand Shadows */
+	--brand-shadow-sm: inset 0 1px 2px hsla(210, 100%, 44%, 0.08),
+		0 1px 2px hsla(210, 100%, 44%, 0.1), 0 2px 4px hsla(210, 100%, 44%, 0.08);
+	--brand-shadow-md: inset 0 1px 2px hsla(210, 100%, 44%, 0.1),
+		0 2px 4px hsla(210, 100%, 44%, 0.12), 0 4px 8px hsla(210, 100%, 44%, 0.08);
+	--brand-shadow-lg: inset 0 1px 2px hsla(210, 100%, 44%, 0.15),
+		0 4px 6px hsla(210, 100%, 44%, 0.15), 0 6px 10px hsla(210, 100%, 44%, 0.1);
+
+	/* Status Shadows */
+	--success-shadow: inset 0 1px 2px #22c55e10, 0 2px 4px #22c55e12,
+		0 4px 8px #22c55e08;
+	--warning-shadow: inset 0 1px 2px #f59e0b10, 0 2px 4px #f59e0b12,
+		0 4px 8px #f59e0b08;
+	--danger-shadow: inset 0 1px 2px #ef444410, 0 2px 4px #ef444412,
+		0 4px 8px #ef444408;
+	--info-shadow: inset 0 1px 2px #3b82f610, 0 2px 4px #3b82f612,
+		0 4px 8px #3b82f608;
+
+	/* Interactive Elements */
+	--button-bg: hsl(210, 100%, 44%);
+	--button-bg-hover: hsl(210, 100%, 39%);
+	--button-text: hsl(210, 40%, 10%);
+	--input-bg: hsl(210, 35%, 100%);
+	--input-border: hsl(210, 25%, 85%);
+	--input-border-focus: hsl(210, 100%, 44%);
+
+	--button-bg: oklch(0.48 0.266 210);
+	--button-bg-hover: oklch(0.42 0.238 210);
+	--button-text: oklch(0.09 0.034 210);
+	--input-bg: oklch(1 0 210);
+	--input-border: oklch(0.86 0.024 210);
+	--input-border-focus: oklch(0.48 0.266 210);
+}
+
+html {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+	width: 100%;
+	height: 100dvh;
+	background-color: var(--bg-dark);
+	color: var(--text-muted);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.card {
+	max-inline-size: 1100px;
+	block-size: 800px;
+	padding-inline: 2rem;
+	margin-inline: auto;
+	display: grid;
+	grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.top-card {
+	background-color: var(--surface-card);
+}
+
+.top-grid-container {
+	display: grid;
+	grid-template-columns: 0.5fr 1fr 2fr 0.5fr;
+	place-items: center;
+	width: 100%;
+	height: 100%;
+	> *:nth-child(1) {
+		font-size: 5rem;
+		color: var(--text-tertiary);
+	}
+	> .img-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		> .star-container {
+			i {
+				color: var(--accent);
+			}
+		}
+		> p {
+			color: var(--text-primary);
+		}
+	}
+	> .desc-container {
+		display: grid;
+		gap: 1.25rem;
+		h1 {
+			color: var(--text-primary);
+		}
+		> div p {
+			color: var(--secondary);
+			font-size: 1.25rem;
+		}
+		> p {
+			font-size: 1.25rem;
+		}
+	}
+	> :last-child {
+		font-size: 5rem;
+	}
+}
+
+.bottom-card {
+	display: grid;
+	grid-template-columns: 0.5fr 1fr;
+	padding: 3rem;
+	background-color: var(--surface-section);
+	.bottom-left-container {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		.employee-container {
+			h1 {
+				color: var(--text-primary);
+			}
+		}
+		.job-container {
+			h1 {
+				color: var(--text-on-brand);
+			}
+		}
+	}
+}
+
+.bottom-right-container {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	gap: 1rem;
+	transform: translateY(-5%);
+	> * {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		color: var(--text);
+	}
+	progress {
+		accent-color: var(--secondary);
+	}
+}
+
+.statistic-container div {
+	width: 50%;
+	display: flex;
+	justify-content: flex-end;
+	gap: 1rem;
+	> progress {
+		width: 100%;
+	}
+}

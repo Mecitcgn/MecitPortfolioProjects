@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clip‑Path Academy — Tam Kapsamlı Eğitim ve Örnekler</title>
+  <meta name="description" content="Clip‑Path Academy: clip-path property öğrenme sitesi. Polygon, circle, ellipse, inset, path, SVG path, animasyonlar, canlı editör, ve indirilebilir örnekler." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#6ee7b7;--glass: rgba(255,255,255,0.04);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#071028 0%, #081124 60%);color:#e6eef6}
+    header{padding:28px 24px;display:flex;align-items:center;gap:18px}
+    header h1{font-size:20px;margin:0}
+    .container{max-width:1100px;margin:18px auto;padding:18px}
+    nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    nav a{background:var(--glass);padding:8px 12px;border-radius:10px;color:var(--accent);text-decoration:none;font-weight:600;font-size:13px}
+    .grid{display:grid;grid-template-columns:1fr 380px;gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .preview{height:320px;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(90deg,#08243b,#071b2b);position:relative}
+
+    .demo-box{width:80%;height:80%;display:grid;place-items:center;color:#071124;font-weight:700;border-radius:inherit;transition:all .25s ease;backdrop-filter:blur(6px)}
+    .controls{display:flex;flex-direction:column;gap:10px}
+    label{font-size:13px;color:var(--muted)}
+    input[type=text],textarea,select{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;font-family:var(--mono);font-size:13px}
+    .examples{display:grid;gap:10px}
+    pre{background:#071226;padding:12px;border-radius:8px;overflow:auto;font-family:var(--mono);font-size:13px}
+    button{cursor:pointer;border:0;padding:8px 10px;border-radius:10px;background:linear-gradient(180deg,var(--accent),#3bd18f);color:#042026;font-weight:700}
+    .small{padding:6px 8px;font-size:13px}
+    .row{display:flex;gap:10px;align-items:center}
+    .explain{color:var(--muted);font-size:14px;line-height:1.5}
+    .section-title{font-weight:800;margin:8px 0}
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+    .kbd{background:#0b1722;border-radius:6px;padding:4px 6px;font-family:var(--mono);font-size:12px}
+
+    /* responsive */
+    @media (max-width:980px){.grid{grid-template-columns:1fr;}.preview{height:260px}}
+
+    /* helper shapes for quick examples */
+    .example-shape{width:200px;height:200px;background:linear-gradient(135deg,#ffd166,#ef476f);display:flex;align-items:center;justify-content:center;color:#071124;font-weight:800;border-radius:8px}
+  </style>
+</head>
+<body>
+  <header>
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='42' height='42' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%236ee7b7'/><path d='M6 9 L12 4 L18 9 L14 9 L14 20 L10 20 L10 9Z' fill='%23071224'/></svg>" alt="logo" style="width:42px;height:42px;border-radius:9px;box-shadow:0 6px 16px rgba(0,0,0,0.5)">
+    <div>
+      <h1>Clip‑Path Academy</h1>
+      <div style="color:var(--muted);font-size:13px">Tam kapsamlı, örneklerle ve canlı editörle clip-path öğretici</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav>
+      <a href="#intro">Giriş</a>
+      <a href="#basic">Temel</a>
+      <a href="#polygon">Polygon</a>
+      <a href="#shapes">Circle/Ellipse/Inset</a>
+      <a href="#path">Path (SVG)</a>
+      <a href="#anim">Animasyonlar</a>
+      <a href="#live">Canlı Editör</a>
+      <a href="#download">Kodları İndir</a>
+    </nav>
+
+    <div class="grid">
+      <div>
+        <section id="intro" class="card">
+          <h2 class="section-title">Giriş: clip-path nedir?</h2>
+          <p class="explain">CSS <code>clip-path</code> öğeyi kesmek (mask) için kullanılır. Bir elementin hangi kısmının görünür olacağını belirler. Performans açısından GPU hızlandırmalı olabilir ve modern tarayıcılarda (Chrome, Edge, Safari, Firefox) iyi desteklenir — fakat <code>path()</code> kullanımı ve bazı ileri tekniklerde tarayıcı farklılıkları gözlemleyebilirsiniz.</p>
+          <p class="explain">Bu site: her seviye için örnekler, canlı editör, önceden hazırlanmış snippet'ler ve animasyon örnekleri içerir. Sağ taraftaki canlı önizleme ile anında sonucu görebilirsin.</p>
+        </section>
+
+        <section id="basic" class="card" style="margin-top:14px">
+          <h3 class="section-title">CSS sözdizimi</h3>
+          <p class="explain">clip-path property birkaç form alır:</p>
+          <ul class="explain">
+            <li><code>clip-path: inset(10px 20px 10px 20px round 8px);</code></li>
+            <li><code>clip-path: circle(40% at 50% 50%);</code></li>
+            <li><code>clip-path: ellipse(50% 30% at 50% 50%);</code></li>
+            <li><code>clip-path: polygon(x y, x y, ...);</code></li>
+            <li><code>clip-path: path('M...Z');</code> — SVG path (ileri)</li>
+            <li><code>clip-path: url(#svgMask)</code> — SVG mask/clipPath referansı</li>
+          </ul>
+        </section>
+
+        <section id="polygon" class="card" style="margin-top:14px">
+          <h3 class="section-title">Polygon — Çokgenler</h3>
+          <p class="explain">Polygon en sık kullanılanıdır. Koordinatlar <strong>yüzde</strong> veya <strong>px</strong> ile verilir. 0 0 sol üst, 100% 100% sağ alt.</p>
+          <div style="display:flex;gap:12px;align-items:center;margin-top:10px;flex-wrap:wrap">
+            <div style="flex:1">
+              <strong>Örnek: Kart kesme</strong>
+              <pre>clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);</pre>
+            </div>
+            <div style="width:180px">
+              <div class="example-shape" style="clip-path:polygon(0 0,100% 0,100% 85%,0 100%);">
+                POLY
+              </div>
+            </div>
+          </div>
+
+          <p class="explain">İpuçları:
+            <ul class="explain">
+              <li>Başlangıç için yüzde kullan: responsive olur.</li>
+              <li>İç içe transform uygularken <code>transform-origin</code> ile oynamak gerekebilir.</li>
+              <li>Tarayıcılar bazı durumlarda antialiasing farklılığı gösterebilir.</li>
+            </ul>
+          </p>
+        </section>
+
+        <section id="shapes" class="card" style="margin-top:14px">
+          <h3 class="section-title">Circle / Ellipse / Inset</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div>
+              <strong>Circle örnek</strong>
+              <pre>clip-path: circle(45% at 50% 40%);</pre>
+            </div>
+            <div>
+              <div class="example-shape" style="clip-path:circle(45% at 50% 40%);">CIRCLE</div>
+            </div>
+
+            <div>
+              <strong>Ellipse örnek</strong>
+              <pre>clip-path: ellipse(50% 35% at 50% 50%);</pre>
+            </div>
+            <div>
+              <div class="example-shape" style="clip-path:ellipse(50% 35% at 50% 50%);">ELLIP</div>
+            </div>
+
+            <div>
+              <strong>Inset örnek (iç marj)</strong>
+              <pre>clip-path: inset(10% 5% 12% 5% round 12px);</pre>
+            </div>
+            <div>
+              <div class="example-shape" style="clip-path:inset(10% 5% 12% 5% round 12px);">INSET</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="path" class="card" style="margin-top:14px">
+          <h3 class="section-title">Path() — SVG Path ile ileri şekiller</h3>
+          <p class="explain">SVG path komutlarıyla (M, L, C, Q, A, Z) organik ve eğrisel formlar oluşturabilirsin. Path kullanımı DOM'da daha güçlü ama öğrenmesi biraz SVG path bilgisi gerektirir.</p>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+            <div style="flex:1">
+              <strong>Örnek: Dalga</strong>
+              <pre>clip-path: path('M0 0 L100 0 L100 70 Q70 100 50 90 Q30 80 0 100 Z');</pre>
+            </div>
+            <div style="width:220px">
+              <div class="example-shape" style="clip-path:path('M0 0 L100% 0 L100% 70% Q70% 100% 50% 90% Q30% 80% 0 100% Z');">WAVE</div>
+            </div>
+          </div>
+
+          <p class="explain">Not: path() içinde yüzdeleri kullanırken bazı tarayıcılar daha eski yorumlayabilir — test et. Alternatif olarak SVG <code>&lt;clipPath&gt;</code> tanımlayıp <code>clip-path: url(#myClip)</code> kullanmak daha esnek olabilir.</p>
+        </section>
+
+        <section id="anim" class="card" style="margin-top:14px">
+          <h3 class="section-title">Animasyonlar ve Geçişler</h3>
+          <p class="explain">clip-path property üzerinde <code>transition</code> ve <code>animation</code> kullanılabilir. Ancak path/complex değişiklikler performansa etki edebilir. Donanım hızlandırma için <code>will-change: clip-path</code> ekleyebilirsin.</p>
+
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+            <div style="flex:1">
+              <strong>Pulse morph örnek</strong>
+              <pre>
+.demo-box{transition:clip-path .6s ease}
+.demo-box:hover{clip-path:circle(60% at 50% 40%)}
+              </pre>
+            </div>
+            <div style="width:220px">
+              <div class="example-shape demo-box" style="clip-path:circle(45% at 50% 40%);">HOVER</div>
+            </div>
+          </div>
+
+          <p class="explain">Daha ileri: SVG morphing (SMIL veya JS ile) ile de path lerin arasını yumuşatabilirsin (ör. flubber, anime.js). Ancak saf CSS ile path() morflamak tarayıcı desteği sınırlı olabilir.</p>
+        </section>
+
+        <section id="examples" class="card" style="margin-top:14px">
+          <h3 class="section-title">Hazır Projeler (Hızlı Özet)</h3>
+          <ol class="explain">
+            <li><strong>UI Card Pack</strong> — Köşeli ve asimetrik kartlar (polygon).</li>
+            <li><strong>Hero Banner Wave</strong> — Dalga maskesi (path + SVG fallback).</li>
+            <li><strong>Profile Circle Stack</strong> — circle() ile avatar maskeleri.</li>
+            <li><strong>Interactive Reveal</strong> — hover ile reveal effect (inset + transition).</li>
+            <li><strong>Logo Cutout</strong> — SVG clipPath ile logo içi görünmezlik.</li>
+          </ol>
+          <p class="explain">Tüm projelerin kod blokları canlı editörde ve sağ tarafta önizleme var. Aşağıda "Canlı Editör" kısmına göz at.</p>
+        </section>
+
+        <section id="download" class="card" style="margin-top:14px">
+          <h3 class="section-title">Kaynakları İndir & Kopyala</h3>
+          <p class="explain">Her snippet için kopyala butonu ve tüm siteyi tek HTML olarak indir seçeneği mevcut.</p>
+          <div class="row" style="margin-top:8px">
+            <button id="downloadBtn" class="small">Tam Siteyi İndir (single-file)</button>
+            <button id="exportExamples" class="small">Örnekleri Ziple</button>
+          </div>
+        </section>
+
+        <footer class="card" style="margin-top:14px">
+          <div style="font-weight:700">Nasıl kullanılır?</div>
+          <ol class="explain">
+            <li>Sağdaki editöre örneği yapıştır, anında gör.</li>
+            <li>Beğendiysen &quot;Copy CSS&quot; ile al ve projene yapıştır.</li>
+            <li>Profesyonel sonuç için SVG clipPath fallback ekle.</li>
+          </ol>
+          <div style="margin-top:8px;color:var(--muted)">Bu tek dosya örneği offline olarak çalışır. İstersen GH Pages'a at veya projene dahil et.</div>
+        </footer>
+      </div>
+
+      <!-- RIGHT COLUMN: Live editor & preview -->
+      <aside>
+        <div class="card">
+          <h3 class="section-title">Canlı Editör & Önizleme</h3>
+          <div class="preview" id="preview">
+            <div class="demo-box" id="demoBox" style="background:linear-gradient(135deg,#ffd166,#ef476f);">CLIP</div>
+          </div>
+
+          <div class="controls" style="margin-top:12px">
+            <label for="mode">Örnek seç</label>
+            <select id="mode">
+              <option value="poly_card">Polygon: Asimetrik Kart</option>
+              <option value="poly_star">Polygon: Yıldız</option>
+              <option value="circle">Circle</option>
+              <option value="ellipse">Ellipse</option>
+              <option value="inset">Inset (rounded)</option>
+              <option value="path_wave">Path: Dalga</option>
+              <option value="path_blob">Path: Blob (örnek)</option>
+            </select>
+
+            <label for="clipInput">clip-path değeri</label>
+            <textarea id="clipInput" rows="3">clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);</textarea>
+
+            <div class="row">
+              <button id="applyBtn">Uygula</button>
+              <button id="copyBtn" class="small">Copy CSS</button>
+              <button id="resetBtn" class="small">Reset</button>
+            </div>
+
+            <label>CSS kodu (HTML ile kullanımı)</label>
+            <pre id="codeBlock">/* buraya kod gelecek */</pre>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3 class="section-title">Kısa Açıklamalar & İpuçları</h3>
+          <ul class="explain">
+            <li><span class="kbd">will-change: clip-path;</span> performans için ekle.</li>
+            <li>SVG fallback: tarayıcı uyumsuzluğu düşün. <code>&lt;clipPath&gt;</code> kullan.</li>
+            <li>Animasyon yaparken <code>transition</code> ekle; path morph bazı tarayıcılarda çalışmayabilir.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    // Canlı editör logic
+    const demo = document.getElementById('demoBox');
+    const clipInput = document.getElementById('clipInput');
+    const applyBtn = document.getElementById('applyBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const codeBlock = document.getElementById('codeBlock');
+    const mode = document.getElementById('mode');
+
+    const examples = {
+      poly_card: 'clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);',
+      poly_star: 'clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);',
+      circle: 'clip-path: circle(45% at 50% 45%);',
+      ellipse: 'clip-path: ellipse(50% 34% at 50% 50%);',
+      inset: 'clip-path: inset(8% 6% 8% 6% round 12px);',
+      path_wave: "clip-path: path('M0 0 L100 0 L100 70 Q75 100 50 90 Q25 80 0 100 Z');",
+      path_blob: "clip-path: path('M44.7,-52.9C55.2,-42.5,56.7,-26.5,58.9,-10.1C61.1,6.3,64,22.9,57.9,35.9C51.8,48.9,36.9,58.3,21.8,63.6C6.8,68.9,-9.6,70.2,-24.4,66.2C-39.1,62.1,-52.3,52.8,-60.7,39.8C-69,26.9,-72.6,10.1,-70.3,-6.7C-68,-23.6,-59.8,-40.4,-46.6,-50.5C-33.3,-60.6,-16.7,-63.9,-1.8,-61.6C13.1,-59.2,26.2,-51.7,44.7,-52.9Z');"
+    };
+
+    function applyClip(v){
+      // `v` may include the whole property e.g. "clip-path: ...;" or just the value. Normalize.
+      let value = v.trim();
+      if(value.startsWith('clip-path')){
+        value = value.split(':').slice(1).join(':').trim();
+        if(value.endsWith(';')) value = value.slice(0,-1);
+      }
+      try{
+        demo.style.clipPath = value;
+        demo.style.webkitClipPath = value;
+        codeBlock.textContent = `/* HTML */\n.demo{\n  clip-path: ${value};\n  -webkit-clip-path: ${value};\n}`;
+      }catch(e){
+        codeBlock.textContent = 'Geçersiz clip-path değeri veya tarayıcı sınırlaması. Konsolu kontrol et.';
+        console.warn(e);
+      }
+    }
+
+    applyBtn.addEventListener('click', ()=> applyClip(clipInput.value));
+    copyBtn.addEventListener('click', ()=>{
+      navigator.clipboard.writeText(codeBlock.textContent).then(()=>{
+        copyBtn.textContent='Kopyalandı!';
+        setTimeout(()=> copyBtn.textContent = 'Copy CSS',900);
+      });
+    });
+    resetBtn.addEventListener('click', ()=>{
+      const ex = examples[mode.value];
+      clipInput.value = ex;
+      applyClip(ex);
+    });
+
+    mode.addEventListener('change', ()=>{
+      const ex = examples[mode.value];
+      clipInput.value = ex;
+      applyClip(ex);
+    });
+
+    // initialize
+    clipInput.value = examples.poly_card;
+    applyClip(examples.poly_card);
+
+    // Download full HTML as file
+    document.getElementById('downloadBtn').addEventListener('click', ()=>{
+      const html = `<!doctype html>\n${document.documentElement.outerHTML}`;
+      const blob = new Blob([html], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'clip-path-academy.html';
+      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+
+    // Export examples as single JSON file (simple)
+    document.getElementById('exportExamples').addEventListener('click', ()=>{
+      const data = {examples};
+      const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'clip-path-examples.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+
+    // Optional: keyboard shortcuts
+    window.addEventListener('keydown', (e)=>{
+      if((e.ctrlKey||e.metaKey) && e.key === 'Enter'){
+        applyClip(clipInput.value);
+      }
+    });
+  </script>
+</body>
+</html>

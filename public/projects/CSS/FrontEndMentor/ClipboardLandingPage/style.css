@@ -1,0 +1,281 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+:root {
+	--green500: hsl(171, 66%, 44%);
+	--blue100: hsl(233, 100%, 69%);
+	--gray700: hsl(210, 10%, 33%);
+	--gray500: hsl(201, 11%, 66%);
+	--fs-reg: 0.875rem;
+	--fs-sm: 1.125rem;
+	--fs-md: 1.25rem;
+	--fs-lg: 1.5rem;
+	--fs-xl: 1.75rem;
+	--fs-xxl: 2rem;
+}
+
+html {
+	font-family: 'Red Hat Display', sans-serif;
+	font-size: 18px;
+}
+
+p {
+	font-size: var(--fs-reg);
+	color: var(--gray500);
+}
+h1 {
+	font-size: var(--fs-xxl);
+	color: var(--gray700);
+}
+h2 {
+	font-size: var(--fs-xl);
+	color: var(--gray700);
+}
+h3 {
+	font-size: var(--fs-md);
+	color: var(--gray700);
+}
+body {
+	font-family: 'DM Sans', sans-serif;
+	color: black;
+	background-image: url(images/bg-header-desktop.png);
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.wrapper {
+	max-width: 1200px;
+	margin-inline: auto;
+	padding-inline: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.hero {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	flex-direction: column;
+	gap: 3rem;
+	padding-block: 6rem;
+}
+.hero .hero-title {
+	width: 50%;
+}
+.btn-container {
+	display: flex;
+	gap: 1rem;
+}
+.btn {
+	padding: 0.5rem 2rem;
+	border-radius: 3rem;
+	border: none;
+}
+.btn-primary {
+	background-color: var(--green500);
+	color: white;
+	box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+.btn-secondary {
+	background-color: var(--blue100);
+	color: white;
+	box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+}
+
+.body-title {
+	width: 55%;
+	padding-block-end: 4rem;
+	padding-block-start: 1rem;
+}
+
+.pc-info-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5rem;
+}
+
+.pc-info-container img {
+	margin-left: -3rem;
+}
+
+.pc-info-container > div {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	text-align: start;
+	gap: 3rem;
+}
+
+.tablet-info-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding-block: 6rem;
+	gap: 3rem;
+}
+.tablet-info-container > div {
+	width: 50%;
+}
+
+.properties-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 4rem;
+}
+.properties-title {
+	line-height: 2;
+}
+.properties-grid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	gap: 2rem;
+}
+.grid-item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.mark-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-block: 5rem;
+}
+
+.cta-container {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+}
+
+footer {
+	width: 100dvw;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgb(240, 240, 240);
+	margin-block-start: 4rem;
+	padding-block: 2rem;
+	padding-inline: 2rem;
+}
+
+footer img {
+	width: 5%;
+}
+.footer-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	column-gap: 4rem;
+	row-gap: 0.5rem;
+	a {
+		text-decoration: none;
+		color: var(--gray500);
+	}
+}
+.footer-logo-container {
+	width: 10%;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	img {
+		width: 20%;
+	}
+}

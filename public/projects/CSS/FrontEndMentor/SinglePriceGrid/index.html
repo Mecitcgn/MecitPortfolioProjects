@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Single Price Grid</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<button class="theme-btn">Light Mode</button>
+		<div class="main-grid">
+			<div class="up-card">
+				<h1>Join our community</h1>
+				<p>30-day, hassle-free money back guarantee</p>
+				<p>
+					Gain access to our full librrary of tutorials alon with expert code
+					reviews. Perfect for any developers who are serious about honing their
+					skills.
+				</p>
+			</div>
+			<div class="left-bottom-card">
+				<p>Monthly Subscription</p>
+				<div class="paragraph-container">
+					<p>$29</p>
+					<p>per month</p>
+				</div>
+				<p>Full access for less than $1 a day</p>
+				<button class="btn">Sign Up</button>
+			</div>
+			<div class="right-bottom-card">
+				<p>Why Us</p>
+				<p>
+					Tutorials by industry experts Peer &amp; expert code review Coding
+					exercises Access to our GitHub repos Community forum Flashcard decks
+					New videos every week
+				</p>
+			</div>
+		</div>
+		<script>
+			const themeBtn = document.querySelector('.theme-btn');
+			themeBtn.addEventListener('click', () => {
+				document.body.classList.toggle('light');
+				if (document.body.classList.contains('light')) {
+					themeBtn.textContent = 'Light Mode';
+				} else {
+					themeBtn.textContent = 'Dark Mode';
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,168 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+body {
+	width: 100%;
+	height: 100dvh;
+	background-color: #13183f;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.visitor-card {
+	width: 750px;
+	height: 500px;
+	background-color: #1b215d;
+}
+
+.top-container {
+	height: 20%;
+	background-color: #161b4e;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.top-container p:nth-child(1) {
+	font-size: 1.5rem;
+	font-weight: bolder;
+	letter-spacing: 0.4rem;
+}
+
+.bottom-container {
+	height: 80%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 6rem;
+}
+
+.circle {
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
+	border: 1.5rem solid transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background: linear-gradient(#13183f, #13183f) padding-box,
+		conic-gradient(
+				black 1deg,
+				purple 1deg 144deg,
+				black 144deg 146deg,
+				yellow 146deg 190deg,
+				black 190deg 191deg,
+				green 192deg 250deg,
+				black 250deg 252deg,
+				orange 252deg 300deg,
+				black 300deg 304deg,
+				blue 304deg 340deg,
+				black 340deg 342deg,
+				red 342deg 360deg
+			)
+			border-box;
+}
+
+.circle p:nth-child(1) {
+	font-size: 3rem;
+	font-weight: bold;
+	line-height: 3rem;
+}
+
+.flex-right-side {
+	height: 300px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+}
+
+.content-flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.percent-box {
+	background-color: purple;
+	border-radius: 1rem;
+	padding: 0.05rem 0.5rem;
+}

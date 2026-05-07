@@ -1,0 +1,219 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+:root {
+	--background-primary: linear-gradient(270deg, pink, purple);
+	--blue-primary: #96a7fe;
+	--text-color: #8c9ba2;
+}
+
+body {
+	width: 100%;
+	height: 100dvh;
+	font-family: Arial, Helvetica, sans-serif;
+	color: var(--text-color);
+}
+
+.search-container {
+	width: 100%;
+	height: 20%;
+	box-shadow: 0 1px 6px black;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-around;
+}
+.container {
+	max-inline-size: 1200px;
+	margin-inline: auto;
+	padding-inline: 1rem;
+}
+
+#search {
+	border: none;
+	outline: none;
+	font-size: 1.5rem;
+	width: 12ch;
+}
+.search-icon {
+	font-size: 1.75rem;
+}
+
+.explore-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-block-start: 2rem;
+	background: var(--background-primary);
+}
+
+.right-side {
+	width: 70%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 1rem;
+}
+
+.left-side {
+	width: 30%;
+	padding: 2rem;
+}
+
+.card-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: wrap row;
+	gap: 0.5rem;
+	padding: 1rem;
+}
+
+.card {
+	flex-basis: 24%;
+	background-color: white;
+	img {
+		padding: 0.1rem;
+	}
+	.price-favorite-container {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.8rem;
+		padding: 0.2rem 0;
+	}
+	.card-content-main-container {
+		padding: 0.5rem 1rem;
+	}
+}
+
+.left-side {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	align-content: center;
+	gap: 0.5rem;
+}
+
+.read-btn {
+	color: var(--blue-primary);
+	border: 1px solid transparent;
+	padding: 0.2rem 1.5rem;
+}
+
+.explore-title {
+	color: white;
+}
+.explore-description {
+	color: white;
+}
+.top-text {
+	padding: 0.5rem 0;
+}
+.card2 {
+	flex-basis: 32%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	.card-content-main-container {
+		width: 50%;
+		box-shadow: 0 0 3px black;
+		mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+		-webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+	}
+
+	img {
+		width: 45%;
+	}
+}
+
+.card3 {
+	flex-basis: 16%;
+	background-color: white;
+	img {
+		padding: 0.1rem;
+	}
+	.price-favorite-container {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.8rem;
+		padding: 0.2rem 0;
+	}
+	.card-content-main-container {
+		padding: 0.5rem 1rem;
+	}
+}

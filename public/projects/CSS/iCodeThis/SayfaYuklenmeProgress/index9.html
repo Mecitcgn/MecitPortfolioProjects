@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Selamlar</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			body {
+				width: 100%;
+				height: 100dvh;
+			}
+
+			.wrapper {
+				width: 100%;
+				height: 100%;
+				background-color: black;
+				display: flex;
+				justify-content: center;
+				align-items: flex-end;
+			}
+
+			progress {
+				scale: 4;
+				margin-bottom: 5rem;
+			}
+
+			.visible-kapat {
+				visibility: hidden;
+				opacity: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<progress id="bar" max="100" value="0"></progress>
+		</div>
+
+		<script>
+			const baslama = Date.now();
+			const bizimbar = document.querySelector('#bar');
+			const Sayac = setInterval(() => {
+				const seconds = ((Date.now() - baslama) / 50).toFixed(1);
+				bizimbar.value = seconds;
+			}, 10);
+
+			if (bizimbar.value >= 100) {
+				bizimbar.classList.add('visible-kapat');
+			}
+		</script>
+	</body>
+</html>

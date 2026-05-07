@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Form</title>
+		<style>
+			/* 1. Use a more-intuitive box-sizing model */
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			/* 2. Remove default margin */
+			* {
+				margin: 0;
+			}
+
+			/* 3. Enable keyword animations */
+			@media (prefers-reduced-motion: no-preference) {
+				html {
+					interpolate-size: allow-keywords;
+				}
+			}
+
+			body {
+				/* 4. Add accessible line-height */
+				line-height: 1.5;
+				/* 5. Improve text rendering */
+				-webkit-font-smoothing: antialiased;
+			}
+
+			/* 6. Improve media defaults */
+			img,
+			picture,
+			video,
+			canvas,
+			svg {
+				display: block;
+				max-width: 100%;
+			}
+
+			/* 7. Inherit fonts for form controls */
+			input,
+			button,
+			textarea,
+			select {
+				font: inherit;
+			}
+
+			/* 8. Avoid text overflows */
+			p,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				overflow-wrap: break-word;
+			}
+
+			/* 9. Improve line wrapping */
+			p {
+				text-wrap: pretty;
+			}
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				text-wrap: balance;
+			}
+
+			/* 10. Create a root stacking context */
+			#root,
+			#__next {
+				isolation: isolate;
+			}
+
+			:root {
+				--bg-dark: hsl(10 100% 2%);
+				--bg: hsl(21 100% 4%);
+				--bg-light: hsl(31 100% 6%);
+				--text: hsl(34 100% 88%);
+				--text-muted: hsl(34 59% 62%);
+				--highlight: hsl(40 100% 25%);
+				--border: hsl(39 100% 15%);
+				--border-muted: hsl(34 100% 10%);
+				--primary: hsl(34 64% 61%);
+				--secondary: hsl(212 86% 73%);
+				--danger: hsl(8 58% 66%);
+				--warning: hsl(51 41% 48%);
+				--success: hsl(150 37% 53%);
+				--info: hsl(217 66% 68%);
+
+				/* OKLCH */
+				--bg-dark: oklch(0.1 0.055 73);
+				--bg: oklch(0.15 0.055 73);
+				--bg-light: oklch(0.2 0.055 73);
+				--text: oklch(0.96 0.1 73);
+				--text-muted: oklch(0.76 0.1 73);
+				--highlight: oklch(0.5 0.11 73);
+				--border: oklch(0.4 0.11 73);
+				--border-muted: oklch(0.3 0.11 73);
+				--primary: oklch(0.76 0.11 73);
+				--secondary: oklch(0.76 0.11 253);
+				--danger: oklch(0.7 0.11 30);
+				--warning: oklch(0.7 0.11 100);
+				--success: oklch(0.7 0.11 160);
+				--info: oklch(0.7 0.11 260);
+
+				--shadow-s: inset 0 1px 2px #ffffff50, 0 1px 2px #ffffff30,
+					0 2px 4px #ffffff15;
+				--shadow-m: inset 0 2px 4px #ffffff50, 0 2px 4px #ffffff30,
+					0 	8px 12px #ffffff15;
+				--shadow-l: inset 0 4px 8px #ffffff50, 0 4px 8px #ffffff30,
+					0 16px 32px #ffffff15;
+				--success-shadow-s: inset 0 1px 2px #00ff0050, 0 1px 2px #00ff0030,
+					0 2px 4px #00ff0015;
+				--success-shadow-m: inset 0 2px 4px #00ff0050, 0 2px 4px #00ff0030,
+					0 8px 12px #00ff0015;
+				--success-shadow-l: inset 0 4px 8px #00ff0050, 0 4px 8px #00ff0030,
+					0 16px 32px #00ff0015;
+				--danger-shadow-s: inset 0 1px 2px #ff000050, 0 1px 2px #ff000030,
+					0 2px 4px #ff000015;
+				--danger-shadow-m: inset 0 2px 4px #ff000050, 0 2px 4px #ff000030,
+					0 8px 12px #ff000015;
+				--danger-shadow-l: inset 0 4px 8px #ff000050, 0 4px 8px #ff000030,
+					0 16px 32px #ff000015;
+			}
+
+			body.light {
+				/* HSL */
+				--bg-dark: hsl(33 90% 86%);
+				--bg: hsl(33 100% 92%);
+				--bg-light: hsl(33 100% 97%);
+				--text: hsl(5 100% 6%);
+				--text-muted: hsl(39 100% 15%);
+				--highlight: hsl(34 100% 93%);
+				--border: hsl(36 61% 41%);
+				--border-muted: hsl(35 53% 54%);
+				--primary: hsl(39 100% 15%);
+				--secondary: hsl(210 77% 28%);
+				--danger: hsl(8 43% 42%);
+				--warning: hsl(53 100% 19%);
+				--success: hsl(157 83% 25%);
+				--info: hsl(217 46% 43%);
+
+				/* OKLCH */
+				--bg-dark: oklch(0.92 0.055 73);
+				--bg: oklch(0.96 0.055 73);
+				--bg-light: oklch(1 0.055 73);
+				--text: oklch(0.15 0.11 73);
+				--text-muted: oklch(0.4 0.11 73);
+				--highlight: oklch(1 0.11 73);
+				--border: oklch(0.6 0.11 73);
+				--border-muted: oklch(0.7 0.11 73);
+				--primary: oklch(0.4 0.11 73);
+				--secondary: oklch(0.4 0.11 253);
+				--danger: oklch(0.5 0.11 30);
+				--warning: oklch(0.5 0.11 100);
+				--success: oklch(0.5 0.11 160);
+				--info: oklch(0.5 0.11 260);
+
+				--shadow-s: inset 0 1px 2px #00000050, 0 1px 2px #00000030,
+					0 2px 4px #00000015;
+				--shadow-m: inset 0 2px 4px #00000050, 0 2px 4px #00000030,
+					0 8px 12px #00000015;
+				--shadow-l: inset 0 4px 8px #00000050, 0 4px 8px #00000030,
+					0 16px 32px #00000015;
+				--success-shadow-s: inset 0 1px 2px #00ff0050, 0 1px 2px #00ff0030,
+					0 2px 4px #00ff0015;
+				--success-shadow-m: inset 0 2px 4px #00ff0050, 0 2px 4px #00ff0030,
+					0 8px 12px #00ff0015;
+				--success-shadow-l: inset 0 4px 8px #00ff0050, 0 4px 8px #00ff0030,
+					0 16px 32px #00ff0015;
+				--danger-shadow-s: inset 0 1px 2px #ff000050, 0 1px 2px #ff000030,
+					0 2px 4px #ff000015;
+				--danger-shadow-m: inset 0 2px 4px #ff000050, 0 2px 4px #ff000030,
+					0 8px 12px #ff000015;
+				--danger-shadow-l: inset 0 4px 8px #ff000050, 0 4px 8px #ff000030,
+					0 16px 32px #ff000015;
+			}
+
+			body {
+				width: 100%;
+				height: 100dvh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: radial-gradient(
+					circle at center,
+					var(--highlight) 0%,
+					var(--bg) 70%
+				);
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			form {
+				width: 400px;
+				/* DEĞİŞİKLİK: --bg-light yerine --bg kullanıldı. */
+				background-color: var(--bg);
+				border-radius: 1rem;
+				/* DEĞİŞİKLİK: --highlight (parlak turuncu gölge) yerine siyah gölge kullanıldı. Gözü yormaz ve derinlik katar. */
+				box-shadow: var(--shadow-l);
+				transition: all 0.5s ease;
+			}
+
+			.container {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				padding: 2rem;
+			}
+
+			label {
+				color: var(--text);
+			}
+
+			input,
+			select,
+			option {
+				/* DEĞİŞİKLİK: --primary (turuncu) yerine --bg-dark kullanıldı. Yazıların okunması için koyu zemin şart. */
+				background-color: var(--bg-dark);
+
+				/* DEĞİŞİKLİK: --border yerine --border-muted kullanıldı, daha yumuşak bir sınır çizgisi için. */
+				border: 1px solid var(--border-muted);
+				border-radius: 0.2rem;
+				padding: 0.2rem 0;
+				box-shadow: var(--shadow-s);
+			}
+
+			input {
+				color: var(--text);
+				border-radius: 0.2rem;
+				padding: 0.2rem 0.5rem;
+			}
+
+			input:focus,
+			select:focus {
+				/* DEĞİŞİKLİK: Focus olunca arka plan aynı kalsın, renk değişmesin istendi. */
+				background-color: var(--bg-dark);
+
+				/* DEĞİŞİKLİK: border-muted yerine --primary kullanıldı. Kullanıcı tıkladığında kutunun parlaması lazım. */
+				outline: 1px solid var(--primary);
+			}
+
+			.flex-column {
+				position: relative;
+				width: 85%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				padding: 0.3rem;
+			}
+			.flex-column2 {
+				align-items: flex-start;
+			}
+			.textInput {
+				align-self: flex-start;
+				font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			}
+
+			h1 {
+				text-align: center;
+				color: var(--text);
+				margin-block-start: 2rem;
+				font-size: 2.5rem;
+				font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			}
+
+			.input-normal {
+				width: 100%;
+			}
+			#selectMenu {
+				width: 100%;
+				height: 2rem;
+				padding: 0 1rem;
+				font-family: Georgia, 'Times New Roman', Times, serif;
+				color: var(--text); /* Select içindeki yazı rengi eklendi */
+			}
+
+			button {
+				background-color: var(--primary);
+
+				/* DEĞİŞİKLİK: var(--text) (beyazımsı) yerine var(--bg-dark) (koyu) kullanıldı. Turuncu üzerinde siyah yazı daha okunaklıdır. */
+				color: var(--bg-dark);
+
+				/* DEĞİŞİKLİK: Border kaldırıldı. Buton zaten renkli, kenarlığa gerek yok. */
+				border: 2px solid var(--border-muted);
+
+				padding: 0.4rem 2rem;
+				margin-top: 0.5rem;
+				cursor: pointer;
+				border-radius: 0.4rem;
+				font-weight: bold; /* Buton yazısını güçlendirmek için eklendi */
+				transition: all 0.3s ease; /* Yumuşak geçiş eklendi */
+			}
+
+			button:hover {
+				/* DEĞİŞİKLİK: --highlight yerine biraz daha parlak veya doygun bir ton için highlight uygun, bu kaldı. */
+				background-color: var(--highlight);
+				box-shadow: var(--shadow-m);
+			}
+
+			.theme-toggle {
+				position: absolute;
+				top: 1rem;
+				right: 1rem;
+				background-color: var(--primary);
+				color: var(--bg-dark);
+				border: none;
+				padding: 0.4rem 1rem;
+				border-radius: 0.3rem;
+				cursor: pointer;
+				font-weight: bold;
+			}
+
+			.error-notify {
+				visibility: hidden;
+				opacity: 0;
+				width: 100%;
+				font-size: 0.875rem;
+				position: absolute;
+				bottom: 90%;
+				left: 50%;
+				color: white;
+				background-color: var(--danger);
+				border-radius: 0.2rem;
+				padding: 0.2rem 0.5rem;
+				text-align: center;
+				transition: all 1s ease;
+			}
+
+			.error-notify::after {
+				content: '';
+				position: absolute;
+				top: 85%;
+				right: 85%;
+				width: 0.75rem;
+				height: 0.75rem;
+				background-color: var(--danger);
+				border-radius: 50% 0 50% 0;
+				transform: rotate(135deg);
+			}
+
+			input:not(:focus):not(:placeholder-shown):invalid + .error-notify {
+				transform: translateY(20%);
+
+				visibility: visible;
+				opacity: 1;
+			}
+
+			input:not(:placeholder-shown):invalid {
+				border-color: var(--danger);
+			}
+
+			input:not(:placeholder-shown):valid {
+				border-color: var(--success);
+			}
+
+			.radio-container {
+				width: 100%;
+				height: 4rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 0.5rem;
+			}
+
+			.radio-rectangle {
+				width: 30%;
+				height: 100%;
+				background-color: var(--bg-dark);
+				box-shadow: var(--shadow-s);
+				border-radius: 0.4rem;
+				display: grid;
+				grid-template-columns: 0.75fr 1fr;
+				grid-template-rows: repeat(3, 1fr);
+				place-items: center;
+			}
+
+			input[type='radio'] {
+				width: 40%;
+				grid-area: 2 / 2 / 2 / 1;
+				outline: none;
+				accent-color: var(--secondary);
+			}
+
+			.textInput2 {
+				font-family: Arial, Helvetica, sans-serif;
+				grid-area: 2 / 2 / 2 / 2;
+				font-size: 1.25rem;
+				justify-self: start;
+			}
+
+			.small-val {
+				font-size: 1.125rem;
+			}
+
+			.success-out {
+				outline: 2px solid var(--success);
+				box-shadow: var(--success-shadow-l);
+			}
+		</style>
+	</head>
+	<body>
+		<button class="theme-toggle" id="themeBtn">Light Mode</button>
+		<form action="#" method="get" novalidate>
+			<h1>REGISTER FORM</h1>
+			<div class="container">
+				<div class="flex-column">
+					<label for="nameValue" class="textInput">Name:</label>
+					<input
+						placeholder=" "
+						type="text"
+						name="nameValue"
+						class="input-normal"
+					/>
+					<span class="error-notify"
+						>Password must be 6 or upper character</span
+					>
+				</div>
+				<div class="flex-column">
+					<label for="emailValue" class="textInput">Email:</label>
+					<input
+						placeholder=" "
+						type="email"
+						name="emailValue"
+						class="input-normal"
+					/>
+					<span class="error-notify"
+						>Email should be contain "@" character</span
+					>
+				</div>
+				<div class="flex-column">
+					<label for="passwordValue" class="textInput">Password:</label>
+					<input
+						placeholder=" "
+						type="password"
+						name="passwordValue"
+						class="input-normal"
+					/>
+					<span class="error-notify"
+						>Email should be contain "@" character</span
+					>
+				</div>
+				<div class="flex-column">
+					<label for="confirmValue" class="textInput">Confirm Password:</label>
+					<input
+						placeholder=" "
+						type="password"
+						name="confirmValue"
+						class="input-normal"
+					/>
+					<span class="error-notify"
+						>Email should be contain "@" character</span
+					>
+				</div>
+				<div class="flex-column flex-column2">
+					<label class="textInput">Gender:</label>
+					<div class="radio-container">
+						<div class="radio-rectangle">
+							<input type="radio" name="radioValue" id="boy" />
+							<label for="boy" class="textInput2">Boy</label>
+						</div>
+						<div class="radio-rectangle">
+							<input type="radio" name="radioValue" id="girl" />
+							<label for="girl" class="textInput2">Girl</label>
+						</div>
+						<div class="radio-rectangle">
+							<input type="radio" name="radioValue" id="other" />
+							<label for="other" class="textInput2 small-val">Other</label>
+						</div>
+					</div>
+				</div>
+				<div class="flex-column flex-column2">
+					<label for="selectMenu" class="textInput">Security Questions:</label>
+					<select name="securityValue" id="selectMenu">
+						<option value="">En Sevdiğin Renk</option>
+						<option value="">En Sevdiğin Yemek</option>
+						<option value="">En Sevdiğin Websitesi</option>
+						<option value="">En Sevdiğin Web Tarayıcısı</option>
+						<option value="">En Sevdiğin Yazılım Dili</option>
+					</select>
+				</div>
+				<button type="submit">Submit</button>
+			</div>
+		</form>
+		<script>
+			const themeBtn = document.getElementById('themeBtn');
+			const rectangles = document.querySelectorAll('.radio-rectangle');
+			const submitBtn = document.querySelector("button[type='submit']");
+			const formElement = document.querySelector('form');
+
+			rectangles.forEach((rect) => {
+				rect.addEventListener('click', () => {
+					rectangles.forEach((r) => r.classList.remove('success-out'));
+					rect.classList.add('success-out');
+
+					const radiobtn = rect.querySelector("input[type='radio']");
+					radiobtn.checked = true;
+				});
+			});
+
+			submitBtn.addEventListener('click', () => {
+				formElement.style.boxShadow =
+					'inset 0 4px 8px #00ff0050, 0 4px 8px #00ff0030, 0 16px 32px #00ff0015';
+
+				// 1 saniye sonra geri al
+				setTimeout(() => {
+					formElement.style.boxShadow = '';
+				}, 1000);
+			});
+
+			themeBtn.addEventListener('click', () => {
+				document.body.classList.toggle('light');
+
+				themeBtn.textContent = document.body.classList.contains('light')
+					? 'Dark Mode'
+					: 'Light Mode';
+			});
+		</script>
+	</body>
+</html>

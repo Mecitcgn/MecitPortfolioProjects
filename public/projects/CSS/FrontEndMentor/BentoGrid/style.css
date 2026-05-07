@@ -1,0 +1,306 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+	color: var(--bento-card-text-color, var(--black));
+	span {
+		color: var(--bento-card-span-color, var(--darkyellow));
+		font-style: var(--bento-card-span-font-style, inherit);
+	}
+}
+
+h1,
+h2,
+h3 {
+	font-weight: var(--bento-card-text-l-font-weight, inherit);
+}
+h4 {
+	font-weight: var(--bento-card-text-s-font-weight, inherit);
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+:root {
+	--lightpurple: hsl(254, 88%, 90%);
+	--darkpurple: hsl(256, 67%, 59%);
+	--lightyellow: hsl(31, 66%, 93%);
+	--darkyellow: hsl(39, 100%, 71%);
+	--white: hsl(0, 0%, 100%);
+	--off-white: hsl(0, 0%, 95%);
+	--black: hsl(0, 0%, 7%);
+
+	--fs-reg: 1.125rem;
+	--fs-md: 1.5rem;
+	--fs-lg: 2rem;
+	--fs-xl: 2.5rem;
+}
+
+html {
+	font-family: 'DM Sans', sans-serif;
+	line-height: 1.3;
+}
+
+body {
+	margin: 16px;
+	color: var(--black);
+	font-size: var(--fs-reg);
+	background-color: var(--off-white);
+}
+
+.bento-grid {
+	max-inline-size: 1200px;
+	margin-inline: auto;
+	display: grid;
+	gap: 24px;
+	grid-template-areas:
+		'one'
+		'two'
+		'three'
+		'four'
+		'five'
+		'six'
+		'seven'
+		'eight';
+	@media (width>660px) {
+		grid-template-areas:
+			'one one'
+			'two three'
+			'four eight'
+			'six seven'
+			'five five';
+	}
+	@media (width>960px) {
+		grid-template-areas:
+			'seven one one four'
+			'seven two three four'
+			'eight two three four'
+			'eight six five five';
+	}
+}
+
+.bento-grid > * {
+	padding: var(--bento-card-padding, 32px);
+	background-color: var(--bento-card-background-color, red);
+	border-radius: var(--bento-card-border-radius, 16px);
+	display: grid;
+	gap: var(--bento-card-gap, 24px);
+	justify-items: var(--bento-card-horizontal-alignment, start);
+	text-align: var(--bento-card-horizontal-alignment, start);
+	align-content: var(--bento-card-vertical-alignment, start);
+	align-items: var(--bento-card-vertical-alignment, start);
+	overflow: clip;
+	> h1 {
+		font-size: var(--bento-card-header-font-size, var(--fs-xl));
+	}
+	> h2 {
+		font-size: var(--bento-card-second-header-font-size, var(--fs-lg));
+	}
+	> h3 {
+		font-size: var(--bento-card-third-header-font-size, var(--fs-md));
+	}
+	> h4 {
+		font-size: var(--bento-card-fourth-header-font-size, var(--fs-reg));
+	}
+}
+.bento-grid h1,
+.bento-grid h2,
+.bento-grid h3,
+.bento-grid h4 {
+	line-height: var(--bento-card-text-line-height, inherit);
+}
+.bento-grid img {
+	width: var(--bento-card-image-width, 100%);
+	max-width: var(--bento-card-image-max-width, 100%);
+	order: var(--bento-card-image-order, inherit);
+}
+
+.bento-grid div:nth-child(1) {
+	--bento-card-background-color: var(--darkpurple);
+	--bento-card-text-line-height: 1;
+	--bento-card-image-width: 75%;
+	--bento-card-horizontal-alignment: center;
+	--bento-card-text-color: var(--white);
+	--bento-card-text-l-font-weight: 600;
+	--bento-card-text-s-font-weight: 400;
+	--bento-card-gap: 1rem;
+	> h1 > span:nth-child(2) {
+		font-style: italic;
+	}
+	grid-area: one;
+}
+
+.bento-grid div:nth-child(2) {
+	--bento-card-background-color: var(--white);
+	--bento-card-image-order: -1;
+	--bento-card-text-line-height: 1;
+	--bento-card-text-l-font-weight: 700;
+	--bento-card-padding: 1rem;
+	> img {
+		filter: drop-shadow(0 0 1rem hsl(0, 0%, 50%));
+	}
+	> h3 {
+		letter-spacing: -1.2px;
+	}
+	grid-area: two;
+}
+.bento-grid div:nth-child(3) {
+	--bento-card-background-color: var(--darkyellow);
+	--bento-card-text-line-height: 1;
+	--bento-card-text-l-font-weight: 700;
+	--bento-card-padding: 1rem;
+	--bento-card-image-width: 65%;
+	img {
+		margin-bottom: -35px;
+	}
+	> h3 {
+		letter-spacing: -1.2px;
+	}
+	grid-area: three;
+}
+.bento-grid div:nth-child(4) {
+	--bento-card-background-color: var(--lightpurple);
+	--bento-card-text-color: var(--black);
+	--bento-card-text-line-height: 1;
+	--bento-card-horizontal-alignment: center;
+	--bento-card-text-l-font-weight: 600;
+	--bento-card-text-s-font-weight: 400;
+	--bento-card-gap: 1rem;
+	--bento-card-padding: 1.5rem 1rem;
+	> h3 {
+		letter-spacing: -1.5px;
+	}
+	grid-area: four;
+}
+.bento-grid div:nth-child(5) {
+	--bento-card-background-color: var(--darkpurple);
+	--bento-card-text-color: var(--white);
+	--bento-card-text-line-height: 1;
+	--bento-card-image-order: -1;
+	--bento-card-image-width: 55%;
+	--bento-card-horizontal-alignment: center;
+	--bento-card-text-l-font-weight: 500;
+	--bento-card-gap: 2rem;
+	--bento-card-padding: 1.5rem 2rem;
+	> h2 {
+		letter-spacing: -1.5px;
+	}
+	grid-area: five;
+}
+.bento-grid div:nth-child(6) {
+	--bento-card-background-color: var(--white);
+	--bento-card-text-color: var(--black);
+	--bento-card-text-line-height: 1.3;
+	--bento-card-image-width: 75%;
+	--bento-card-text-l-font-weight: 500;
+	--bento-card-gap: 1rem;
+	--bento-card-padding: 1rem 1.5rem;
+	> h1 > span {
+		font-size: var(--fs-reg);
+		display: block;
+		color: var(--black);
+	}
+	grid-area: six;
+}
+.bento-grid div:nth-child(7) {
+	--bento-card-background-color: var(--lightyellow);
+	--bento-card-text-color: var(--black);
+	--bento-card-text-line-height: 0.9;
+	--bento-card-image-width: 60%;
+	--bento-card-text-l-font-weight: 500;
+	--bento-card-gap: 1rem;
+	--bento-card-padding: 2rem 1.5rem;
+	> h2 {
+		letter-spacing: -2px;
+	}
+	> h2 > span {
+		color: var(--darkpurple);
+	}
+	grid-area: seven;
+}
+.bento-grid div:nth-child(8) {
+	--bento-card-background-color: var(--darkyellow);
+	--bento-card-text-color: var(--black);
+	--bento-card-text-line-height: 0.9;
+	--bento-card-image-width: 70%;
+	--bento-card-text-l-font-weight: 500;
+	--bento-card-gap: 1rem;
+	--bento-card-padding: 2rem 1rem;
+	> h2 {
+		letter-spacing: -2px;
+	}
+	grid-area: eight;
+}
+
+@media (width>960px) {
+	.bento-grid div:nth-child(8) {
+		--bento-card-image-width: 100%;
+	}
+}

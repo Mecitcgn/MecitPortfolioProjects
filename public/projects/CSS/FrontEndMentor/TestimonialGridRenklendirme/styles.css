@@ -1,0 +1,308 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+h1,
+h2 {
+	font-size: var(--fs-xl);
+	font-weight: 600;
+	line-height: 1.2;
+}
+h3 {
+	font-size: var(--fs-lg);
+	font-weight: 500;
+}
+h4 {
+	font-size: var(--fs-reg);
+	font-weight: 400;
+}
+:root {
+	/* hsl (fallback color) */
+	--bg-dark: hsl(248 100% 7%);
+	--bg: hsl(238 100% 10%);
+	--bg-light: hsl(227 100% 13%);
+	--text: hsl(219 100% 100%);
+	--text-muted: hsl(219 78% 75%);
+	--highlight: hsl(221 74% 47%);
+	--border: hsl(222 99% 35%);
+	--border-muted: hsl(234 100% 27%);
+	--primary: hsl(220 100% 80%);
+	--secondary: hsl(45 100% 31%);
+	--danger: hsl(7 100% 66%);
+	--warning: hsl(53 100% 21%);
+	--success: hsl(162 100% 22%);
+	--info: hsl(217 100% 70%);
+	/* oklch */
+	--bg-dark: oklch(0.1 0.1 263);
+	--bg: oklch(0.15 0.1 263);
+	--bg-light: oklch(0.2 0.1 263);
+	--text: oklch(0.96 0.1 263);
+	--text-muted: oklch(0.76 0.1 263);
+	--highlight: oklch(0.5 0.2 263);
+	--border: oklch(0.4 0.2 263);
+	--border-muted: oklch(0.3 0.2 263);
+	--primary: oklch(0.76 0.2 263);
+	--secondary: oklch(0.76 0.2 83);
+	--danger: oklch(0.7 0.2 30);
+	--warning: oklch(0.7 0.2 100);
+	--success: oklch(0.7 0.2 160);
+	--info: oklch(0.7 0.2 260);
+
+	--shadow-s: inset 0 1px 2px #ffffff50, 0 1px 2px #ffffff30,
+		0 2px 4px #ffffff15;
+	--shadow-m: inset 0 2px 4px #ffffff50, 0 2px 4px #ffffff30,
+		0 8px 12px #ffffff15;
+	--shadow-l: inset 0 4px 8px #ffffff50, 0 4px 8px #ffffff30,
+		0 16px 32px #ffffff15;
+	--success-shadow-s: inset 0 1px 2px #00ff0050, 0 1px 2px #00ff0030,
+		0 2px 4px #00ff0015;
+	--success-shadow-m: inset 0 2px 4px #00ff0050, 0 2px 4px #00ff0030,
+		0 8px 12px #00ff0015;
+	--success-shadow-l: inset 0 4px 8px #00ff0050, 0 4px 8px #00ff0030,
+		0 16px 32px #00ff0015;
+	--danger-shadow-s: inset 0 1px 2px #ff000050, 0 1px 2px #ff000030,
+		0 2px 4px #ff000015;
+	--danger-shadow-m: inset 0 2px 4px #ff000050, 0 2px 4px #ff000030,
+		0 8px 12px #ff000015;
+	--danger-shadow-l: inset 0 4px 8px #ff000050, 0 4px 8px #ff000030,
+		0 16px 32px #ff000015;
+
+	--fs-reg: 1rem;
+	--fs-lg: 1.25rem;
+	--fs-xl: 1.5rem;
+}
+
+body.light {
+	/* hsl (fallback color) */
+	--bg-dark: hsl(219 100% 96%);
+	--bg: hsl(219 100% 100%);
+	--bg-light: hsl(219 100% 100%);
+	--text: hsl(261 100% 13%);
+	--text-muted: hsl(222 99% 35%);
+	--highlight: hsl(220 100% 100%);
+	--border: hsl(221 91% 60%);
+	--border-muted: hsl(221 100% 72%);
+	--primary: hsl(222 99% 35%);
+	--secondary: hsl(35 100% 13%);
+	--danger: hsl(4 99% 37%);
+	--warning: hsl(50 100% 12%);
+	--success: hsl(159 100% 9%);
+	--info: hsl(215 95% 42%);
+	/* oklch */
+	--bg-dark: oklch(0.92 0.1 263);
+	--bg: oklch(0.96 0.1 263);
+	--bg-light: oklch(1 0.1 263);
+	--text: oklch(0.15 0.2 263);
+	--text-muted: oklch(0.6 0.2 263);
+	--highlight: oklch(1 0.2 263);
+	--border: oklch(0.6 0.2 263);
+	--border-muted: oklch(0.8 0.2 263);
+	--primary: oklch(0.4 0.2 263);
+	--secondary: oklch(0.4 0.2 83);
+	--danger: oklch(0.5 0.2 30);
+	--warning: oklch(0.5 0.2 100);
+	--success: oklch(0.5 0.2 160);
+	--info: oklch(0.5 0.2 260);
+
+	--shadow-s: inset 0 1px 2px #00000050, 0 1px 2px #00000030,
+		0 2px 4px #00000015;
+	--shadow-m: inset 0 2px 4px #00000050, 0 2px 4px #00000030,
+		0 8px 12px #00000015;
+	--shadow-l: inset 0 4px 8px #00000050, 0 4px 8px #00000030,
+		0 16px 32px #00000015;
+	--success-shadow-s: inset 0 1px 2px #00ff0050, 0 1px 2px #00ff0030,
+		0 2px 4px #00ff0015;
+	--success-shadow-m: inset 0 2px 4px #00ff0050, 0 2px 4px #00ff0030,
+		0 8px 12px #00ff0015;
+	--success-shadow-l: inset 0 4px 8px #00ff0050, 0 4px 8px #00ff0030,
+		0 16px 32px #00ff0015;
+	--danger-shadow-s: inset 0 1px 2px #ff000050, 0 1px 2px #ff000030,
+		0 2px 4px #ff000015;
+	--danger-shadow-m: inset 0 2px 4px #ff000050, 0 2px 4px #ff000030,
+		0 8px 12px #ff000015;
+	--danger-shadow-l: inset 0 4px 8px #ff000050, 0 4px 8px #ff000030,
+		0 16px 32px #ff000015;
+
+	--fs-reg: 1rem;
+	--fs-lg: 1.25rem;
+	--fs-xl: 1.5rem;
+}
+
+html {
+	font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+body {
+	margin-block: 7rem;
+	color: var(--text);
+	background-color: var(--bg);
+	background: radial-gradient(at center, var(--bg) 60%, var(--highlight) 100%);
+}
+
+.testimonial-grid {
+	max-inline-size: 1600px;
+	margin-inline: 2rem;
+	display: grid;
+	gap: 2.5rem;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+		'daniel'
+		'jonathan'
+		'jeanette'
+		'patrick'
+		'kira';
+	@media (width>660px) {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-areas:
+			'daniel daniel'
+			'jonathan kira'
+			'jeanette kira'
+			'patrick patrick';
+	}
+	@media (width>960px) {
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-areas:
+			'daniel daniel jonathan kira'
+			'jeanette patrick patrick kira';
+	}
+}
+
+.testimonial-grid > * {
+	display: grid;
+	gap: 1rem;
+	align-items: start;
+	align-content: start;
+	justify-items: start;
+	text-align: start;
+	padding: 2.5rem 2rem;
+	border-radius: 0.8rem;
+	border: 2px solid var(--border);
+	box-shadow: var(--shadow-l);
+	background: transparent;
+}
+
+.card .img-container {
+	display: flex;
+	gap: 1rem;
+}
+.card .img-container img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 2px solid var(--grey200);
+}
+
+.card:nth-child(1) {
+	grid-area: daniel;
+}
+
+.card:nth-child(2) {
+	grid-area: jonathan;
+}
+
+.card:nth-child(3) {
+	grid-area: jeanette;
+}
+
+.card:nth-child(4) {
+	grid-area: patrick;
+}
+
+.card:nth-child(5) {
+	grid-area: kira;
+}
+
+.themeBtn {
+	padding: 0.5rem 1rem;
+	font-size: var(--fs-lg);
+	font-weight: 500;
+	background-color: var(--primary);
+	border: 1px solid var(--border);
+	box-shadow: var(--shadow-m);
+	border-radius: 0.5rem;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	color: var(--bg);
+	cursor: pointer;
+}
+
+.testimonial-grid > *:hover {
+	scale: 0.997;
+}
+
+.themeBtn:hover {
+	scale: 0.997;
+}

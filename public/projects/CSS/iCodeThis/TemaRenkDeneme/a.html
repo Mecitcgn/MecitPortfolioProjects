@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Elegant Palette — Light & Dark Theme</title>
+		<meta
+			name="description"
+			content="OKLCH + HSL tabanlı detaylı açık/koyu tema örneği — düğmeler, kartlar, form, tablo ve tema anahtarı içerir."
+		/>
+		<style>
+			/* ---------------------------------------------
+       Tema değişkenleri (fallback: HSL, asıl: OKLCH)
+       --------------------------------------------- */
+			:root {
+				/* hsl (fallback color) */
+				--bg-dark: hsl(10 100% 2%);
+				--bg: hsl(21 100% 4%);
+				--bg-light: hsl(31 100% 6%);
+				--text: hsl(34 100% 88%);
+				--text-muted: hsl(34 59% 62%);
+				--highlight: hsl(40 100% 25%);
+				--border: hsl(39 100% 15%);
+				--border-muted: hsl(34 100% 10%);
+				--primary: hsl(34 64% 61%);
+				--secondary: hsl(212 86% 73%);
+				--danger: hsl(8 58% 66%);
+				--warning: hsl(51 41% 48%);
+				--success: hsl(150 37% 53%);
+				--info: hsl(217 66% 68%);
+				/* oklch */
+				--bg-dark: oklch(0.1 0.055 73);
+				--bg: oklch(0.15 0.055 73);
+				--bg-light: oklch(0.2 0.055 73);
+				--text: oklch(0.96 0.1 73);
+				--text-muted: oklch(0.76 0.1 73);
+				--highlight: oklch(0.5 0.11 73);
+				--border: oklch(0.4 0.11 73);
+				--border-muted: oklch(0.3 0.11 73);
+				--primary: oklch(0.76 0.11 73);
+				--secondary: oklch(0.76 0.11 253);
+				--danger: oklch(0.7 0.11 30);
+				--warning: oklch(0.7 0.11 100);
+				--success: oklch(0.7 0.11 160);
+				--info: oklch(0.7 0.11 260);
+
+				/* Sistem genel stilleri */
+				--radius: 12px;
+				--radius-sm: 8px;
+				--gap: 1.125rem;
+				--container-width: 1100px;
+				--glass-alpha: 0.06;
+				--card-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+				--card-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.12);
+				--glass-border: 1px solid rgba(255, 255, 255, 0.04);
+				--focus-ring: 3px;
+				--muted-alpha: 0.65;
+			}
+
+			/* Light mode overrides */
+			body.light {
+				/* hsl (fallback color) */
+				--bg-dark: hsl(33 90% 86%);
+				--bg: hsl(33 100% 92%);
+				--bg-light: hsl(33 100% 97%);
+				--text: hsl(5 100% 6%);
+				--text-muted: hsl(39 100% 15%);
+				--highlight: hsl(34 100% 93%);
+				--border: hsl(36 61% 41%);
+				--border-muted: hsl(35 53% 54%);
+				--primary: hsl(39 100% 15%);
+				--secondary: hsl(210 77% 28%);
+				--danger: hsl(8 43% 42%);
+				--warning: hsl(53 100% 19%);
+				--success: hsl(157 83% 25%);
+				--info: hsl(217 46% 43%);
+				/* oklch */
+				--bg-dark: oklch(0.92 0.055 73);
+				--bg: oklch(0.96 0.055 73);
+				--bg-light: oklch(1 0.055 73);
+				--text: oklch(0.15 0.11 73);
+				--text-muted: oklch(0.4 0.11 73);
+				--highlight: oklch(1 0.11 73);
+				--border: oklch(0.6 0.11 73);
+				--border-muted: oklch(0.7 0.11 73);
+				--primary: oklch(0.4 0.11 73);
+				--secondary: oklch(0.4 0.11 253);
+				--danger: oklch(0.5 0.11 30);
+				--warning: oklch(0.5 0.11 100);
+				--success: oklch(0.5 0.11 160);
+				--info: oklch(0.5 0.11 260);
+
+				--card-shadow: 0 6px 20px rgba(16, 24, 40, 0.06);
+				--card-shadow-soft: 0 2px 8px rgba(16, 24, 40, 0.04);
+			}
+
+			/* Basic reset */
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+			html,
+			body {
+				height: 100%;
+			}
+			body {
+				margin: 0;
+				font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+					Roboto, 'Helvetica Neue', Arial;
+				background: linear-gradient(180deg, var(--bg) 0%, var(--bg-dark) 100%);
+				color: var(--text);
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				line-height: 1.4;
+				padding: clamp(1rem, 2.5vw, 2rem);
+				transition: background-color 0.28s ease, color 0.28s ease;
+				display: flex;
+				justify-content: center;
+			}
+
+			/* Page container */
+			.wrap {
+				width: 100%;
+				max-width: var(--container-width);
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: var(--gap);
+			}
+
+			header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+				padding: clamp(0.75rem, 1.6vw, 1.25rem);
+				border-radius: calc(var(--radius) + 4px);
+				background: linear-gradient(
+					180deg,
+					color-mix(in srgb, var(--bg-light) 22%, transparent),
+					transparent
+				);
+				box-shadow: var(--card-shadow);
+				border: 1px solid color-mix(in srgb, var(--border) 18%, transparent);
+				backdrop-filter: blur(6px) saturate(1.08);
+			}
+
+			.brand {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+			}
+			.logo {
+				width: 48px;
+				height: 48px;
+				border-radius: 10px;
+				display: grid;
+				place-items: center;
+				font-weight: 700;
+				background: linear-gradient(
+					135deg,
+					var(--primary),
+					color-mix(in srgb, var(--primary) 60%, black)
+				);
+				color: color-mix(in srgb, var(--text) 96%, transparent);
+				box-shadow: 0 6px 18px
+					color-mix(in srgb, var(--primary) 24%, transparent);
+				font-family: ui-rounded, system-ui, sans-serif;
+			}
+			h1 {
+				font-size: 1.125rem;
+				margin: 0;
+			}
+			p.lead {
+				margin: 0;
+				color: var(--text-muted);
+				font-size: 0.95rem;
+			}
+
+			/* Theme toggle */
+			.controls {
+				display: flex;
+				gap: 0.5rem;
+				align-items: center;
+			}
+			.theme-toggle {
+				display: inline-grid;
+				place-items: center;
+				padding: 0.5rem;
+				border-radius: 999px;
+				cursor: pointer;
+				border: 1px solid color-mix(in srgb, var(--border) 24%, transparent);
+				background: linear-gradient(
+					180deg,
+					color-mix(in srgb, var(--bg-light) 8%, transparent),
+					transparent
+				);
+			}
+			.theme-toggle:focus {
+				outline: none;
+				box-shadow: 0 0 0 var(--focus-ring)
+					color-mix(in srgb, var(--primary) 18%, transparent);
+			}
+
+			/* Hero */
+			.hero {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 1rem;
+				padding: clamp(1rem, 2vw, 1.6rem);
+				border-radius: var(--radius);
+				background: linear-gradient(
+					180deg,
+					color-mix(in srgb, var(--bg-light) 6%, transparent),
+					transparent
+				);
+				border: 1px solid color-mix(in srgb, var(--border) 12%, transparent);
+				box-shadow: var(--card-shadow-soft);
+			}
+			.hero h2 {
+				margin: 0.25rem 0 0;
+				font-size: 1.6rem;
+			}
+			.hero p {
+				margin: 0.25rem 0 0;
+				color: var(--text-muted);
+			}
+
+			/* Layout: grid for main content */
+			main {
+				display: grid;
+				grid-template-columns: 2fr 1fr;
+				gap: var(--gap);
+			}
+			@media (max-width: 900px) {
+				main {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			/* Cards */
+			.card {
+				padding: 1rem;
+				border-radius: var(--radius);
+				background: linear-gradient(
+					180deg,
+					color-mix(in srgb, var(--bg) 2%, transparent),
+					transparent
+				);
+				border: 1px solid color-mix(in srgb, var(--border) 8%, transparent);
+				box-shadow: var(--card-shadow-soft);
+			}
+			.card h3 {
+				margin: 0 0 0.5rem 0;
+			}
+
+			/* Buttons */
+			.btn {
+				display: inline-flex;
+				gap: 0.5rem;
+				align-items: center;
+				padding: 0.55rem 0.9rem;
+				border-radius: 10px;
+				border: 1px solid transparent;
+				cursor: pointer;
+				font-weight: 600;
+			}
+			.btn:focus {
+				outline: none;
+				box-shadow: 0 0 0 var(--focus-ring)
+					color-mix(in srgb, var(--primary) 18%, transparent);
+			}
+			.btn-primary {
+				background: linear-gradient(
+					180deg,
+					var(--primary),
+					color-mix(in srgb, var(--primary) 72%, black)
+				);
+				color: var(--bg-dark);
+			}
+			.btn-ghost {
+				background: transparent;
+				color: var(--text);
+				border: 1px solid color-mix(in srgb, var(--border) 8%, transparent);
+			}
+			.btn-danger {
+				background: linear-gradient(
+					180deg,
+					var(--danger),
+					color-mix(in srgb, var(--danger) 72%, black)
+				);
+				color: var(--bg-dark);
+			}
+
+			/* Controls and form */
+			.form-row {
+				display: flex;
+				gap: 0.5rem;
+				align-items: center;
+			}
+			input[type='text'],
+			input[type='email'],
+			select,
+			textarea {
+				width: 100%;
+				padding: 0.6rem;
+				border-radius: 8px;
+				border: 1px solid color-mix(in srgb, var(--border) 8%, transparent);
+				background: color-mix(
+					in srgb,
+					var(--bg-light) var(--glass-alpha),
+					transparent
+				);
+				color: var(--text);
+			}
+
+			/* Table */
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 0.95rem;
+			}
+			th,
+			td {
+				padding: 0.6rem 0.75rem;
+				text-align: left;
+				border-bottom: 1px solid
+					color-mix(in srgb, var(--border) 6%, transparent);
+			}
+			th {
+				color: var(--text-muted);
+				font-weight: 600;
+			}
+
+			/* Stats */
+			.stats {
+				display: flex;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+			}
+			.stat {
+				flex: 1 1 120px;
+				padding: 0.6rem;
+				border-radius: 8px;
+				background: linear-gradient(
+					180deg,
+					color-mix(in srgb, var(--bg-light) 4%, transparent),
+					transparent
+				);
+				border: 1px solid color-mix(in srgb, var(--border) 6%, transparent);
+			}
+
+			/* Footer */
+			footer {
+				opacity: 0.9;
+				padding: 0.75rem;
+				border-radius: 10px;
+				text-align: center;
+				color: var(--text-muted);
+			}
+
+			/* Small helpers */
+			.muted {
+				color: var(--text-muted);
+			}
+			.accent {
+				color: var(--primary);
+				font-weight: 700;
+			}
+
+			/* Cute little accent chip */
+			.badge {
+				display: inline-block;
+				padding: 0.25rem 0.5rem;
+				border-radius: 999px;
+				font-size: 0.8rem;
+				background: color-mix(in srgb, var(--primary) 12%, transparent);
+				border: 1px solid color-mix(in srgb, var(--primary) 8%, transparent);
+			}
+
+			/* Accessibility improvements */
+			:where(button, a, input, select, textarea) {
+				font: inherit;
+			}
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap" role="document">
+			<header>
+				<div class="brand">
+					<div class="logo" aria-hidden>EP</div>
+					<div>
+						<h1>Elegant Palette</h1>
+						<p class="lead">
+							OKLCH + HSL tabanlı dinamik light / dark tema örneği
+						</p>
+					</div>
+				</div>
+				<div class="controls">
+					<div class="badge" id="color-sample">
+						Tema: <span id="theme-name">Dark</span>
+					</div>
+					<button
+						class="theme-toggle"
+						id="toggle-theme"
+						aria-pressed="false"
+						aria-label="Tema değiştir"
+					>
+						🌓
+					</button>
+				</div>
+			</header>
+
+			<section class="hero card" aria-labelledby="hero-title">
+				<div>
+					<h2 id="hero-title">
+						Görsel olarak dengeli, kontrast ve modern tema
+					</h2>
+					<p>
+						Bu demo sayfa :root değişkenleri kullanılarak hazırlanmıştır. İçerik
+						örnekleri: butonlar, kartlar, form, tablo ve küçük interaktifler.
+					</p>
+				</div>
+				<div
+					style="
+						display: flex;
+						gap: 0.5rem;
+						align-items: center;
+						justify-content: flex-end;
+					"
+				>
+					<button class="btn btn-primary">Başla</button>
+					<button class="btn btn-ghost">Özelleştir</button>
+				</div>
+			</section>
+
+			<main>
+				<div>
+					<section class="card" aria-labelledby="components-title">
+						<h3 id="components-title">Bileşenler</h3>
+						<p class="muted">
+							Aşağıdaki örnek bileşenler temayı nasıl kullandığını gösterir.
+						</p>
+
+						<div
+							style="
+								display: flex;
+								gap: 0.6rem;
+								flex-wrap: wrap;
+								margin-top: 0.75rem;
+							"
+						>
+							<button class="btn btn-primary">Primary</button>
+							<button class="btn btn-ghost">Ghost</button>
+							<button class="btn btn-danger">Danger</button>
+							<span class="badge">v1.0</span>
+						</div>
+
+						<div
+							style="
+								margin-top: 0.8rem;
+								display: grid;
+								grid-template-columns: 1fr 1fr;
+								gap: 0.6rem;
+							"
+						>
+							<div>
+								<label class="muted">Adınız</label>
+								<input type="text" placeholder="İsminiz" />
+							</div>
+							<div>
+								<label class="muted">E-posta</label>
+								<input type="email" placeholder="mail@ornek.com" />
+							</div>
+						</div>
+
+						<div style="margin-top: 0.8rem">
+							<label class="muted">Mesaj</label>
+							<textarea rows="3" placeholder="Bize yazın..."></textarea>
+							<div style="margin-top: 0.6rem; text-align: right">
+								<button class="btn btn-primary">Gönder</button>
+							</div>
+						</div>
+					</section>
+
+					<section
+						class="card"
+						style="margin-top: 0.9rem"
+						aria-labelledby="table-title"
+					>
+						<h3 id="table-title">Kullanıcılar</h3>
+						<table>
+							<thead>
+								<tr>
+									<th>İsim</th>
+									<th>Rol</th>
+									<th>Durum</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Ali Y.</td>
+									<td>Yönetici</td>
+									<td><span class="muted">Aktif</span></td>
+								</tr>
+								<tr>
+									<td>Ayşe K.</td>
+									<td>Tasarımcı</td>
+									<td><span class="accent">Beklemede</span></td>
+								</tr>
+								<tr>
+									<td>Mehmet T.</td>
+									<td>Geliştirici</td>
+									<td><span class="muted">Aktif</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</div>
+
+				<aside>
+					<section class="card" aria-labelledby="stats-title">
+						<h3 id="stats-title">Hızlı İstatistik</h3>
+						<div class="stats" style="margin-top: 0.6rem">
+							<div class="stat">
+								<div style="font-size: 1.35rem; font-weight: 700">1.2k</div>
+								<div class="muted">Ziyaretçi</div>
+							</div>
+							<div class="stat">
+								<div style="font-size: 1.35rem; font-weight: 700">320</div>
+								<div class="muted">Kayıt</div>
+							</div>
+							<div class="stat">
+								<div style="font-size: 1.35rem; font-weight: 700">98%</div>
+								<div class="muted">Uptime</div>
+							</div>
+						</div>
+					</section>
+
+					<section
+						class="card"
+						style="margin-top: 0.9rem"
+						aria-labelledby="theme-info"
+					>
+						<h3 id="theme-info">Tema Bilgisi</h3>
+						<p class="muted">
+							Tema <strong>OKLCH</strong> renk uzayı kullanır (modern renk
+							doğruluğu için). Aynı zamanda HSL fallback değerleri içerir — eski
+							tarayıcı desteği amaçlı.
+						</p>
+						<p style="margin-top: 0.5rem">
+							Tema tercihleriniz <em>localStorage</em> içine kaydedilir.
+						</p>
+						<div style="margin-top: 0.6rem">
+							<small class="muted"
+								>Kısa ipucu: renkleri :root içinde değiştirerek tüm temayı
+								kolayca özelleştirebilirsiniz.</small
+							>
+						</div>
+					</section>
+				</aside>
+			</main>
+
+			<footer>
+				<div class="muted">
+					©️ 2025 — Elegant Palette · Tema örneği · Tasarım fikirleri kaynağı
+				</div>
+			</footer>
+		</div>
+		<script>
+			(function () {
+				const body = document.body;
+				const toggle = document.getElementById('toggle-theme');
+				const themeName = document.getElementById('theme-name');
+				const colorSample = document.getElementById('color-sample');
+
+				// Varsayılan tercih: dark (body.light yoksa dark kabul et)
+				const saved = localStorage.getItem('ep-theme');
+				let isLight = saved ? saved === 'light' : false;
+
+				function applyTheme(light) {
+					if (light) {
+						body.classList.add('light');
+						toggle.setAttribute('aria-pressed', 'true');
+						themeName.textContent = 'Light';
+					} else {
+						body.classList.remove('light');
+						toggle.setAttribute('aria-pressed', 'false');
+						themeName.textContent = 'Dark';
+					}
+					// Örnek: renk kartını güncelle
+					colorSample.style.background = getComputedStyle(
+						document.documentElement
+					).getPropertyValue('--primary');
+					localStorage.setItem('ep-theme', light ? 'light' : 'dark');
+				}
+
+				// Başlangıçta uygula
+				applyTheme(isLight);
+
+				toggle.addEventListener('click', () => {
+					isLight = !body.classList.contains('light');
+					applyTheme(isLight);
+				});
+
+				// Klavye erişimi
+				toggle.addEventListener('keyup', (e) => {
+					if (e.key === 'Enter' || e.key === ' ') toggle.click();
+				});
+			})();
+		</script>
+	</body>
+</html>

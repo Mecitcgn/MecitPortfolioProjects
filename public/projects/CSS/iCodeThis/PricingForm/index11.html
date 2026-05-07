@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Pricing Form</title>
+		<style>
+			/* 1. Use a more-intuitive box-sizing model */
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			/* 2. Remove default margin */
+			* {
+				margin: 0;
+			}
+
+			/* 3. Enable keyword animations */
+			@media (prefers-reduced-motion: no-preference) {
+				html {
+					interpolate-size: allow-keywords;
+				}
+			}
+
+			body {
+				/* 4. Add accessible line-height */
+				line-height: 1.5;
+				/* 5. Improve text rendering */
+				-webkit-font-smoothing: antialiased;
+			}
+
+			/* 6. Improve media defaults */
+			img,
+			picture,
+			video,
+			canvas,
+			svg {
+				display: block;
+				max-width: 100%;
+			}
+
+			/* 7. Inherit fonts for form controls */
+			input,
+			button,
+			textarea,
+			select {
+				font: inherit;
+			}
+
+			/* 8. Avoid text overflows */
+			p,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				overflow-wrap: break-word;
+			}
+
+			/* 9. Improve line wrapping */
+			p {
+				text-wrap: pretty;
+			}
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				text-wrap: balance;
+			}
+
+			/*
+			  10. Create a root stacking context
+			*/
+			#root,
+			#__next {
+				isolation: isolate;
+			}
+
+			:root {
+				/* hsl (fallback color) */
+				--bg-dark: hsl(138 100% 0%);
+				--bg: hsl(136 100% 1%);
+				--bg-light: hsl(136 100% 3%);
+				--text: hsl(131 100% 89%);
+				--text-muted: hsl(132 35% 64%);
+				--highlight: hsl(144 100% 12%);
+				--border: hsl(134 100% 7%);
+				--border-muted: hsl(133 100% 3%);
+				--primary: hsl(143 70% 49%);
+				--secondary: hsl(304 86% 72%);
+				--danger: hsl(7 100% 66%);
+				--warning: hsl(53 100% 21%);
+				--success: hsl(162 100% 22%);
+				--info: hsl(217 100% 70%);
+				/* oklch */
+				--bg-dark: oklch(0.1 0.1 150);
+				--bg: oklch(0.15 0.1 150);
+				--bg-light: oklch(0.2 0.1 150);
+				--text: oklch(0.96 0.1 150);
+				--text-muted: oklch(0.76 0.1 150);
+				--highlight: oklch(0.5 0.2 150);
+				--border: oklch(0.4 0.2 150);
+				--border-muted: oklch(0.3 0.2 150);
+				--primary: oklch(0.76 0.2 150);
+				--secondary: oklch(0.76 0.2 330);
+				--third: oklch(0.76 0.2 240);
+				--danger: oklch(0.7 0.2 30);
+				--warning: oklch(0.7 0.2 100);
+				--success: oklch(0.7 0.2 160);
+				--info: oklch(0.7 0.2 260);
+				--shadow-s: inset 0 1px 2px #ffffff50, 0 1px 2px #ffffff30,
+					0 2px 4px #ffffff15;
+				--shadow-m: inset 0 2px 4px #ffffff50, 0 2px 4px #ffffff30,
+					0 8px 12px #ffffff15;
+				--shadow-l: inset 0 4px 8px #ffffff50, 0 4px 8px #ffffff30,
+					0 16px 32px #ffffff15;
+				--success-shadow-s: inset 0 1px 2px #00ff0050, 0 1px 2px #00ff0030,
+					0 2px 4px #00ff0015;
+				--success-shadow-m: inset 0 2px 4px #00ff0050, 0 2px 4px #00ff0030,
+					0 8px 12px #00ff0015;
+				--success-shadow-l: inset 0 4px 8px #00ff0050, 0 4px 8px #00ff0030,
+					0 16px 32px #00ff0015;
+				--danger-shadow-s: inset 0 1px 2px #ff000050, 0 1px 2px #ff000030,
+					0 2px 4px #ff000015;
+				--danger-shadow-m: inset 0 2px 4px #ff000050, 0 2px 4px #ff000030,
+					0 8px 12px #ff000015;
+				--danger-shadow-l: inset 0 4px 8px #ff000050, 0 4px 8px #ff000030,
+					0 16px 32px #ff000015;
+			}
+			body.light {
+				/* hsl (fallback color) */
+				--bg-dark: hsl(132 83% 84%);
+				--bg: hsl(131 100% 89%);
+				--bg-light: hsl(131 100% 94%);
+				--text: hsl(138 100% 0%);
+				--text-muted: hsl(134 100% 7%);
+				--highlight: hsl(136 100% 85%);
+				--border: hsl(151 100% 20%);
+				--border-muted: hsl(151 100% 32%);
+				--primary: hsl(134 100% 7%);
+				--secondary: hsl(301 100% 20%);
+				--danger: hsl(4 99% 37%);
+				--warning: hsl(50 100% 12%);
+				--success: hsl(159 100% 9%);
+				--info: hsl(215 95% 42%);
+				/* oklch */
+				--bg-dark: oklch(0.92 0.1 150);
+				--bg: oklch(0.96 0.1 150);
+				--bg-light: oklch(1 0.1 150);
+				--text: oklch(0.15 0.2 150);
+				--text-muted: oklch(0.4 0.2 150);
+				--highlight: oklch(1 0.2 150);
+				--border: oklch(0.6 0.2 150);
+				--border-muted: oklch(0.7 0.2 150);
+				--primary: oklch(0.4 0.2 150);
+				--secondary: oklch(0.4 0.2 330);
+				--danger: oklch(0.5 0.2 30);
+				--warning: oklch(0.5 0.2 100);
+				--success: oklch(0.5 0.2 160);
+				--info: oklch(0.5 0.2 260);
+				--shadow-s: inset 0 1px 2px #00000050, 0 1px 2px #00000030,
+					0 2px 4px #00000015;
+				--shadow-m: inset 0 2px 4px #00000050, 0 2px 4px #00000030,
+					0 8px 12px #00000015;
+				--shadow-l: inset 0 4px 8px #00000050, 0 4px 8px #00000030,
+					0 16px 32px #00000015;
+				--success-shadow-s: inset 0 1px 2px #00ff0050, 0 1px 2px #00ff0030,
+					0 2px 4px #00ff0015;
+				--success-shadow-m: inset 0 2px 4px #00ff0050, 0 2px 4px #00ff0030,
+					0 8px 12px #00ff0015;
+				--success-shadow-l: inset 0 4px 8px #00ff0050, 0 4px 8px #00ff0030,
+					0 16px 32px #00ff0015;
+				--danger-shadow-s: inset 0 1px 2px #ff000050, 0 1px 2px #ff000030,
+					0 2px 4px #ff000015;
+				--danger-shadow-m: inset 0 2px 4px #ff000050, 0 2px 4px #ff000030,
+					0 8px 12px #ff000015;
+				--danger-shadow-l: inset 0 4px 8px #ff000050, 0 4px 8px #ff000030,
+					0 16px 32px #ff000015;
+			}
+
+			body {
+				width: 100%;
+				height: 100dvh;
+				background: radial-gradient(
+					circle at center,
+					var(--highlight) 0%,
+					var(--bg) 70%
+				);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: var(--text);
+			}
+
+			.main-container {
+				width: 1000px;
+				height: 700px;
+				background-color: var(--bg);
+				border: 2px solid var(--border);
+				box-shadow: var(--shadow-l);
+				border-radius: 1rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.container {
+				width: 90%;
+				height: 90%;
+				padding: 5rem;
+				background: var(--bg-light);
+				border: 1px solid var(--highlight);
+				box-shadow: var(--shadow-m);
+				border-radius: 1rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 2rem;
+			}
+
+			.card {
+				display: flex;
+				justify-content: flex-start;
+				align-items: flex-start;
+				flex-direction: column;
+				gap: 2rem;
+			}
+
+			.main-title p {
+				font-size: 2rem;
+				font-weight: bold;
+			}
+			.price-container p:nth-child(1) {
+				font-size: 1.8rem;
+			}
+			.price-container p:nth-child(1) span {
+				font-size: 3rem;
+				margin-inline-start: 0.4rem;
+			}
+			.price-container p:nth-child(2) {
+				color: var(--text-muted);
+			}
+			.card > p {
+				font-size: 1.25rem;
+				color: var(--text-muted);
+			}
+			button {
+				padding: 0.625rem 1.25rem;
+				border-radius: 0.4rem;
+				border: 1px solid var(--highlight);
+				box-shadow: var(--shadow-s);
+				color: var(--bg);
+				background-color: var(--primary);
+				font-size: 1.375rem;
+				font-weight: bold;
+				cursor: pointer;
+			}
+			button:hover {
+				box-shadow: var(--shadow-l);
+			}
+			.themeBtn {
+				position: absolute;
+				top: 1rem;
+				right: 1rem;
+			}
+			.btn1 {
+				background-color: var(--text);
+			}
+			.btn2 {
+				background-color: var(--primary);
+			}
+			.btn3 {
+				background-color: var(--secondary);
+			}
+		</style>
+	</head>
+	<body>
+		<button class="themeBtn">Light Mode</button>
+		<div class="main-container">
+			<div class="container">
+				<div class="card">
+					<div class="main-title">
+						<p>Free</p>
+					</div>
+					<div class="price-container">
+						<p>$<span>0</span></p>
+						<p>Free for your whole team</p>
+					</div>
+					<p>For individuals or teams looking to organize anything.</p>
+					<button class="btn1">Get Started</button>
+				</div>
+				<div class="card">
+					<div class="main-title">
+						<p>Free</p>
+					</div>
+					<div class="price-container">
+						<p>$<span>0</span></p>
+						<p>Free for your whole team</p>
+					</div>
+					<p>For individuals or teams looking to organize anything.</p>
+					<button class="btn2">Get Started</button>
+				</div>
+				<div class="card">
+					<div class="main-title">
+						<p>Free</p>
+					</div>
+					<div class="price-container">
+						<p>$<span>0</span></p>
+						<p>Free for your whole team</p>
+					</div>
+					<p>For individuals or teams looking to organize anything.</p>
+					<button class="btn3">Get Started</button>
+				</div>
+			</div>
+		</div>
+		<script>
+			const themeButton = document.querySelector('.themeBtn');
+
+			themeButton.addEventListener('click', () => {
+				document.body.classList.toggle('light');
+			});
+		</script>
+	</body>
+</html>

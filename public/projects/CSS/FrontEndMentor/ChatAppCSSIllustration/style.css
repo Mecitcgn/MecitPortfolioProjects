@@ -1,0 +1,341 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+		10. Create a root stacking context
+	*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+:root {
+	--purple300: hsl(276, 100%, 81%); /* sub-heading at the top of the app UI */
+	--purple100: hsl(276, 100%, 95%); /* sub-heading at the top of the app UI */
+	--purple600: hsl(276, 55%, 52%); /* chat on the left */
+	--gray500: hsl(270, 7%, 64%); /*(chat on the right, paragraph)*/
+	--gray300: hsl(206, 6%, 79%); /*(placeholder text)*/
+	--purple950: hsl(
+		271,
+		36%,
+		24%
+	); /*(main heading) + (submit button background)*/
+	--white: hsl(0, 100%, 100%);
+	--gray100: hsl(270, 20%, 96%); /*(app background)*/
+	--pink400: hsl(289, 100%, 72%); /*(radio button outline)*/
+	--fs-sm: 0.875rem;
+	--fs-xsm: 0.75rem;
+	--fs-reg: 1rem;
+	--fs-md: 1.25rem;
+	--fs-lg: 1.5rem;
+	--fs-xl: 2rem;
+	--fs-xxl: 3.5rem;
+}
+
+html {
+	font-family: 'Rubik', sans-serif;
+	font-size: var(--fs-reg);
+}
+
+body {
+	width: 100%;
+	height: 100dvh;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 32px;
+	place-content: center;
+	place-items: center;
+	background-color: var(--white);
+	padding: 5rem;
+}
+
+.left-shape,
+.right-shape {
+	position: absolute;
+	top: 0;
+	left: -50px;
+	width: 650px; /* genişlik */
+	height: 90%; /* yükseklik (daha uzun olmalı) */
+	background: linear-gradient(180deg, var(--purple600), var(--pink400));
+	border-radius: 0 0 50% 50% / 0 0 35% 35%;
+	z-index: -1;
+}
+
+.right-shape {
+	bottom: 0;
+	top: auto;
+	left: auto;
+	right: -60px;
+	transform: rotate(180deg);
+	filter: opacity(0.1);
+}
+
+.telephone {
+	width: 500px;
+	height: 900px;
+	border: 1px solid var(--gray500);
+	background-color: var(--white);
+	border-radius: 3rem;
+	padding: 0.5rem;
+}
+
+.telephone-inside {
+	width: 100%;
+	height: 100%;
+	border: 2px solid var(--gray300);
+	border-radius: 3rem;
+	background-color: var(--gray100);
+}
+.top-info-phone {
+	position: relative;
+	width: 100%;
+	height: 18%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 3rem 3rem 1rem 1rem;
+	background: linear-gradient(90deg, var(--purple600) 65%, var(--pink400));
+}
+.top-info-phone::after {
+	content: '';
+	position: absolute;
+	top: -2px;
+	left: 20%;
+	width: 60%;
+	height: 30%;
+	border-radius: 0 0 2rem 2rem;
+	background-color: var(--white);
+}
+.top-info-left {
+	margin-block-start: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-inline-start: 1rem;
+}
+.top-info-left img {
+	border-radius: 50%;
+	border: 2px solid var(--gray500);
+	width: 3rem;
+	margin-inline-start: 0.4rem;
+	aspect-ratio: 1 / 1;
+}
+.top-info-left i {
+	color: var(--white);
+	font-size: var(--fs-lg);
+}
+.name-container {
+	margin-inline-start: 1rem;
+}
+.name-container p:nth-child(1) {
+	color: var(--white);
+	font-size: var(--fs-md);
+	font-weight: 500;
+	line-height: 1.1;
+}
+
+.name-container p:nth-child(2) {
+	color: var(--purple300);
+	font-size: var(--fs-sm);
+}
+
+.top-info-right {
+	margin-block-start: 2rem;
+
+	padding-inline-end: 1rem;
+	color: var(--white);
+}
+.right-description {
+	width: 525px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.right-description .main-title {
+	font-size: var(--fs-xxl);
+	font-weight: 700;
+	color: var(--purple950);
+}
+
+.right-description .desc {
+	font-weight: 700;
+	color: var(--gray300);
+	font-size: var(--fs-md);
+	line-height: 1.6;
+}
+
+.message-container {
+	width: 100%;
+	height: 73%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+	padding: 1rem;
+}
+
+.my-text,
+.him-text {
+	color: var(--purple600);
+	line-height: 1.2;
+	font-size: var(--fs-sm);
+}
+
+.msg-me-cont,
+.msg-him-cont {
+	background-color: var(--purple100);
+	border-radius: 1rem 1rem 1rem 0;
+	width: 70%;
+	padding: 1rem;
+	align-self: flex-start;
+}
+.him-text {
+	color: var(--gray300);
+}
+.msg-him-cont {
+	align-self: flex-end;
+	background-color: white;
+	border-radius: 1rem 1rem 0 1rem;
+}
+.img-msg {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+	align-self: flex-end;
+	width: 70%;
+	gap: 16px;
+	img {
+		width: 100%;
+		border-radius: 1rem;
+	}
+}
+
+.price-container {
+	align-self: flex-start;
+	background: linear-gradient(45deg, var(--purple600) 50%, var(--pink400));
+	width: 80%;
+	border-radius: 1rem 1rem 1rem 0;
+	padding: 0.75rem 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: var(--white);
+	div {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 16px;
+	}
+}
+.circle {
+	width: 25px;
+	aspect-ratio: 1 / 1;
+	border: 1px solid var(--pink400);
+	background-color: transparent;
+	border-radius: 50%;
+}
+.price-text {
+	font-size: var(--fs-lg);
+	font-weight: 700;
+}
+.input-wrapper {
+	position: relative;
+	width: 100%;
+	padding-inline: 1rem;
+}
+.text-input {
+	width: 100%;
+	border-radius: 3rem;
+	padding: 1.25rem;
+	color: var(--gray500);
+	outline: none;
+	border: 1px solid var(--gray300);
+}
+.icon {
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+	font-size: 3rem;
+}
+
+@media (width < 1200px) {
+	body {
+		grid-template-columns: 1fr;
+		gap: 5rem;
+	}
+	.right-shape,
+	.left-shape {
+		display: none;
+	}
+}

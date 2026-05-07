@@ -1,0 +1,191 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+:root {
+	--dark-black-color: #0d1215;
+	--black-color: #0e1a23;
+	--primary-color: #69ae2e;
+	--border-color: #2f4f28;
+	--card-color: #0a141c;
+	--container-border-color: #050a0e;
+}
+
+body {
+	height: 100dvh;
+	background-color: var(--dark-black-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-container {
+	width: 1000px;
+	height: 700px;
+	background-color: var(--black-color);
+	border-radius: 1rem;
+	border: 10px solid var(--container-border-color);
+}
+
+.heading-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 5px;
+}
+.heading-icon {
+	width: 10%;
+	aspect-ratio: 1/1;
+	margin-top: 3rem;
+}
+.heading-text {
+	font-size: 1.5rem;
+}
+.heading-subtitle {
+	text-align: center;
+	width: 33ch;
+}
+.card-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.card-flexbox {
+	width: 95%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+	margin-top: 2rem;
+}
+.card {
+	background-color: var(--card-color);
+	border-radius: 0.5rem;
+	width: 25%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 0.4rem;
+}
+
+.profile-picture {
+	width: 100px;
+	margin-top: 2rem;
+}
+
+.profile-name {
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+
+.tree-button {
+	border: 1px solid var(--border-color);
+	text-decoration: none;
+	color: var(--primary-color);
+	padding: 0.1rem 1rem;
+	border-radius: 1rem;
+	margin-top: 0.5rem;
+	margin-bottom: 2rem;
+}
+
+.join-container {
+	width: 100%;
+	height: 25%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.join-button {
+	background-color: transparent;
+	color: var(--primary-color);
+	border: 2px solid var(--border-color);
+	border-radius: 0.5rem;
+	padding: 0.75rem 3rem;
+	cursor: pointer;
+}
+
+.join-button:hover {
+	color: var(--dark-black-color);
+	background-color: var(--primary-color);
+	border: 2px solid black;
+}
