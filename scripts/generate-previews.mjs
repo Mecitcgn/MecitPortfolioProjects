@@ -18,7 +18,7 @@ const BASE = `http://localhost:${PORT}`;
 async function getProjects() {
 	const { PROJECTS } = await import(join(root, 'src/data/projects.js'));
 	return PROJECTS.filter(
-		(p) => p.previewMode === 'iframe' || p.category === 'CSS',
+		(p) => p.thumbnail || p.previewMode === 'iframe' || p.category === 'CSS',
 	);
 }
 
@@ -55,9 +55,19 @@ async function main() {
 	const projects = await getProjects();
 	console.log(`Generating ${projects.length} previews…`);
 
-	const vite = startVite();
+	let vite = null;
+	let startedVite = false;
+
 	try {
+		await fetch(BASE);
+		console.log(`Using existing dev server at ${BASE}`);
+	} catch {
+		vite = startVite();
+		startedVite = true;
 		await waitForServer(BASE);
+	}
+
+	try {
 		const browser = await chromium.launch();
 		const context = await browser.newContext({
 			viewport: { width: 1280, height: 720 },
@@ -92,7 +102,7 @@ async function main() {
 		await browser.close();
 		console.log(`\nDone: ${ok} ok, ${fail} failed → ${outDir}`);
 	} finally {
-		vite.kill('SIGTERM');
+		if (startedVite && vite) vite.kill('SIGTERM');
 	}
 }
 

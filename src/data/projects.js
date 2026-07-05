@@ -181,6 +181,7 @@ const _PROJECTS = [
 			pattern: 'dots',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/calorie-counter-mecit.png',
 		files: [
 			{ path: '/projects/JS/FormValidation/BenimCalorieCounter/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/FormValidation/BenimCalorieCounter/index.html', label: 'HTML', lang: 'html' },
@@ -227,7 +228,7 @@ const _PROJECTS = [
 		title: 'Circle Analytics',
 		category: 'CSS',
 		sub: 'iCodeThis',
-		path: '/projects/CSS/iCodeThis/ CircleAnalytics/index4.html',
+		path: '/projects/CSS/iCodeThis/CircleAnalytics/index4.html',
 		tech: ['HTML', 'CSS'],
 		mine: true,
 		description:
@@ -428,6 +429,7 @@ const _PROJECTS = [
 			pattern: 'grid',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/complaint-form.png',
 		files: [
 			{ path: '/projects/JS/FormValidation/CustomerComplaintForm/Benim/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/FormValidation/CustomerComplaintForm/Benim/index.html', label: 'HTML', lang: 'html' },
@@ -471,6 +473,7 @@ const _PROJECTS = [
 			pattern: 'circles',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/drum-machine-mecit.png',
 		files: [
 			{ path: '/projects/JS/AudioAndVideo/DrumMachine/BenimDrumMachine/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/AudioAndVideo/DrumMachine/BenimDrumMachine/index.html', label: 'HTML', lang: 'html' },
@@ -492,6 +495,7 @@ const _PROJECTS = [
 			pattern: 'dots',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/emoji-reactor.png',
 		files: [
 			{ path: '/projects/JS/DomManipulationAndEvents/emojiReactor/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/DomManipulationAndEvents/emojiReactor/index.html', label: 'HTML', lang: 'html' },
@@ -549,6 +553,7 @@ const _PROJECTS = [
 			pattern: 'dots',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/favorite-icon-toggler.png',
 		files: [
 			{ path: '/projects/JS/DomManipulationAndEvents/favoriteIconToggler/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/DomManipulationAndEvents/favoriteIconToggler/index.html', label: 'HTML', lang: 'html' },
@@ -587,6 +592,7 @@ const _PROJECTS = [
 			pattern: 'hex',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/football-team-cards.png',
 		files: [
 			{ path: '/projects/JS/DomManipulationAndEvents/footballTeamCards/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/DomManipulationAndEvents/footballTeamCards/index.html', label: 'HTML', lang: 'html' },
@@ -787,6 +793,7 @@ const _PROJECTS = [
 			pattern: 'grid',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/markdown-converter.png',
 		files: [
 			{ path: '/projects/JS/BasicRegex/MardownToHTMLConveter/Benim/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/BasicRegex/MardownToHTMLConveter/Benim/index.html', label: 'HTML', lang: 'html' },
@@ -825,6 +832,7 @@ const _PROJECTS = [
 			pattern: 'waves',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/music-instrument-filter.png',
 		files: [
 			{ path: '/projects/JS/DomManipulationAndEvents/musicInstrumentFilter/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/DomManipulationAndEvents/musicInstrumentFilter/index.html', label: 'HTML', lang: 'html' },
@@ -846,6 +854,7 @@ const _PROJECTS = [
 			pattern: 'waves',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/music-player-mecit.png',
 		files: [
 			{ path: '/projects/JS/AudioAndVideo/MusicPlayer/BenimMusicPlayer/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/AudioAndVideo/MusicPlayer/BenimMusicPlayer/index.html', label: 'HTML', lang: 'html' },
@@ -937,6 +946,7 @@ const _PROJECTS = [
 			pattern: 'dots',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/note-taking-app.png',
 		files: [
 			{ path: '/projects/JS/javascriptAndAccessibility/noteTakingApp/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/javascriptAndAccessibility/noteTakingApp/index.html', label: 'HTML', lang: 'html' },
@@ -1010,6 +1020,7 @@ const _PROJECTS = [
 			pattern: 'circles',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/palindrome-checker.png',
 		files: [
 			{ path: '/projects/JS/BasicRegex/PalindromeChecker/Benim/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/BasicRegex/PalindromeChecker/Benim/index.html', label: 'HTML', lang: 'html' },
@@ -1100,6 +1111,7 @@ const _PROJECTS = [
 			pattern: 'rings',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/planets-tablist.png',
 		files: [
 			{ path: '/projects/JS/javascriptAndAccessibility/planetsTablist/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/javascriptAndAccessibility/planetsTablist/index.html', label: 'HTML', lang: 'html' },
@@ -1298,6 +1310,7 @@ const _PROJECTS = [
 			pattern: 'spectrum',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/random-bg-color.png',
 		files: [
 			{ path: '/projects/JS/debugging/randomBackgroundColor/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/debugging/randomBackgroundColor/index.html', label: 'HTML', lang: 'html' },
@@ -1319,6 +1332,7 @@ const _PROJECTS = [
 			pattern: 'grid',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/real-time-counter.png',
 		files: [
 			{ path: '/projects/JS/DomManipulationAndEvents/BenimrealTimeCharacterCounter/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/DomManipulationAndEvents/BenimrealTimeCharacterCounter/index.html', label: 'HTML', lang: 'html' },
@@ -1340,6 +1354,7 @@ const _PROJECTS = [
 			pattern: 'hex',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/regex-sandbox.png',
 		files: [
 			{ path: '/projects/JS/BasicRegex/RegexSandbox/Benim/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/BasicRegex/RegexSandbox/Benim/index.html', label: 'HTML', lang: 'html' },
@@ -1414,6 +1429,7 @@ const _PROJECTS = [
 			pattern: 'hex',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/rock-paper-scissors.png',
 		files: [
 			{ path: '/projects/JS/DomManipulationAndEvents/rockPaperScissors/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/DomManipulationAndEvents/rockPaperScissors/index.html', label: 'HTML', lang: 'html' },
@@ -1471,6 +1487,7 @@ const _PROJECTS = [
 			pattern: 'diagonal',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/spam-filter.png',
 		files: [
 			{ path: '/projects/JS/BasicRegex/SpamFilter/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/BasicRegex/SpamFilter/index.html', label: 'HTML', lang: 'html' },
@@ -1544,6 +1561,7 @@ const _PROJECTS = [
 			pattern: 'waves',
 		},
 		previewMode: 'code',
+		thumbnail: '/previews/story-telling-app.png',
 		files: [
 			{ path: '/projects/JS/DomManipulationAndEvents/storyTellingApp/script.js', label: 'JavaScript', lang: 'javascript' },
 			{ path: '/projects/JS/DomManipulationAndEvents/storyTellingApp/index.html', label: 'HTML', lang: 'html' },

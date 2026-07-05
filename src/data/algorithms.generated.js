@@ -18,17 +18,6 @@ export const GENERATED_ALGORITHMS = [
 		"snippet": "function myReplace(str, before, after) {\n\tconst regex = new RegExp(before, 'g');\n\treturn str.replace(regex, (match) => {\n\t\tif (match[0] === match[0].toUpperCase()) {\n\t\t\treturn after[0].toUpperCase() + after.slice(1);"
 	},
 	{
-		"id": "higher-order-functions-a",
-		"title": "A",
-		"sub": "Higher-Order Functions",
-		"path": "/projects/JS/higherOrderFunctionsAndCallbacks/a.js",
-		"lang": "javascript",
-		"concepts": [],
-		"description": "Higher-Order Functions algoritma egzersizi",
-		"mine": true,
-		"snippet": ""
-	},
-	{
 		"id": "higher-order-functions-bookorganizer",
 		"title": "Book Organizer",
 		"sub": "Higher-Order Functions",
@@ -165,10 +154,13 @@ export const GENERATED_ALGORITHMS = [
 		"sub": "Fundamentals",
 		"path": "/projects/JS/fundameltalsReview/dnaPairGenerator.js",
 		"lang": "javascript",
-		"concepts": [],
+		"concepts": [
+			"loops",
+			"functions"
+		],
 		"description": "Fundamentals algoritma egzersizi",
 		"mine": true,
-		"snippet": ""
+		"snippet": "function pairElement(str) {\n    let result = [];\n    for (let i = 0; i < str.length; i++) {\n      if (str[i] === \"A\") {\n        result.push([\"A\", \"T\"]);"
 	},
 	{
 		"id": "fundamentals-elementskipper",
@@ -176,10 +168,13 @@ export const GENERATED_ALGORITHMS = [
 		"sub": "Fundamentals",
 		"path": "/projects/JS/fundameltalsReview/elementSkipper.js",
 		"lang": "javascript",
-		"concepts": [],
+		"concepts": [
+			"loops",
+			"functions"
+		],
 		"description": "Fundamentals algoritma egzersizi",
 		"mine": true,
-		"snippet": ""
+		"snippet": "function dropElements(arr, func) {\n    for (let i = 0; i < arr.length; i++) {\n      if (func(arr[i])) {\n        return arr.slice(i);\n      }"
 	},
 	{
 		"id": "functions-emailmasker",
@@ -363,37 +358,18 @@ export const GENERATED_ALGORITHMS = [
 		"snippet": "function bouncer(arr) {\n  return arr.filter(x => \n    x !== false &&\n    x !== 0 &&\n    x !== \"\" &&"
 	},
 	{
-		"id": "dom-manipulation-and-events-favoriteicontogger",
-		"title": "Favorite Icon Togger",
-		"sub": "Dom Manipulation And Events",
-		"path": "/projects/JS/DomManipulationAndEvents/favoriteIconTogger.js",
-		"lang": "javascript",
-		"concepts": [],
-		"description": "Dom Manipulation And Events algoritma egzersizi",
-		"mine": true,
-		"snippet": ""
-	},
-	{
 		"id": "fundamentals-firstelementfinder",
 		"title": "First Element Finder",
 		"sub": "Fundamentals",
 		"path": "/projects/JS/fundameltalsReview/firstElementFinder.js",
 		"lang": "javascript",
-		"concepts": [],
+		"concepts": [
+			"loops",
+			"functions"
+		],
 		"description": "Fundamentals algoritma egzersizi",
 		"mine": true,
-		"snippet": ""
-	},
-	{
-		"id": "dom-manipulation-and-events-footballteamcards",
-		"title": "Football Team Cards",
-		"sub": "Dom Manipulation And Events",
-		"path": "/projects/JS/DomManipulationAndEvents/footballTeamCards.js",
-		"lang": "javascript",
-		"concepts": [],
-		"description": "Dom Manipulation And Events algoritma egzersizi",
-		"mine": true,
-		"snippet": ""
+		"snippet": "function findElement(arr, func) {\n    for (let i = 0; i < arr.length; i++) {\n      if (func(arr[i])) {\n        return arr[i];\n      }"
 	},
 	{
 		"id": "booleans-numbers-fortuneteller",
@@ -451,10 +427,13 @@ export const GENERATED_ALGORITHMS = [
 		"sub": "Fundamentals",
 		"path": "/projects/JS/fundameltalsReview/htmlEntityConverter.js",
 		"lang": "javascript",
-		"concepts": [],
+		"concepts": [
+			"loops",
+			"functions"
+		],
 		"description": "Fundamentals algoritma egzersizi",
 		"mine": true,
-		"snippet": ""
+		"snippet": "function convertHTML(str) {\n    let result = \"\";\n    for (let i = 0; i < str.length; i++) {\n      if (str[i] === \"&\") {\n        result += \"&amp;\";"
 	},
 	{
 		"id": "fundamentals-inventorymanagementprogram",
@@ -477,10 +456,12 @@ export const GENERATED_ALGORITHMS = [
 		"sub": "Fundamentals",
 		"path": "/projects/JS/fundameltalsReview/largestNumberFinder.js",
 		"lang": "javascript",
-		"concepts": [],
+		"concepts": [
+			"functions"
+		],
 		"description": "Fundamentals algoritma egzersizi",
 		"mine": true,
-		"snippet": ""
+		"snippet": "function findElement(arr, func) {\n    return arr.find(func);\n  }"
 	},
 	{
 		"id": "arrays-launchpickerprogram",
@@ -522,17 +503,6 @@ export const GENERATED_ALGORITHMS = [
 		"description": "Higher-Order Functions algoritma egzersizi",
 		"mine": true,
 		"snippet": "const library = [\n  {\n    title: 'Your Next Five Moves: Master the Art of Business Strategy',\n    author: 'Patrick Bet-David and Greg Dinkin',\n    about: 'A book on how to plan ahead',"
-	},
-	{
-		"id": "dom-manipulation-and-events-lightboxviewer",
-		"title": "Lightbox Viewer",
-		"sub": "Dom Manipulation And Events",
-		"path": "/projects/JS/DomManipulationAndEvents/lightboxViewer.js",
-		"lang": "javascript",
-		"concepts": [],
-		"description": "Dom Manipulation And Events algoritma egzersizi",
-		"mine": true,
-		"snippet": ""
 	},
 	{
 		"id": "loops-longestwordfinder",
@@ -614,10 +584,13 @@ export const GENERATED_ALGORITHMS = [
 		"sub": "Fundamentals",
 		"path": "/projects/JS/fundameltalsReview/passwordGeneratorApp.js",
 		"lang": "javascript",
-		"concepts": [],
+		"concepts": [
+			"loops",
+			"functions"
+		],
 		"description": "Fundamentals algoritma egzersizi",
 		"mine": true,
-		"snippet": ""
+		"snippet": "function generatePassword(length) {\n    let chars = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()\";\n    let result = \"\";\n    for (let i = 0; i < length; i++) {\n      let randomIndex = Math.flo"
 	},
 	{
 		"id": "date-practice",
@@ -727,17 +700,6 @@ export const GENERATED_ALGORITHMS = [
 		"snippet": "function smallestCommons(arr) {\n\tconst [min, max] = arr.sort((a, b) => a - b);\n\tconst gcd = (a, b) => {\n\t\twhile (b !== 0) {\n\t\t\t[a, b] = [b, a % b];"
 	},
 	{
-		"id": "dom-manipulation-and-events-realtimecounter",
-		"title": "Real Time Counter",
-		"sub": "Dom Manipulation And Events",
-		"path": "/projects/JS/DomManipulationAndEvents/realTimeCounter.js",
-		"lang": "javascript",
-		"concepts": [],
-		"description": "Dom Manipulation And Events algoritma egzersizi",
-		"mine": true,
-		"snippet": ""
-	},
-	{
 		"id": "objects-recipetracker",
 		"title": "Recipe Tracker",
 		"sub": "Objects",
@@ -762,17 +724,6 @@ export const GENERATED_ALGORITHMS = [
 		"description": "Objects algoritma egzersizi",
 		"mine": true,
 		"snippet": "const recordCollection = {\n\t2548: {\n\t\talbumTitle: 'Slippery When Wet',\n\t\tartist: 'Bon Jovi',\n\t\ttracks: ['Let It Rock', 'You Give Love a Bad Name'],"
-	},
-	{
-		"id": "dom-manipulation-and-events-rockpaperscissors",
-		"title": "Rock Paper Scissors",
-		"sub": "Dom Manipulation And Events",
-		"path": "/projects/JS/DomManipulationAndEvents/rockPaperScissors.js",
-		"lang": "javascript",
-		"concepts": [],
-		"description": "Dom Manipulation And Events algoritma egzersizi",
-		"mine": true,
-		"snippet": ""
 	},
 	{
 		"id": "basic-regex-script",
@@ -981,10 +932,13 @@ export const GENERATED_ALGORITHMS = [
 		"sub": "Fundamentals",
 		"path": "/projects/JS/fundameltalsReview/sumAllNumbers.js",
 		"lang": "javascript",
-		"concepts": [],
+		"concepts": [
+			"loops",
+			"functions"
+		],
 		"description": "Fundamentals algoritma egzersizi",
 		"mine": true,
-		"snippet": ""
+		"snippet": "function sumAll(arr) {\n\tlet start = arr[0];\n\tlet end = arr[1];\n\tlet sum = 0;\n\tif (start > end) {"
 	},
 	{
 		"id": "higher-order-functions-symmetricdifferencefunction",
@@ -1059,10 +1013,13 @@ export const GENERATED_ALGORITHMS = [
 		"sub": "Fundamentals",
 		"path": "/projects/JS/fundameltalsReview/uniqueSortedUnion.js",
 		"lang": "javascript",
-		"concepts": [],
+		"concepts": [
+			"loops",
+			"functions"
+		],
 		"description": "Fundamentals algoritma egzersizi",
 		"mine": true,
-		"snippet": ""
+		"snippet": "function uniteUnique() {\n\tlet result = [];\n\tfor (let i = 0; i < arguments.length; i++) {\n\t\tfor (let j = 0; j < arguments[i].length; j++) {\n\t\t\tif (!result.includes(arguments[i][j])) {"
 	},
 	{
 		"id": "higher-order-functions-valueremoverfunction",
@@ -1088,7 +1045,6 @@ export const GENERATED_ALGO_SUBS = [
 	"Booleans & Numbers",
 	"Closures",
 	"Date",
-	"Dom Manipulation And Events",
 	"Functions",
 	"Fundamentals",
 	"Higher-Order Functions",

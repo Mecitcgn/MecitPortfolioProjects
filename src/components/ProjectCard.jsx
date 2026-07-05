@@ -4,6 +4,7 @@
  */
 
 import { useState } from 'react';
+import CodeCover from './CodeCover.jsx';
 
 function ProjectCover({ cover, num }) {
 	const { gradient, accent, pattern } = cover;
@@ -32,6 +33,8 @@ export default function ProjectCard({ project, index, onClick }) {
 	const [thumbError, setThumbError] = useState(false);
 	const hasCover = !!project.cover;
 	const hasThumb = project.thumbnail && !thumbError;
+	const isCodePreview = project.previewMode === 'code';
+	const showNumber = !hasThumb && !isCodePreview;
 	const num = String(index + 1).padStart(2, '0');
 
 	return (
@@ -52,10 +55,15 @@ export default function ProjectCard({ project, index, onClick }) {
 						/>
 						<div className="pc-thumb-overlay" />
 					</>
+				) : isCodePreview ? (
+					<>
+						{hasCover && <ProjectCover cover={project.cover} num={num} />}
+						<CodeCover project={project} />
+					</>
 				) : (
 					hasCover && <ProjectCover cover={project.cover} num={num} />
 				)}
-				{!hasThumb && (
+				{showNumber && (
 					<span
 						className="pc-num"
 						style={hasCover ? { color: project.cover.accent, opacity: 0.18 } : {}}
@@ -63,7 +71,7 @@ export default function ProjectCard({ project, index, onClick }) {
 						{num}
 					</span>
 				)}
-				{project.previewMode === 'code' && (
+				{isCodePreview && (
 					<span className="pc-mode-badge">◈ Kod</span>
 				)}
 				<div className="pc-arrow">↗</div>
