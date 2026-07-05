@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Inventory</title>
+  <style>
+    /* Genel span elemanları için display özelliği */
+    span {
+      display: inline-block;
+    }
+
+    /* Satır durumlarına göre arka plan renkleri (Nitelik Seçiciler) */
+    tr[class="read"] {
+      background-image: linear-gradient(to right, #d4edda, #f1f8e9);
+    }
+
+    tr[class="to-read"] {
+      background-image: linear-gradient(to right, #cce5ff, #e3f2fd);
+    }
+
+    tr[class="in-progress"] {
+      background-image: linear-gradient(to right, #fff3cd, #fffde7);
+    }
+
+    /* Durum (Status) span'lerinin boyutlandırması ve stilleri (Nitelik Seçiciler) */
+    tr[class="to-read"] span[class="status"] {
+      border: 1px solid #007bff;
+      background-image: linear-gradient(to bottom, #e7f0ff, #cce5ff);
+    }
+
+    tr[class="read"] span[class="status"] {
+      border: 1px solid #28a745;
+      background-image: linear-gradient(to bottom, #d4edda, #c3e6cb);
+    }
+
+    tr[class="in-progress"] span[class="status"] {
+      border: 1px solid #ffc107;
+      background-image: linear-gradient(to bottom, #fff3cd, #ffeeba);
+    }
+
+    /* Status ve Rate span'lerinin genel boyutları (Nitelik Seçiciler) */
+    span[class="status"],
+    span[class^="rate"] {
+      height: 20px;
+      width: 90px;
+      padding: 5px;
+      text-align: center;
+    }
+
+    /* Rate içindeki küçük span'lerin (dairelerin) stilleri (Nitelik Seçiciler) */
+    span[class^="rate"]>span {
+      border: 1px solid #adb5bd;
+      border-radius: 50%;
+      margin: 0 2px;
+      height: 15px;
+      width: 15px;
+      background-color: #e9ecef;
+    }
+
+    /* --- DÜZELTİLMİŞ SEÇİCİLER --- */
+    /* Puanlamaya göre dairelerin içini doldurma */
+
+    /* DÜZELTME: [class*="..."] yerine [class~="..."] kullanıldı. (Test 46 & 47) */
+    span[class~="one"] span:first-child {
+      background-image: linear-gradient(#4caf50, #8bc34a);
+    }
+
+    /* DÜZELTME: [class*="..."] yerine [class~="..."] kullanıldı. (Test 48 & 49) */
+    span[class~="two"] span:nth-child(-n+2) {
+      background-image: linear-gradient(#4caf50, #8bc34a);
+    }
+
+    /* DÜZELTME: [class*="..."] yerine [class~="..."] kullanıldı. (Test 50 & 51) */
+    span[class~="three"] span {
+      background-image: linear-gradient(#4caf50, #8bc34a);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Book Inventory</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="read">
+        <td>The Hobbit</td>
+        <td>J.R.R. Tolkien</td>
+        <td>Fantasy</td>
+        <td><span class="status">Read</span></td>
+        <td><span class="rate three"><span></span><span></span><span></span></span></td>
+      </tr>
+      <tr class="to-read">
+        <td>Dune</td>
+        <td>Frank Herbert</td>
+        <td>Science Fiction</td>
+        <td><span class="status">To Read</span></td>
+        <td><span class="rate"><span></span><span></span><span></span></span></td>
+      </tr>
+      <tr class="in-progress">
+        <td>1984</td>
+        <td>George Orwell</td>
+        <td>Dystopian</td>
+        <td><span class="status">In Progress</span></td>
+        <td><span class="rate"><span></span><span></span><span></span></span></td>
+      </tr>
+      <tr class="read">
+        <td>Pride and Prejudice</td>
+        <td>Jane Austen</td>
+        <td>Romance</td>
+        <td><span class="status">Read</span></td>
+        <td><span class="rate two"><span></span><span></span><span></span></span></td>
+      </tr>
+      <tr class="read">
+        <td>The Martian</td>
+        <td>Andy Weir</td>
+        <td>Sci-Fi</td>
+        <td><span class="status">Read</span></td>
+        <td><span class="rate one"><span></span><span></span><span></span></span></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Star Wars Poster</title>
+		<link rel="stylesheet" href="style.css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="main-container">
+			<button class="themeBtn">Light Mode</button>
+			<div class="container">
+				<div class="top-container">
+					<div class="title-container">
+						<p class="main-title">Star Wars: The Last Jedi</p>
+						<p class="rating"><span class="rating-blue">7.4</span>/ 10</p>
+					</div>
+					<p class="action-text">Action & Adventure</p>
+				</div>
+				<div class="middle-container">
+					<div class="middle-left-container">
+						<img
+							src="StarWarsThumb.jpg"
+							class="starwars-img"
+							alt="Star Wars Thumbnail"
+						/>
+					</div>
+					<div class="middle-right-top-container">
+						<p>About the Movie</p>
+						<p>
+							In Lucasfilm's Star Wars: The Last Jedi, the Skywalker saga
+							continues as the heroes of The Force Awakens join the galactic
+							legends in an epic adventure that unlocks new mysteries of the
+							Force and shocking revelations of the past.
+						</p>
+					</div>
+					<div class="middle-right-bottom-container">
+						<div class="actor-container">
+							<p class="subject-title">Actors</p>
+							<p class="subject-name">Oscar Isaac</p>
+							<p class="subject-name">Mark Hamill</p>
+							<p class="subject-name">Daisy Ridley</p>
+							<p class="subject-name">John Boyega</p>
+							<p class="subject-name">Kelly Marie Tran</p>
+						</div>
+						<div class="director-container">
+							<p class="subject-title">Director</p>
+							<p class="subject-name">Rian Johnson</p>
+						</div>
+						<div class="screenwriter-container">
+							<p class="subject-title">Screenwriter</p>
+							<p class="subject-name">Rian Johnson</p>
+						</div>
+						<div class="producers-container">
+							<p class="subject-title">Producers</p>
+							<p class="subject-name">Kathleen Kennedy</p>
+							<p class="subject-name">Ram Bergman</p>
+						</div>
+					</div>
+					<a href="#" class="more">More</a>
+				</div>
+				<div class="bottom-container">
+					<p class="price-text">$19.00</p>
+					<button class="buy-btn">BUY</button>
+					<button class="trailer-btn">WATCH TRAILER</button>
+				</div>
+			</div>
+		</div>
+		<script>
+			const themeButton = document.querySelector('.themeBtn');
+			themeButton.addEventListener('click', () => {
+				document.body.classList.toggle('light');
+
+				themeButton.textContent = document.body.classList.contains('light')
+					? 'Dark Mode'
+					: 'Light Mode';
+			});
+		</script>
+	</body>
+</html>

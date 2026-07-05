@@ -1,0 +1,34 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.colored-box-paragraph{
+    margin-top: 25px;
+}
+
+
+.colored-box-section > *{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin: 0px 32px;
+    border-radius: 10px;
+}
+
+.colored-box-first{
+    background-color: rgb(89, 231, 89);
+}
+.colored-box-second{
+    background-color: purple;
+}
+.colored-box-third{
+    background-color: orange;
+}
+.colored-box-fourth{
+    background-color: rgba(0, 63, 0, 0.646);
+}
+.colored-box-fifth{
+    background-color: red;
+}

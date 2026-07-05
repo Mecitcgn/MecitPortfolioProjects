@@ -1,0 +1,135 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+}
+
+.navigation-bar {
+  width: 35%;
+  height: 100%;
+  overflow: scroll;
+  border-inline-end: 5px solid #99A2A2;
+  z-index: 5000;
+}
+
+.navigation-under {
+  position: relative;
+  top: 70px;
+}
+
+.nav-main-title {
+  position: fixed;
+  width: 35%;
+  background-color: white;
+  border-inline-end: 5px solid #99A2A2;
+  z-index: 3;
+}
+
+.nav-main-title h1 {
+  font-size: 1.85rem;
+  text-align: center;
+  padding-block: 10px;
+  color: black
+}
+
+.navigation-texts {
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: #4D4E53;
+}
+
+.navigation-items {
+  width: 100%;
+  padding-inline-start: 30px;
+  padding-block: 12px;
+  border-block: 1px solid #99A2A2;
+}
+
+
+.right-content {
+  width: 600px;
+  height: auto;
+  border: 2px solid red;
+  margin-left: 350px;
+  margin-top: -500px;
+}

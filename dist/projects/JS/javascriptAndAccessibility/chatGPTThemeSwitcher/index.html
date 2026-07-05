@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="tr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Theme Switcher Lab</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<main class="card" role="main">
+			<h1>Theme Switcher</h1>
+			<p>
+				Butona tıklayıp temalar arasında geçiş yap. Her tema arkaplanı
+				değiştirir ve canlı bölgeye mesaj gönderir.
+			</p>
+
+			<div class="controls">
+				<button
+					id="theme-switcher-button"
+					aria-haspopup="true"
+					aria-expanded="false"
+					aria-controls="theme-dropdown"
+				>
+					Switch Theme
+				</button>
+
+				<ul
+					id="theme-dropdown"
+					role="menu"
+					aria-labelledby="theme-switcher-button"
+					hidden
+				>
+					<li id="theme-sun" role="menuitem">sun</li>
+					<li id="theme-ocean" role="menuitem">ocean</li>
+					<li id="theme-forest" role="menuitem">forest</li>
+				</ul>
+			</div>
+
+			<div class="live-region" id="theme-live" aria-live="polite">
+				Şu anda bir tema seçilmedi.
+			</div>
+
+			<footer>Accessible theme switcher example.</footer>
+		</main>
+
+		<script src="script.js"></script>
+	</body>
+</html>

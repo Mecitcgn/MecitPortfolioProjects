@@ -1,0 +1,77 @@
+:root {
+  --color-1: #FFFFFF;
+  --color-2: #CEFCCD;
+  --color-3: #9CFB9B;
+  --color-4: #50F950;
+  --color-5: #03C704;
+  --color-6: #057C02;
+  --solid-border: 1px solid black;
+  --dashed-border: 1px dashed black;
+}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ADD2BF;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.days {
+  border-bottom: var(--solid-border);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.dtr> :not(.time) {
+  border-bottom: var(--dashed-border)
+}
+
+.str> :not(.time) {
+  border-bottom: var(--solid-border)
+}
+
+th,
+td {
+  text-align: center;
+}
+
+td {
+  border-right: var(--solid-border);
+}
+
+.availability-1 {
+  background: var(--color-1);
+}
+
+.availability-2 {
+  background: var(--color-2);
+}
+
+.availability-3 {
+  background: var(--color-3);
+}
+
+.availability-4 {
+  background: var(--color-4);
+}
+
+.availability-5 {
+  background: var(--color-5);
+}
+
+.availability-6 {
+  background: var(--color-6);
+}
+
+.days{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.time{
+  font-size: 1.2rem;
+  font-weight: bold;
+}

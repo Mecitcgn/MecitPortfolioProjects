@@ -1,0 +1,333 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+:root {
+	/* hsl (fallback color) */
+	--bg-dark: hsl(248 100% 7%);
+	--bg: hsl(239 100% 10%);
+	--bg-light: hsl(228 97% 13%);
+	--text: hsl(220 100% 100%);
+	--text-muted: hsl(220 78% 76%);
+	--highlight: hsl(223 71% 48%);
+	--border: hsl(224 90% 36%);
+	--border-muted: hsl(236 100% 28%);
+	--primary: hsl(221 100% 81%);
+	--secondary: hsl(46 100% 31%);
+	--danger: hsl(7 100% 66%);
+	--warning: hsl(53 100% 21%);
+	--success: hsl(162 100% 22%);
+	--info: hsl(217 100% 70%);
+	/* oklch */
+	--bg-dark: oklch(0.1 0.1 264);
+	--bg: oklch(0.15 0.1 264);
+	--bg-light: oklch(0.2 0.1 264);
+	--text: oklch(0.96 0.1 264);
+	--text-muted: oklch(0.76 0.1 264);
+	--highlight: oklch(0.5 0.2 264);
+	--border: oklch(0.4 0.2 264);
+	--border-muted: oklch(0.3 0.2 264);
+	--primary: oklch(0.76 0.2 264);
+	--secondary: oklch(0.76 0.2 84);
+	--danger: oklch(0.7 0.2 30);
+	--warning: oklch(0.7 0.2 100);
+	--success: oklch(0.7 0.2 160);
+	--info: oklch(0.7 0.2 260);
+	--fs-sm: 0.875rem;
+	--fs-reg: 1rem;
+	--fs-md: 1.125rem;
+	--fs-lg: 1.25rem;
+	--fs-xl: 1.5rem;
+	--fs-xxl: 2rem;
+	--ff-poppins: 'Poppins', sans-serif;
+
+	--shadow-s: inset 0 1px 2px #ffffff50, 0 1px 2px #ffffff30,
+		0 2px 4px #ffffff15;
+	--shadow-m: inset 0 2px 4px #ffffff50, 0 2px 4px #ffffff30,
+		0 8px 12px #ffffff15;
+	--shadow-l: inset 0 4px 8px #ffffff50, 0 4px 8px #ffffff30,
+		0 16px 32px #ffffff15;
+	--success-shadow-s: inset 0 1px 2px #00ff0050, 0 1px 2px #00ff0030,
+		0 2px 4px #00ff0015;
+	--success-shadow-m: inset 0 2px 4px #00ff0050, 0 2px 4px #00ff0030,
+		0 8px 12px #00ff0015;
+	--success-shadow-l: inset 0 4px 8px #00ff0050, 0 4px 8px #00ff0030,
+		0 16px 32px #00ff0015;
+	--danger-shadow-s: inset 0 1px 2px #ff000050, 0 1px 2px #ff000030,
+		0 2px 4px #ff000015;
+	--danger-shadow-m: inset 0 2px 4px #ff000050, 0 2px 4px #ff000030,
+		0 8px 12px #ff000015;
+	--danger-shadow-l: inset 0 4px 8px #ff000050, 0 4px 8px #ff000030,
+		0 16px 32px #ff000015;
+}
+
+body.light {
+	/* hsl (fallback color) */
+	--bg-dark: hsl(220 100% 96%);
+	--bg: hsl(220 100% 100%);
+	--bg-light: hsl(220 100% 100%);
+	--text: hsl(262 100% 13%);
+	--text-muted: hsl(224 90% 36%);
+	--highlight: hsl(221 100% 100%);
+	--border: hsl(222 91% 61%);
+	--border-muted: hsl(222 100% 73%);
+	--primary: hsl(224 90% 36%);
+	--secondary: hsl(36 100% 13%);
+	--danger: hsl(4 99% 37%);
+	--warning: hsl(50 100% 12%);
+	--success: hsl(159 100% 9%);
+	--info: hsl(215 95% 42%);
+	/* oklch */
+	--bg-dark: oklch(0.92 0.1 264);
+	--bg: oklch(0.96 0.1 264);
+	--bg-light: oklch(1 0.1 264);
+	--text: oklch(0.15 0.2 264);
+	--text-muted: oklch(0.4 0.2 264);
+	--highlight: oklch(1 0.2 264);
+	--border: oklch(0.6 0.2 264);
+	--border-muted: oklch(0.7 0.2 264);
+	--primary: oklch(0.4 0.2 264);
+	--secondary: oklch(0.4 0.2 84);
+	--danger: oklch(0.5 0.2 30);
+	--warning: oklch(0.5 0.2 100);
+	--success: oklch(0.5 0.2 160);
+	--info: oklch(0.5 0.2 260);
+	--fs-sm: 0.875rem;
+	--fs-reg: 1rem;
+	--fs-md: 1.125rem;
+	--fs-lg: 1.25rem;
+	--fs-xl: 1.5rem;
+	--fs-xxl: 2rem;
+	--ff-poppins: 'Poppins', sans-serif;
+
+	--shadow-s: inset 0 1px 2px #00000050, 0 1px 2px #00000030,
+		0 2px 4px #00000015;
+	--shadow-m: inset 0 2px 4px #00000050, 0 2px 4px #00000030,
+		0 8px 12px #00000015;
+	--shadow-l: inset 0 4px 8px #00000050, 0 4px 8px #00000030,
+		0 16px 32px #00000015;
+	--success-shadow-s: inset 0 1px 2px #00ff0050, 0 1px 2px #00ff0030,
+		0 2px 4px #00ff0015;
+	--success-shadow-m: inset 0 2px 4px #00ff0050, 0 2px 4px #00ff0030,
+		0 8px 12px #00ff0015;
+	--success-shadow-l: inset 0 4px 8px #00ff0050, 0 4px 8px #00ff0030,
+		0 16px 32px #00ff0015;
+	--danger-shadow-s: inset 0 1px 2px #ff000050, 0 1px 2px #ff000030,
+		0 2px 4px #ff000015;
+	--danger-shadow-m: inset 0 2px 4px #ff000050, 0 2px 4px #ff000030,
+		0 8px 12px #ff000015;
+	--danger-shadow-l: inset 0 4px 8px #ff000050, 0 4px 8px #ff000030,
+		0 16px 32px #ff000015;
+}
+
+html {
+	font-size: var(--fs-reg);
+	font-weight: 400;
+	font-family: var(--ff-poppins);
+}
+
+body {
+	width: 100%;
+	height: 100dvh;
+	display: grid;
+	place-items: center;
+	background-color: var(--bg);
+	color: var(--text);
+}
+
+h1 {
+	font-size: var(--fs-xxl);
+	-webkit-text-stroke: 1px var(--text);
+	text-shadow: 0 0 10px var(--text), 0 0 20px var(--text-muted),
+		0 0 40px var(--text);
+}
+
+h2 {
+	font-size: var(--fs-lg);
+}
+
+.card {
+	background-color: var(--bg-light);
+	padding: 5rem;
+	border-radius: 1rem;
+	box-shadow: var(--shadow-l);
+}
+
+.profile-card {
+	display: flex;
+	margin-block: 1rem;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 16px;
+
+	img {
+		height: 80px;
+	}
+}
+
+.input-container {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	position: relative;
+}
+
+.input-cnt-main {
+	i:nth-child(1) {
+		position: absolute;
+		top: 45px;
+		left: 10px;
+		font-size: 1.5rem;
+	}
+	.fa-eye {
+		font-size: 1.2rem;
+		position: relative;
+		left: 5px;
+	}
+	input {
+		padding-block: 0.7rem;
+		padding-inline-start: 3rem;
+		background-color: var(--bg);
+		border: 1px solid var(--border);
+		border-radius: 1rem;
+		color: var(--text);
+		outline: none;
+	}
+}
+
+.btn-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-block: 1.5rem;
+
+	> button {
+		padding: 0.75rem 1rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--border);
+		color: var(--text);
+		background-color: var(--primary);
+		box-shadow: var(--shadow-m);
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.3s ease;
+
+		&:hover {
+			background-color: var(--highlight);
+			box-shadow: var(--shadow-l);
+		}
+	}
+}
+.btn-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+.signed-btn {
+	position: relative;
+	width: 75px;
+	height: 40px;
+	border-radius: 100vw;
+	background: var(--bg);
+	border: 1px solid var(--border);
+}
+
+.signed-btn::before {
+	content: '';
+	position: absolute;
+	top: 4px;
+	left: 5px;
+	width: 40%;
+	height: 80%;
+	border-radius: 100%;
+	aspect-ratio: 1 / 1;
+	background-color: var(--primary);
+	transition: transform 0.3s ease;
+}
+
+.signed-btn.active::before {
+	transform: translateX(110%);
+}
+
+.signed-btn + p {
+	font-size: var(--fs-md);
+}
+
+.anchor-pswrd {
+	color: var(--text-muted);
+  
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Clip Path (Path)</title>
+		<style>
+			body {
+				width: 100%;
+				height: 100dvh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-wrap: wrap;
+			}
+			.shape {
+				width: 400px;
+				height: 400px;
+				background-color: black;
+				clip-path: path(
+					'M 20 80 L 140 80 A 20,20 0,0,0 160 60 L 160 20 L 180 0 L 280 0 L 300 20 L 300 380 L 280 400 L 20 400 L 0 380 L 0 100 Z'
+				);
+			}
+			.box {
+				width: 300px;
+				height: 200px;
+				clip-path: path('M 0 0 L 300 0 L 150 200 Z');
+				background-color: red;
+			}
+			.box2 {
+				width: 300px;
+				height: 150px;
+				clip-path: path('M 0 75 A 75 75 0 0 1 150 75 L 150 150 L 0 150 Z');
+				background-color: yellow;
+			}
+			.box3 {
+				width: 300px;
+				height: 300px;
+				clip-path: path(
+					evenodd,
+					'M 0 0 H 300 V 300 H 0 Z
+     M 75 75 H 225 V 225 H 75 Z'
+				);
+				background-color: blue;
+			}
+			.box4 {
+				width: 400px;
+				height: 200px;
+				clip-path: path(
+					'M 0 100 C 100 0, 300 200, 400 100 L 400 200 L 0 200 Z'
+				);
+				background-color: purple;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="shape"></div>
+		<div class="box"></div>
+		<div class="box2"></div>
+		<div class="box3"></div>
+		<div class="box4"></div>
+	</body>
+</html>

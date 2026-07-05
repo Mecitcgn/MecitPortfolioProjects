@@ -1,0 +1,266 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+:root {
+	/* hsl (fallback color) */
+	--bg-dark: hsl(319 100% 3%);
+	--bg: hsl(315 100% 5%);
+	--bg-light: hsl(314 100% 9%);
+	--text: hsl(321 100% 99%);
+	--text-muted: hsl(320 50% 73%);
+	--highlight: hsl(315 59% 40%);
+	--border: hsl(312 100% 23%);
+	--border-muted: hsl(311 100% 13%);
+	--primary: hsl(318 92% 74%);
+	--secondary: hsl(162 100% 34%);
+	--danger: hsl(7 94% 66%);
+	--warning: hsl(53 100% 24%);
+	--success: hsl(163 100% 26%);
+	--info: hsl(217 100% 70%);
+	/* oklch */
+	--bg-dark: oklch(0.1 0.09 340);
+	--bg: oklch(0.15 0.09 340);
+	--bg-light: oklch(0.2 0.09 340);
+	--text: oklch(0.96 0.1 340);
+	--text-muted: oklch(0.76 0.1 340);
+	--highlight: oklch(0.5 0.18 340);
+	--border: oklch(0.4 0.18 340);
+	--border-muted: oklch(0.3 0.18 340);
+	--primary: oklch(0.76 0.18 340);
+	--secondary: oklch(0.76 0.18 160);
+	--danger: oklch(0.7 0.18 30);
+	--warning: oklch(0.7 0.18 100);
+	--success: oklch(0.7 0.18 160);
+	--info: oklch(0.7 0.18 260);
+	--fs-sm: 0.875rem;
+	--fs-reg: 1rem;
+	--fs-md: 1.125rem;
+	--fs-lg: 1.25rem;
+	--fs-xl: 1.5rem;
+	--fs-xxl: 2rem;
+	--ff-poppins: 'Poppins', sans-serif;
+
+	--shadow-s: inset 0 1px 2px #ffffff50, 0 1px 2px #ffffff30,
+		0 2px 4px #ffffff15;
+	--shadow-m: inset 0 2px 4px #ffffff50, 0 2px 4px #ffffff30,
+		0 8px 12px #ffffff15;
+	--shadow-l: inset 0 4px 8px #ffffff50, 0 4px 8px #ffffff30,
+		0 16px 32px #ffffff15;
+	--success-shadow-s: inset 0 1px 2px #00ff0050, 0 1px 2px #00ff0030,
+		0 2px 4px #00ff0015;
+	--success-shadow-m: inset 0 2px 4px #00ff0050, 0 2px 4px #00ff0030,
+		0 8px 12px #00ff0015;
+	--success-shadow-l: inset 0 4px 8px #00ff0050, 0 4px 8px #00ff0030,
+		0 16px 32px #00ff0015;
+	--danger-shadow-s: inset 0 1px 2px #ff000050, 0 1px 2px #ff000030,
+		0 2px 4px #ff000015;
+	--danger-shadow-m: inset 0 2px 4px #ff000050, 0 2px 4px #ff000030,
+		0 8px 12px #ff000015;
+	--danger-shadow-l: inset 0 4px 8px #ff000050, 0 4px 8px #ff000030,
+		0 16px 32px #ff000015;
+}
+
+body.light {
+	/* hsl (fallback color) */
+	--bg-dark: hsl(321 100% 93%);
+	--bg: hsl(321 100% 99%);
+	--bg-light: hsl(321 100% 100%);
+	--text: hsl(313 100% 5%);
+	--text-muted: hsl(312 100% 23%);
+	--highlight: hsl(319 100% 100%);
+	--border: hsl(317 49% 53%);
+	--border-muted: hsl(318 70% 66%);
+	--primary: hsl(312 100% 23%);
+	--secondary: hsl(156 100% 6%);
+	--danger: hsl(5 77% 40%);
+	--warning: hsl(51 100% 12%);
+	--success: hsl(160 100% 11%);
+	--info: hsl(217 78% 44%);
+	/* oklch */
+	--bg-dark: oklch(0.92 0.09 340);
+	--bg: oklch(0.96 0.09 340);
+	--bg-light: oklch(1 0.09 340);
+	--text: oklch(0.15 0.18 340);
+	--text-muted: oklch(0.4 0.18 340);
+	--highlight: oklch(1 0.18 340);
+	--border: oklch(0.6 0.18 340);
+	--border-muted: oklch(0.7 0.18 340);
+	--primary: oklch(0.4 0.18 340);
+	--secondary: oklch(0.4 0.18 160);
+	--danger: oklch(0.5 0.18 30);
+	--warning: oklch(0.5 0.18 100);
+	--success: oklch(0.5 0.18 160);
+	--info: oklch(0.5 0.18 260);
+	--fs-sm: 0.875rem;
+	--fs-reg: 1rem;
+	--fs-md: 1.125rem;
+	--fs-lg: 1.25rem;
+	--fs-xl: 1.5rem;
+	--fs-xxl: 2rem;
+	--ff-poppins: 'Poppins', sans-serif;
+
+	--shadow-s: inset 0 1px 2px #00000050, 0 1px 2px #00000030,
+		0 2px 4px #00000015;
+	--shadow-m: inset 0 2px 4px #00000050, 0 2px 4px #00000030,
+		0 8px 12px #00000015;
+	--shadow-l: inset 0 4px 8px #00000050, 0 4px 8px #00000030,
+		0 16px 32px #00000015;
+	--success-shadow-s: inset 0 1px 2px #00ff0050, 0 1px 2px #00ff0030,
+		0 2px 4px #00ff0015;
+	--success-shadow-m: inset 0 2px 4px #00ff0050, 0 2px 4px #00ff0030,
+		0 8px 12px #00ff0015;
+	--success-shadow-l: inset 0 4px 8px #00ff0050, 0 4px 8px #00ff0030,
+		0 16px 32px #00ff0015;
+	--danger-shadow-s: inset 0 1px 2px #ff000050, 0 1px 2px #ff000030,
+		0 2px 4px #ff000015;
+	--danger-shadow-m: inset 0 2px 4px #ff000050, 0 2px 4px #ff000030,
+		0 8px 12px #ff000015;
+	--danger-shadow-l: inset 0 4px 8px #ff000050, 0 4px 8px #ff000030,
+		0 16px 32px #ff000015;
+}
+
+html {
+	font-size: var(--fs-reg);
+	font-weight: 600;
+	font-family: var(--ff-poppins);
+}
+
+body {
+	width: 100%;
+	height: 100dvh;
+	background-color: var(--bg);
+	color: var(--text);
+}
+.top-gradient {
+	position: absolute;
+	inset: 0;
+	inline-size: 100%;
+	height: 30dvh;
+	background: linear-gradient(315deg, var(--primary), var(--bg-light));
+	z-index: -1;
+}
+
+.wrapper {
+	max-inline-size: 1200px;
+	padding-inline: 2rem;
+	margin-inline: auto;
+	padding-block: 5rem;
+	display: grid;
+	grid-template-columns: repeat(
+		auto-fit,
+		minmax(clamp(11rem, 16vw, 17rem), 1fr)
+	);
+	gap: 1rem;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--bg-light);
+	border-radius: 1rem;
+	box-shadow: var(--shadow-l);
+	.img-container {
+		width: 100%;
+		height: 70%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+
+		img {
+			width: 70%;
+		}
+	}
+	.statistics-container {
+		width: 100%;
+		height: 30%;
+		background-color: var(--bg);
+		display: flex;
+		justify-content: space-around;
+		text-align: center;
+		line-height: 1.3;
+		padding: 1rem 2rem;
+		margin-block-start: 1rem;
+		border-radius: 0 0 1rem 1rem;
+
+		p:nth-child(even) {
+			color: var(--text-muted);
+			font-size: var(--fs-sm);
+		}
+	}
+}

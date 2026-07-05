@@ -1,0 +1,263 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+html {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+	width: 100%;
+	height: 100dvh;
+	background-color: #282c34;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	color: #eeeeee;
+}
+
+.container {
+	background-color: #3b3b5f;
+	padding: 1rem;
+	border-radius: 0.5rem;
+}
+
+.keys-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 0.5rem;
+}
+.key {
+	aspect-ratio: 1 / 1;
+	display: flex;
+	background-color: #666666;
+	border: none;
+	border-radius: 0.25rem;
+}
+
+.key-inner {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem;
+}
+
+.key-value {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.power-container {
+	padding-block: 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	p {
+		font-size: 1.125rem;
+	}
+}
+
+.btn {
+	position: relative;
+	width: 80px;
+	height: 40px;
+	border-radius: 100vw;
+	background-color: #26a444;
+	border: 4px solid #39485b;
+	cursor: pointer;
+	transition: 0.3s ease all;
+	&::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		right: 4px;
+		transform: translateY(-50%);
+		width: 24px;
+		height: 24px;
+		border-radius: 100vw;
+		background-color: #eeeeee;
+	}
+}
+
+@keyframes solAnimasyon {
+	0% {
+		right: 4px;
+	}
+	100% {
+		right: 44px;
+	}
+}
+@keyframes sagAnimasyon {
+	0% {
+		right: 44px;
+	}
+	100% {
+		right: 4px;
+	}
+}
+.btn.active::before {
+	animation: sagAnimasyon 0.3s ease forwards;
+}
+.btn.notactive::before {
+	animation: solAnimasyon 0.3s ease forwards;
+}
+
+.btn.activeBTN {
+	background-color: #26a444;
+	border: 4px solid #39485b;
+}
+.btn.notactiveBTN {
+	background-color: gray;
+	border: 4px solid #39485b;
+}
+
+.audio-title-container {
+	width: 100%;
+	height: 80px;
+	background-color: #444444;
+	display: grid;
+	place-items: center;
+	border-radius: 0.25rem;
+	margin-bottom: 1rem;
+	.audio-title {
+		font-size: 1.125rem;
+	}
+}
+
+.volumebar-container {
+	margin-bottom: 1rem;
+}
+input[type='range'] {
+	width: 100%;
+	-webkit-appearance: none;
+	background: transparent;
+}
+
+/* TRACK */
+input[type='range']::-webkit-slider-runnable-track {
+	height: 6px;
+	border-radius: 3px;
+	background: linear-gradient(
+		to right,
+		#ffaa33 0%,
+		#ffaa33 var(--value),
+		#ddd var(--value),
+		#ddd 100%
+	);
+}
+
+/* THUMB */
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 18px;
+	width: 18px;
+	border-radius: 50%;
+	background: #ffffff;
+	margin-top: -6px;
+	cursor: pointer;
+}
+
+/* FIREFOX TRACK */
+input[type='range']::-moz-range-track {
+	height: 6px;
+	background: #ddd;
+	border-radius: 3px;
+}
+
+/* FIREFOX PROGRESS (SOL DOLU KISIM) */
+input[type='range']::-moz-range-progress {
+	height: 6px;
+	background: #ffaa33;
+	border-radius: 3px;
+}
+
+/* FIREFOX THUMB */
+input[type='range']::-moz-range-thumb {
+	height: 18px;
+	width: 18px;
+	border-radius: 50%;
+	background: #ffffff;
+	border: none;
+	cursor: pointer;
+}
+
+.bank-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 1rem;
+}

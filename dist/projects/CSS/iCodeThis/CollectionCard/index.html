@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../FontAwesomeWeb/css/all.css" />
+		<link rel="stylesheet" href="../FontAwesomeWeb/css/all.min.css" />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<button class="themeBtn">Light Mode</button>
+		<div class="wrapper">
+			<div class="mainCard">
+				<header class="headerContainer">
+					<h1 class="mainTitle">Popular Collections</h1>
+					<div class="categoryContainer">
+						<div class="categoryItem">
+							<p class="categoryText">Profile</p>
+						</div>
+						<div class="categoryItem">
+							<p class="categoryText">New York</p>
+						</div>
+						<div class="categoryItem">
+							<p class="categoryText">Relaxing</p>
+						</div>
+						<div class="categoryItem">
+							<p class="categoryText">Person</p>
+						</div>
+						<div class="categoryItem">
+							<p class="categoryText">Fashion</p>
+						</div>
+					</div>
+				</header>
+				<main class="cardBodyContainer">
+					<div class="cardContainerItem">
+						<div class="imageContainer">
+							<img class="bigImage" src="illustration-article.svg" alt="" />
+							<img class="smallImage" src="illustration-article.svg" alt="" />
+							<img class="smallImage2" src="illustration-article.svg" alt="" />
+							<img class="smallImage3" src="illustration-article.svg" alt="" />
+						</div>
+						<div class="cardInfoBottom">
+							<h2>People</h2>
+							<div class="iconContainer">
+								<i class="fa fa-image"></i>
+								<p>144</p>
+							</div>
+						</div>
+					</div>
+					<div class="cardContainerItem">
+						<div class="imageContainer">
+							<img class="bigImage" src="illustration-article.svg" alt="" />
+							<img class="smallImage" src="illustration-article.svg" alt="" />
+							<img class="smallImage2" src="illustration-article.svg" alt="" />
+							<img class="smallImage3" src="illustration-article.svg" alt="" />
+						</div>
+						<div class="cardInfoBottom">
+							<h2>Nature</h2>
+							<div class="iconContainer">
+								<i class="fa fa-image"></i>
+								<p>7K</p>
+							</div>
+						</div>
+					</div>
+					<div class="cardContainerItem">
+						<div class="imageContainer">
+							<img class="bigImage" src="illustration-article.svg" alt="" />
+							<img class="smallImage" src="illustration-article.svg" alt="" />
+							<img class="smallImage2" src="illustration-article.svg" alt="" />
+							<img class="smallImage3" src="illustration-article.svg" alt="" />
+						</div>
+						<div class="cardInfoBottom">
+							<h2>History</h2>
+							<div class="iconContainer">
+								<i class="fa fa-image"></i>
+								<p>431</p>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+		<script>
+			const themeButton = document.querySelector('.themeBtn');
+			themeButton.addEventListener('click', () => {
+				document.body.classList.toggle('light');
+				if (document.body.classList.contains('light')) {
+					themeButton.textContent = 'Dark Mode';
+				} else {
+					themeButton.textContent = 'Light Mode';
+				}
+			});
+		</script>
+	</body>
+</html>

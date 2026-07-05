@@ -1,0 +1,100 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #1e1e2f;
+	font-family: Arial, sans-serif;
+	color: white;
+}
+
+.container {
+	background: #2c2f4a;
+	padding: 1rem;
+	border-radius: 10px;
+	width: 320px;
+}
+
+.keys-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.key {
+	aspect-ratio: 1 / 1;
+	border: none;
+	border-radius: 8px;
+	background: #555;
+	display: grid;
+	place-items: center;
+	font-size: 1.5rem;
+	cursor: pointer;
+	transition: 0.1s;
+}
+
+.key:active,
+.key.active {
+	transform: scale(0.95);
+	background: orange;
+	box-shadow: 0 0 15px orange;
+}
+
+.display {
+	background: #111;
+	padding: 1rem;
+	text-align: center;
+	margin-bottom: 1rem;
+	border-radius: 6px;
+}
+
+.toggle {
+	width: 60px;
+	height: 30px;
+	border-radius: 50px;
+	background: green;
+	border: none;
+	position: relative;
+	cursor: pointer;
+}
+
+.toggle::before {
+	content: '';
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background: white;
+	border-radius: 50%;
+	top: 5px;
+	right: 5px;
+	transition: 0.3s;
+}
+
+.toggle.off {
+	background: gray;
+}
+
+.toggle.off::before {
+	right: 35px;
+}
+
+.volume-container,
+.power-container,
+.bank-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+input[type='range'] {
+	width: 100%;
+}

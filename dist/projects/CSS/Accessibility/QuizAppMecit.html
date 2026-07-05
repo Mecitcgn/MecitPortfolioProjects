@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Viewport meta etiketi, mobil cihazlarda doğru ölçeklendirme sağlar -->
+  <title>HTML/CSS Quiz</title>
+  <link rel="stylesheet" href="QuizAppMecit.css">
+</head>
+
+<body>
+  <header class="top-section">
+    <img class="logo" src="fcc_primary.svg" alt="Logo of the freeCodeCamp">
+    <p class="main-title">HTML/CSS Quiz</p>
+    <nav class="navigation">
+      <a href="#student-info">INFO</a>
+      <a href="#html-questions">HTML</a>
+      <a href="#css-question">CSS</a>
+    </nav>
+  </header>
+  <main>
+    <form>
+      <section id="student-info" class="first-section">
+        <div class="first-group">
+          <h2>Student Info</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="second-group">
+          <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" class="name-input responsive-input">
+          </div>
+          <div>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" class="email-input responsive-input">
+          </div>
+          <div>
+            <label for="birth">Date of Birth:</label>
+            <input type="date" name="birth" id="birth" class="birth-input responsive-input">
+          </div>
+        </div>
+      </section>
+      <section class="second-section" id="html-questions">
+        <div>
+          <h2>HTML</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="question-1">
+          <h3>
+            Question #1
+          </h3>
+          <p>The legend element represents a caption for the content of its parent fieldset element</p>
+          <div>
+            <div>
+              <input type="radio" name="quests" id="quest-1-true">
+              <label for="quest-1-true">True</label>
+            </div>
+            <div>
+              <input type="radio" name="quests" id="quest-1-false">
+              <label for="quest-1-false">False</label>
+            </div>
+          </div>
+
+        </div>
+        <div class="question-2">
+          <h3>
+            Question #2
+          </h3>
+          <p>A label element nesting an input element is required to have a for attribute with the same value as the
+            input's id</p>
+          <div>
+            <div>
+              <input type="radio" name="quests2" id="quest-2-true">
+              <label for="quest-2-true">True</label>
+            </div>
+            <div>
+              <input type="radio" name="quests2" id="quest-2-false">
+              <label for="quest-2-false">False</label>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="third-section" id="css-question">
+        <div>
+          <h2>CSS</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="main-last-content">
+          <div class="last-content-first-elem">
+            <label for="options">Can the CSS margin property accept negative values?</label>
+            <select name="options" id="options" class="dropbox">
+              <option value="null">Select an option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div class="last-content-second-elem">
+            <label for="question-reply">Do you have any questions:</label>
+            <textarea class="rich-text-area" name="question-reply" id="question-reply"></textarea>
+          </div>
+        </div>
+      </section>
+      <button type="submit" class="send-button">Send</button>
+    </form>
+  </main>
+  <footer>
+    <a href="">mecitCodeCamp</a>
+    <p>İstanbul</p>
+    <p>Esenyurt</p>
+    <p>Türkiye</p>
+  </footer>
+</body>
+
+</html>

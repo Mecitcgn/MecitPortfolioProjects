@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="tr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ARIA Ultimate 48 Lab - VoiceOver Test Paneli</title>
+		<style>
+			:root {
+				--p: #007aff;
+				--bg: #f5f5f7;
+				--card: #ffffff;
+				--text: #1d1d1f;
+				--code: #d60027;
+			}
+			body {
+				font-family: -apple-system, sans-serif;
+				background: var(--bg);
+				color: var(--text);
+				padding: 20px;
+				line-height: 1.4;
+			}
+			.container {
+				max-width: 1100px;
+				margin: 0 auto;
+			}
+			header {
+				text-align: center;
+				padding: 40px 0;
+				border-bottom: 1px solid #d2d2d7;
+				margin-bottom: 40px;
+			}
+			h1 {
+				font-size: 32px;
+				font-weight: 700;
+			}
+			h2 {
+				font-size: 24px;
+				color: var(--p);
+				margin-top: 50px;
+				border-bottom: 2px solid var(--p);
+				padding-bottom: 10px;
+			}
+			.aria-card {
+				background: var(--card);
+				border-radius: 12px;
+				padding: 20px;
+				margin-bottom: 20px;
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+			}
+			.desc-box {
+				margin-bottom: 10px;
+			}
+			.label {
+				font-weight: 700;
+				color: #86868b;
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			.attr-text {
+				font-family: monospace;
+				color: var(--code);
+				background: #f2f2f2;
+				padding: 2px 6px;
+				border-radius: 4px;
+				font-weight: bold;
+			}
+			.test-area {
+				background: #fbfbfb;
+				border: 1px dashed #d2d2d7;
+				padding: 15px;
+				border-radius: 8px;
+				margin-top: 10px;
+			}
+			button,
+			input,
+			select {
+				padding: 8px 12px;
+				border-radius: 6px;
+				border: 1px solid #d2d2d7;
+				cursor: pointer;
+				font-size: 14px;
+			}
+			.hidden {
+				display: none;
+			}
+			[role='grid'] {
+				display: table;
+				width: 100%;
+				border-collapse: collapse;
+			}
+			[role='row'] {
+				display: table-row;
+			}
+			[role='gridcell'],
+			[role='columnheader'] {
+				display: table-cell;
+				border: 1px solid #d2d2d7;
+				padding: 8px;
+				text-align: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1>ARIA 48: Tam Kapsamlı Erişilebilirlik Laboratuvarı</h1>
+				<p>VoiceOver (CMD+F5) ile her kartı tek tek incele.</p>
+			</header>
+
+			<h2>1️⃣ Global State & Properties (Küresel Durum ve Özellikler)</h2>
+
+			<div id="global-section"></div>
+
+			<h2>2️⃣ Widget Attributes (Etkileşimli Bileşenler)</h2>
+
+			<div id="widget-section"></div>
+
+			<h2>3️⃣ Relationship & Table Attributes (İlişkiler ve Tablolar)</h2>
+
+			<div id="rel-section"></div>
+		</div>
+
+		<script>
+			const data = [
+				// 1. KATEGORİ: GLOBAL
+				{
+					id: 'aria-atomic',
+					cat: 'global',
+					desc: 'Dinamik bölge güncellendiğinde tüm bölgenin mi yoksa sadece değişen kısmın mı okunacağını belirler.',
+					usage:
+						'<div aria-live="polite" aria-atomic="true" id="atomic-test">Skor: 0</div><button onclick="updateAtomic()">Artır</button>',
+				},
+				{
+					id: 'aria-braillelabel',
+					cat: 'global',
+					desc: 'Sadece kabartma ekran kullanıcıları için özel bir etiket tanımlar.',
+					usage:
+						'<button aria-label="Kaydet" aria-braillelabel="K-Y-D-T">Kaydet</button>',
+				},
+				{
+					id: 'aria-brailleroledescription',
+					cat: 'global',
+					desc: 'Kabartma ekranlar için özel rol tanımı yapar.',
+					usage:
+						'<button aria-brailleroledescription="Komut Düğmesi">Tamam</button>',
+				},
+				{
+					id: 'aria-busy',
+					cat: 'global',
+					desc: 'Elementin o an güncellendiğini ve kullanıcı beklemesi gerektiğini belirtir.',
+					usage:
+						'<div id="busy-el" aria-busy="false">Hazır.</div><button onclick="toggleBusy()">Meşgul Yap</button>',
+				},
+				{
+					id: 'aria-controls',
+					cat: 'global',
+					desc: 'Bir elementin hangi başka elementi kontrol ettiğini (açıp kapattığını vb.) belirtir.',
+					usage:
+						'<button aria-controls="panel1">Paneli Yönet</button><div id="panel1">Panel İçeriği</div>',
+				},
+				{
+					id: 'aria-current',
+					cat: 'global',
+					desc: "Bir grup içindeki 'geçerli' olan öğeyi (sayfa, adım, tarih vb.) belirtir.",
+					usage:
+						'<nav><ul><li aria-current="page">Ana Sayfa (Aktif)</li><li>Hakkımızda</li></ul></nav>',
+				},
+				{
+					id: 'aria-describedby',
+					cat: 'global',
+					desc: 'Elemente ek bir açıklama metni bağlar (ID ile).',
+					usage:
+						'<input aria-describedby="hint1"><p id="hint1">Şifre 8 haneli olmalı.</p>',
+				},
+				{
+					id: 'aria-description',
+					cat: 'global',
+					desc: 'Elemente doğrudan metin tabanlı bir açıklama ekler.',
+					usage:
+						'<button aria-description="Bu işlem geri alınamaz.">Sil</button>',
+				},
+				{
+					id: 'aria-details',
+					cat: 'global',
+					desc: 'Bir element hakkında çok daha detaylı bir dokümana/sayfaya link verir.',
+					usage:
+						'<button aria-details="detay-link">Analiz Raporu</button><div id="detay-link">Uzun analiz raporu burada...</div>',
+				},
+				{
+					id: 'aria-disabled',
+					cat: 'global',
+					desc: 'Elementin etkileşime kapalı olduğunu belirtir.',
+					usage: '<button aria-disabled="true">Pasif Buton</button>',
+				},
+				{
+					id: 'aria-dropeffect',
+					cat: 'global',
+					desc: '(Deprecated) Sürüklenen öğe bırakıldığında ne olacağını belirtir.',
+					usage: '<div aria-dropeffect="move">Buraya Taşı</div>',
+				},
+				{
+					id: 'aria-errormessage',
+					cat: 'global',
+					desc: "Hata mesajı içeren elementin ID'sini belirtir.",
+					usage:
+						'<input aria-invalid="true" aria-errormessage="err-id"><span id="err-id" style="color:red">Geçersiz Email!</span>',
+				},
+				{
+					id: 'aria-flowto',
+					cat: 'global',
+					desc: 'Ekran okuyucunun normal okuma sırasını değiştirip bir sonraki odaklanılacak yeri belirtir.',
+					usage:
+						'<p aria-flowto="next-para">Bunu oku, sonra aşağıya atla.</p><p id="next-para">Atlanılan paragraf.</p>',
+				},
+				{
+					id: 'aria-grabbed',
+					cat: 'global',
+					desc: '(Deprecated) Öğenin sürüklenmek üzere seçilip seçilmediğini belirtir.',
+					usage: '<div aria-grabbed="true">Seçili Öğe</div>',
+				},
+				{
+					id: 'aria-haspopup',
+					cat: 'global',
+					desc: 'Öğeye tıklandığında bir menü, dialog veya liste açılacağını bildirir.',
+					usage: '<button aria-haspopup="menu">Seçenekler</button>',
+				},
+				{
+					id: 'aria-hidden',
+					cat: 'global',
+					desc: 'Elementi ekran okuyuculardan tamamen gizler.',
+					usage: '<span aria-hidden="true">Bu yazı duyulmayacak.</span>',
+				},
+				{
+					id: 'aria-invalid',
+					cat: 'global',
+					desc: 'Girişin hatalı olup olmadığını belirtir.',
+					usage: '<input value="abc" aria-invalid="true">',
+				},
+				{
+					id: 'aria-keyshortcuts',
+					cat: 'global',
+					desc: 'Elementi tetikleyen klavye kısayollarını belirtir.',
+					usage: '<button aria-keyshortcuts="Control+S">Kaydet</button>',
+				},
+				{
+					id: 'aria-label',
+					cat: 'global',
+					desc: 'Elemente ekranda görünmeyen gizli bir isim verir.',
+					usage: '<button aria-label="Menüyü Kapat">X</button>',
+				},
+				{
+					id: 'aria-labelledby',
+					cat: 'global',
+					desc: 'Başka bir elementin içeriğini bu elementin ismi olarak kullanır.',
+					usage:
+						'<h3 id="t1">Kullanıcı Sözleşmesi</h3><div role="region" aria-labelledby="t1">Metin içeriği...</div>',
+				},
+				{
+					id: 'aria-live',
+					cat: 'global',
+					desc: 'Alanın güncellemelerini anında duyurur (polite/assertive).',
+					usage:
+						'<div aria-live="polite" id="live-msg"></div><button onclick="sendLive()">Mesaj Gönder</button>',
+				},
+				{
+					id: 'aria-owns',
+					cat: 'global',
+					desc: "DOM'da alt eleman olmasa bile hiyerarşik olarak sahiplik kurar.",
+					usage:
+						'<div id="p1" aria-owns="c1">Ebeveyn</div><div id="c1">Sanal Çocuk</div>',
+				},
+				{
+					id: 'aria-relevant',
+					cat: 'global',
+					desc: 'Canlı bölgelerde hangi tür değişikliklerin (ekleme, silme) duyurulacağını belirler.',
+					usage:
+						'<div aria-live="polite" aria-relevant="additions text">Yeni mesajlar duyurulur.</div>',
+				},
+				{
+					id: 'aria-roledescription',
+					cat: 'global',
+					desc: 'Standart rollerin (button, list vb.) yerine özel bir tanım söyler.',
+					usage:
+						'<button aria-roledescription="Uygulama Başlatıcı">Başlat</button>',
+				},
+
+				// 2. KATEGORİ: WIDGET
+				{
+					id: 'aria-autocomplete',
+					cat: 'widget',
+					desc: 'Giriş alanında otomatik tamamlama türünü belirtir (list, inline, both).',
+					usage: '<input aria-autocomplete="list">',
+				},
+				{
+					id: 'aria-checked',
+					cat: 'widget',
+					desc: 'Checkbox veya radio butonunun seçili olup olmadığını belirtir.',
+					usage:
+						'<div role="checkbox" aria-checked="true" tabindex="0">Onaylı</div>',
+				},
+				{
+					id: 'aria-expanded',
+					cat: 'widget',
+					desc: 'Bir menünün veya akordiyonun açık/kapalı durumunu belirtir.',
+					usage:
+						'<button aria-expanded="false" onclick="this.setAttribute(\'aria-expanded\', \'true\')">Genişlet</button>',
+				},
+				{
+					id: 'aria-modal',
+					cat: 'widget',
+					desc: 'Elementin bir modal olduğunu ve dışarıyla etkileşimi kestiğini bildirir.',
+					usage: '<div role="dialog" aria-modal="true">Modal İçerik</div>',
+				},
+				{
+					id: 'aria-multiline',
+					cat: 'widget',
+					desc: 'Giriş alanının çok satırlı olup olmadığını belirtir.',
+					usage:
+						'<div role="textbox" aria-multiline="true" contenteditable="true">Yazınız...</div>',
+				},
+				{
+					id: 'aria-multiselectable',
+					cat: 'widget',
+					desc: 'Listede birden fazla öğe seçilip seçilemeyeceğini belirtir.',
+					usage:
+						'<div role="listbox" aria-multiselectable="true" tabindex="0">Seçim Alanı</div>',
+				},
+				{
+					id: 'aria-orientation',
+					cat: 'widget',
+					desc: 'Elementin yönünü (horizontal, vertical) belirtir.',
+					usage:
+						'<div role="slider" aria-orientation="vertical" aria-valuenow="50" tabindex="0">Ses</div>',
+				},
+				{
+					id: 'aria-placeholder',
+					cat: 'widget',
+					desc: 'Element boşken gösterilecek ipucunu söyler.',
+					usage:
+						'<div role="textbox" aria-placeholder="E-posta adresi" contenteditable="true"></div>',
+				},
+				{
+					id: 'aria-pressed',
+					cat: 'widget',
+					desc: 'Butonun basılı (toggle) durumunu belirtir.',
+					usage:
+						'<button aria-pressed="false" onclick="togglePress(this)">Mute</button>',
+				},
+				{
+					id: 'aria-readonly',
+					cat: 'widget',
+					desc: 'Elementin sadece okunabilir olduğunu belirtir.',
+					usage: '<input value="Değiştirilemez" aria-readonly="true">',
+				},
+				{
+					id: 'aria-required',
+					cat: 'widget',
+					desc: 'Alan doldurulmadan formun gönderilemeyeceğini belirtir.',
+					usage: '<input aria-required="true" placeholder="Zorunlu">',
+				},
+				{
+					id: 'aria-selected',
+					cat: 'widget',
+					desc: 'Tab veya listbox içindeki öğenin seçili olduğunu belirtir.',
+					usage:
+						'<div role="tab" aria-selected="true" tabindex="0">Aktif Sekme</div>',
+				},
+				{
+					id: 'aria-sort',
+					cat: 'widget',
+					desc: 'Tablodaki sıralama durumunu belirtir (ascending, descending).',
+					usage:
+						'<div role="columnheader" aria-sort="ascending">İsim (Artan)</div>',
+				},
+				{
+					id: 'aria-valuemax',
+					cat: 'widget',
+					desc: 'Maksimum değeri belirtir.',
+					usage:
+						'<div role="progressbar" aria-valuemax="100" aria-valuenow="80"></div>',
+				},
+				{
+					id: 'aria-valuemin',
+					cat: 'widget',
+					desc: 'Minimum değeri belirtir.',
+					usage:
+						'<div role="progressbar" aria-valuemin="0" aria-valuenow="10"></div>',
+				},
+				{
+					id: 'aria-valuenow',
+					cat: 'widget',
+					desc: 'Mevcut sayısal değeri belirtir.',
+					usage:
+						'<div role="slider" aria-valuenow="5" aria-valuemin="1" aria-valuemax="10" tabindex="0">Puan</div>',
+				},
+				{
+					id: 'aria-valuetext',
+					cat: 'widget',
+					desc: "Sayısal değerin metin karşılığını söyler (Örn: %10 yerine 'Düşük').",
+					usage:
+						'<div role="progressbar" aria-valuenow="10" aria-valuetext="Düşük Pil Seviyesi"></div>',
+				},
+
+				// 3. KATEGORİ: RELATIONSHIP / TABLE
+				{
+					id: 'aria-activedescendant',
+					cat: 'rel',
+					desc: "Odak konteynırdaken, hangi alt öğenin 'sanal odak'ta olduğunu belirtir.",
+					usage:
+						'<div role="listbox" aria-activedescendant="opt1" tabindex="0"><div id="opt1">Seçenek 1 (Odaklı)</div></div>',
+				},
+				{
+					id: 'aria-colcount',
+					cat: 'rel',
+					desc: 'Tablodaki toplam sütun sayısını belirtir.',
+					usage: '<div role="grid" aria-colcount="10">...</div>',
+				},
+				{
+					id: 'aria-colindex',
+					cat: 'rel',
+					desc: 'Öğenin kaçıncı sütunda olduğunu belirtir.',
+					usage: '<div role="gridcell" aria-colindex="3">3. Sütun</div>',
+				},
+				{
+					id: 'aria-colspan',
+					cat: 'rel',
+					desc: 'Hücrenin kaç sütun kapladığını belirtir.',
+					usage: '<div role="gridcell" aria-colspan="2">Geniş Hücre</div>',
+				},
+				{
+					id: 'aria-posinset',
+					cat: 'rel',
+					desc: 'Öğenin liste içindeki sırasını belirtir.',
+					usage:
+						'<div role="listitem" aria-posinset="1" aria-setsize="5">İlk Öğe</div>',
+				},
+				{
+					id: 'aria-rowcount',
+					cat: 'rel',
+					desc: 'Toplam satır sayısını belirtir.',
+					usage: '<div role="grid" aria-rowcount="100">...</div>',
+				},
+				{
+					id: 'aria-rowindex',
+					cat: 'rel',
+					desc: 'Öğenin kaçıncı satırda olduğunu belirtir.',
+					usage: '<div role="row" aria-rowindex="10">10. Satır</div>',
+				},
+				{
+					id: 'aria-rowspan',
+					cat: 'rel',
+					desc: 'Hücrenin kaç satır kapladığını belirtir.',
+					usage: '<div role="gridcell" aria-rowspan="3">Uzun Hücre</div>',
+				},
+				{
+					id: 'aria-setsize',
+					cat: 'rel',
+					desc: 'Listenin toplam kaç öğeden oluştuğunu belirtir.',
+					usage:
+						'<div role="listitem" aria-posinset="3" aria-setsize="50">50\'nin 3\'ü</div>',
+				},
+				{
+					id: 'aria-level',
+					cat: 'rel',
+					desc: 'Başlık veya liste seviyesini (derinliğini) belirtir.',
+					usage: '<div role="heading" aria-level="4">Seviye 4 Başlık</div>',
+				},
+			];
+
+			function render() {
+				data.forEach((item) => {
+					const card = document.createElement('div');
+					card.className = 'aria-card';
+					card.innerHTML = `
+                <div class="desc-box"><span class="label">Açıklama:</span> <p>${item.desc}</p></div>
+                <div class="desc-box"><span class="label">Attribute:</span> <span class="attr-text">${item.id}</span></div>
+                <div class="desc-box"><span class="label">Attribute Kullanımı:</span>
+                    <div class="test-area">${item.usage}</div>
+                </div>
+            `;
+					document.getElementById(`${item.cat}-section`).appendChild(card);
+				});
+			}
+
+			// Interactive functions
+			let score = 0;
+			function updateAtomic() {
+				score++;
+				document.getElementById('atomic-test').innerText = 'Skor: ' + score;
+			}
+
+			function toggleBusy() {
+				const el = document.getElementById('busy-el');
+				const isBusy = el.getAttribute('aria-busy') === 'true';
+				el.setAttribute('aria-busy', !isBusy);
+				el.innerText = isBusy
+					? 'Hazır.'
+					: 'Veriler güncelleniyor, lütfen bekleyin...';
+			}
+
+			function sendLive() {
+				document.getElementById('live-msg').innerText =
+					'Yeni bildirim: ' + new Date().toLocaleTimeString();
+			}
+
+			function togglePress(btn) {
+				const pressed = btn.getAttribute('aria-pressed') === 'true';
+				btn.setAttribute('aria-pressed', !pressed);
+			}
+
+			window.onload = render;
+		</script>
+	</body>
+</html>

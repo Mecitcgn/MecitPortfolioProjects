@@ -1,0 +1,47 @@
+    /* #email: padding 50px, margin-top 50px, width 500px, 2px border, box-sizing border-box */
+    #email {
+      box-sizing: border-box; /* toplam genişlik padding + border dahil */
+      width: 500px;
+      padding: 50px;        /* her tarafta 50px */
+      margin-top: 50px;     /* üstten 50px */
+      border: 2px solid #222; /* 2px border */
+      background: #f9f9f9;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    /* confidential ve top-secret */
+    #confidential,
+    #top-secret {
+      display: inline-block;     /* yan yana gelsin */
+      padding: 10px 14px;        /* iç boşluk */
+      margin-left: 16px;         /* soldan boşluk */
+      border: 1px solid #900;    /* kenarlık */
+      font-weight: bold;
+      color: #fff;
+      background: #b30000;
+      transform-origin: center;
+    }
+
+    #confidential {
+      transform: rotate(-12deg); /* döndürme */
+      background: #d9534f;
+      margin-left: 0; /* ilkinde soldan boşluk istemiyoruz */
+    }
+
+    #top-secret {
+      transform: rotate(10deg);  /* döndürme */
+      background: #5a2a83;
+    }
+
+    /* paragraf stilleri */
+    #email p {
+      margin: 18px 0;
+    }
+
+    /* blur class */
+    .blurred {
+      filter: blur(3px);
+      -webkit-filter: blur(3px);
+      display: inline-block;
+    }

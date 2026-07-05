@@ -1,0 +1,94 @@
+body {
+	width: 100%;
+	height: 100dvh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	width: 300px;
+	height: 300px;
+	border: 2px solid red;
+}
+
+.shape {
+	width: 100%;
+	height: 100%;
+	background-color: black;
+
+	/* Inset */
+	clip-path: inset(40px);
+	clip-path: inset(40px 20px);
+	clip-path: inset(40px 20px 40% 50px);
+	clip-path: inset(40px 20px round 15% 0);
+
+	/* Circle */
+	clip-path: circle(50px);
+	clip-path: circle(50% at center);
+	clip-path: circle(25% at 25%);
+	clip-path: circle(25% at 0 0);
+	clip-path: circle(60%);
+
+	/* Ellipse */
+	clip-path: ellipse(50px 80px);
+	clip-path: ellipse(80px 120px at center);
+	clip-path: ellipse(80px 40px at 40px 20px);
+
+	/* Polygon */
+	/* polygon(X0 Y0, X1 Y1, X2 Y2... ) */
+	clip-path: polygon(100px 20px, 10px 170px, 180px 80px);
+	clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+
+	/* Hexagon */
+	clip-path: polygon(
+		25% 0,
+		75% 0,
+		100% 25%,
+		100% 75%,
+		75% 100%,
+		25% 100%,
+		0 75%,
+		0 25%
+	);
+	clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
+
+	/* Octagon */
+	clip-path: polygon(
+		25% 0,
+		75% 0,
+		100% 25%,
+		100% 75%,
+		75% 100%,
+		25% 100%,
+		0 75%,
+		0 25%
+	);
+	clip-path: polygon(50% -25%, 125% 50%, 50% 125%, -25% 50%);
+
+	/* Inset */
+}
+
+.animate .shape {
+	background-image: url(image.png);
+	background-size: cover;
+	animation: animate 4s infinite alternate;
+}
+
+@keyframes animate {
+	0% {
+		clip-path: circle(100% at 50% 50%);
+	}
+	25% {
+		clip-path: circle(25% at 50% 50%);
+	}
+	50% {
+		clip-path: circle(25% at 20% 80%);
+	}
+	75% {
+		clip-path: circle(25% at 90% 50%);
+	}
+	100% {
+		clip-path: circle(25% at 10% 10%);
+	}
+}

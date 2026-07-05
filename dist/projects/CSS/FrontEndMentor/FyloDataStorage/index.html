@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../FontAwesomeWeb/css/all.css" />
+		<link rel="stylesheet" href="../FontAwesomeWeb/css/all.min.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<button class="themeBtn">Light Mode</button>
+		<div class="wrapper">
+			<div class="left-container">
+				<div class="img-container">
+					<img class="main-logo" src="./images/logo.svg" alt="" />
+				</div>
+				<div class="bottom-container">
+					<div>
+						<img src="./images/icon-document.svg" alt="" />
+					</div>
+					<div>
+						<img src="./images/icon-folder.svg" alt="" />
+					</div>
+					<div>
+						<img src="./images/icon-upload.svg" alt="" />
+					</div>
+				</div>
+			</div>
+			<div class="right-container">
+				<div class="center-container">
+					<div class="info-popup">
+						<p class="bold-text">185</p>
+						<p>GB LEFT</p>
+					</div>
+					<p>
+						You've used <span class="bold-text">815 GB</span> of your storage
+					</p>
+					<div class="progress">
+						<div class="progress-fill"></div>
+					</div>
+					<div class="gb-container">
+						<p class="bold-text">0 GB</p>
+						<p class="bold-text">1000 GB</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			const themeBtn = document.querySelector('.themeBtn');
+			themeBtn.addEventListener('click', () => {
+				document.body.classList.toggle('light');
+				if (document.body.classList.contains('light')) {
+					themeBtn.textContent = 'Dark Mode';
+				} else {
+					themeBtn.textContent = 'Light Mode';
+				}
+			});
+		</script>
+	</body>
+</html>

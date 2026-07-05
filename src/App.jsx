@@ -2,29 +2,39 @@ import { useState, useMemo } from 'react';
 import { ToastProvider } from './hooks/useToast';
 import Navbar from './components/Navbar';
 import ProjectCard from './components/ProjectCard';
+import AlgorithmCard from './components/AlgorithmCard';
 import ProjectModal from './components/ProjectModal';
+import CodeViewerModal from './components/CodeViewerModal';
 import { PROJECTS, CATEGORIES, CSS_SUBS, JS_SUBS } from './data/projects';
+import { ALGORITHMS, ALGO_SUBS, searchAlgorithms } from './data/algorithms';
 import './styles/globals.css';
+
+const ALL_CATEGORIES = [...CATEGORIES, 'Algoritmalar'];
 
 /**
  * Projeler — Ana sayfa.
- * Tüm projeler filtrelenebilir ve iframe modal ile görüntülenebilir.
+ * CSS: iframe önizleme | JS: kod + demo modal | Algoritmalar: kod modalı
  */
 export default function App() {
 	const [catFilter, setCatFilter] = useState('Tümü');
 	const [subFilter, setSubFilter] = useState('Tümü');
 	const [search, setSearch] = useState('');
 	const [selectedProject, setSelectedProject] = useState(null);
+	const [selectedAlgorithm, setSelectedAlgorithm] = useState(null);
+	const [modalType, setModalType] = useState(null);
 
-	// Alt kategoriler aktif ana kategoriye göre değişir
+	const isAlgoView = catFilter === 'Algoritmalar';
+
 	const subCategories = useMemo(() => {
 		if (catFilter === 'CSS') return CSS_SUBS;
 		if (catFilter === 'JavaScript') return JS_SUBS;
+		if (catFilter === 'Algoritmalar') return ALGO_SUBS;
 		return ['Tümü'];
 	}, [catFilter]);
 
-	// Filtreli proje listesi
 	const filtered = useMemo(() => {
+		if (isAlgoView) return searchAlgorithms(search, subFilter);
+
 		let list =
 			catFilter === 'Tümü'
 				? PROJECTS
@@ -41,11 +51,39 @@ export default function App() {
 			);
 		}
 		return list;
-	}, [catFilter, subFilter, search]);
+	}, [catFilter, subFilter, search, isAlgoView]);
+
+	const totalCount = useMemo(() => {
+		if (isAlgoView) return ALGORITHMS.length;
+		if (catFilter === 'Tümü') return PROJECTS.length;
+		if (catFilter === 'CSS')
+			return PROJECTS.filter((p) => p.category === 'CSS').length;
+		if (catFilter === 'JavaScript')
+			return PROJECTS.filter((p) => p.category === 'JavaScript').length;
+		return PROJECTS.length;
+	}, [catFilter, isAlgoView]);
 
 	const handleCatChange = (cat) => {
 		setCatFilter(cat);
-		setSubFilter('Tümü'); // alt kategoriyi sıfırla
+		setSubFilter('Tümü');
+	};
+
+	const openProject = (project) => {
+		setSelectedProject(project);
+		setSelectedAlgorithm(null);
+		setModalType(project.previewMode === 'code' ? 'code' : 'iframe');
+	};
+
+	const openAlgorithm = (algo) => {
+		setSelectedAlgorithm(algo);
+		setSelectedProject(null);
+		setModalType('algorithm');
+	};
+
+	const closeModal = () => {
+		setSelectedProject(null);
+		setSelectedAlgorithm(null);
+		setModalType(null);
 	};
 
 	return (
@@ -53,7 +91,6 @@ export default function App() {
 			<div>
 				<Navbar />
 
-				{/* ── HERO ── */}
 				<section
 					style={{
 						padding: '80px 24px 60px',
@@ -110,31 +147,34 @@ export default function App() {
 							fontFamily: "'DM Mono',monospace",
 							fontSize: 12,
 							color: 'var(--t2)',
-							maxWidth: 460,
+							maxWidth: 520,
 							lineHeight: 1.9,
 						}}
 					>
-						Projeye tıklayarak canlı önizleme aç.
-						<br />
-						Yeni sekmede açmak için modal içindeki butonu kullan.
+						CSS projelerinde canlı önizleme, JS uygulamalarında kaynak kod
+						görüntüleyici, algoritma egzersizlerinde terminal tarzı kod
+						kartları.
 					</p>
 
-					{/* İstatistikler */}
 					<div
 						className="a4"
-						style={{ display: 'flex', gap: 40, marginTop: 40 }}
+						style={{ display: 'flex', gap: 40, marginTop: 40, flexWrap: 'wrap' }}
 					>
 						{[
-							{ label: 'Toplam Proje', val: PROJECTS.length },
+							{
+								label: 'Toplam',
+								val: PROJECTS.length + ALGORITHMS.length,
+							},
 							{
 								label: 'CSS',
 								val: PROJECTS.filter((p) => p.category === 'CSS').length,
 							},
 							{
 								label: 'JavaScript',
-								val: PROJECTS.filter((p) => p.category === 'JavaScript').length,
+								val: PROJECTS.filter((p) => p.category === 'JavaScript')
+									.length,
 							},
-							{ label: 'Benim', val: PROJECTS.filter((p) => p.mine).length },
+							{ label: 'Algoritmalar', val: ALGORITHMS.length },
 						].map(({ label, val }) => (
 							<div key={label}>
 								<div
@@ -164,10 +204,8 @@ export default function App() {
 					</div>
 				</section>
 
-				{/* ── DIVIDER ── */}
 				<div style={{ height: 1, background: 'var(--b1)' }} />
 
-				{/* ── FILTER BAR ── */}
 				<div
 					style={{
 						maxWidth: 1200,
@@ -178,7 +216,6 @@ export default function App() {
 						gap: 14,
 					}}
 				>
-					{/* Ana kategori */}
 					<div
 						style={{
 							display: 'flex',
@@ -187,7 +224,7 @@ export default function App() {
 							alignItems: 'center',
 						}}
 					>
-						{CATEGORIES.map((cat) => (
+						{ALL_CATEGORIES.map((cat) => (
 							<button
 								key={cat}
 								className={`fb${catFilter === cat ? ' act' : ''}`}
@@ -198,14 +235,15 @@ export default function App() {
 									(
 									{cat === 'Tümü'
 										? PROJECTS.length
-										: PROJECTS.filter((p) => p.category === cat).length}
+										: cat === 'Algoritmalar'
+											? ALGORITHMS.length
+											: PROJECTS.filter((p) => p.category === cat).length}
 									)
 								</span>
 							</button>
 						))}
 					</div>
 
-					{/* Alt kategori (sadece CSS veya JS seçiliyse) */}
 					{catFilter !== 'Tümü' && (
 						<div
 							style={{
@@ -228,7 +266,6 @@ export default function App() {
 						</div>
 					)}
 
-					{/* Arama + sonuç sayısı */}
 					<div
 						style={{
 							display: 'flex',
@@ -245,20 +282,18 @@ export default function App() {
 								color: 'var(--t3)',
 							}}
 						>
-							{filtered.length !== PROJECTS.length &&
-								`${filtered.length} sonuç`}
+							{filtered.length !== totalCount && `${filtered.length} sonuç`}
 						</span>
 						<input
 							className="search"
 							type="text"
-							placeholder="Proje ara..."
+							placeholder={isAlgoView ? 'Algoritma ara...' : 'Proje ara...'}
 							value={search}
 							onChange={(e) => setSearch(e.target.value)}
 						/>
 					</div>
 				</div>
 
-				{/* ── GRID ── */}
 				<div
 					style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px 100px' }}
 				>
@@ -302,20 +337,29 @@ export default function App() {
 								gap: 20,
 							}}
 						>
-							{filtered.map((project, i) => (
-								<div key={project.id} className={`a${Math.min(i + 1, 5)}`}>
-									<ProjectCard
-										project={project}
-										index={i}
-										onClick={setSelectedProject}
-									/>
-								</div>
-							))}
+							{isAlgoView
+								? filtered.map((algo, i) => (
+										<div key={algo.id} className={`a${Math.min(i + 1, 5)}`}>
+											<AlgorithmCard
+												algorithm={algo}
+												index={i}
+												onClick={openAlgorithm}
+											/>
+										</div>
+									))
+								: filtered.map((project, i) => (
+										<div key={project.id} className={`a${Math.min(i + 1, 5)}`}>
+											<ProjectCard
+												project={project}
+												index={i}
+												onClick={openProject}
+											/>
+										</div>
+									))}
 						</div>
 					)}
 				</div>
 
-				{/* ── FOOTER ── */}
 				<footer
 					style={{
 						borderTop: '1px solid var(--b1)',
@@ -357,11 +401,21 @@ export default function App() {
 				</footer>
 			</div>
 
-			{/* ── MODAL ── */}
-			{selectedProject && (
-				<ProjectModal
+			{modalType === 'iframe' && selectedProject && (
+				<ProjectModal project={selectedProject} onClose={closeModal} />
+			)}
+			{modalType === 'code' && selectedProject && (
+				<CodeViewerModal
 					project={selectedProject}
-					onClose={() => setSelectedProject(null)}
+					onClose={closeModal}
+					showDemoTab
+				/>
+			)}
+			{modalType === 'algorithm' && selectedAlgorithm && (
+				<CodeViewerModal
+					project={selectedAlgorithm}
+					onClose={closeModal}
+					showDemoTab={false}
 				/>
 			)}
 		</ToastProvider>

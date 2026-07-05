@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Personal Portfolio</title>
+  <style>
+    /* Genel stil */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #0f172a;
+      color: #e2e8f0;
+    }
+
+    /* Navbar */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1e293b;
+      display: flex;
+      justify-content: flex-end;
+      gap: 2rem;
+      padding: 1rem 2rem;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    #navbar a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    #navbar a:hover {
+      color: #38bdf8;
+    }
+
+    /* Welcome Section */
+    #welcome-section {
+      height: 100vh; /* viewport yüksekliği kadar */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+    }
+
+    #welcome-section h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    #welcome-section p {
+      font-size: 1.2rem;
+      color: #94a3b8;
+    }
+
+    /* Projects Section */
+    #project-section {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    #project-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #38bdf8;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      justify-items: center;
+    }
+
+    .project-tile {
+      background-color: #1e293b;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      width: 100%;
+      max-width: 350px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .project-tile:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-tile a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      margin-top: 1rem;
+    }
+
+    /* Profile link */
+    #profile-link {
+      display: inline-block;
+      margin-top: 3rem;
+      color: #e2e8f0;
+      text-decoration: none;
+      border: 2px solid #38bdf8;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      transition: all 0.3s;
+    }
+
+    #profile-link:hover {
+      background-color: #38bdf8;
+      color: #0f172a;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #0f172a;
+      color: #94a3b8;
+    }
+
+    /* ✅ Media Query (Responsive tasarım için) */
+    @media (max-width: 600px) {
+      #welcome-section h1 {
+        font-size: 2rem;
+      }
+
+      #navbar {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav id="navbar">
+    <a href="#welcome-section">Home</a>
+    <a href="#project-section">Projects</a>
+  </nav>
+
+  <!-- Welcome Section -->
+  <section id="welcome-section">
+    <h1>Hello, I'm Meco 👋</h1>
+    <p>A passionate Web & Game Developer</p>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="project-section">
+    <h2>My Projects</h2>
+
+    <div class="project-grid">
+      <div class="project-tile">
+        <h3>Weather App</h3>
+        <p>A web app showing real-time weather data using OpenWeather API.</p>
+        <a href="https://example.com/weather" target="_blank">View Project</a>
+      </div>
+
+      <div class="project-tile">
+        <h3>2D Platform Game</h3>
+        <p>Simple pixel art game made with Unity and C#.</p>
+        <a href="https://example.com/game" target="_blank">View Project</a>
+      </div>
+    </div>
+
+    <a id="profile-link" href="https://github.com/yourusername" target="_blank">Visit my GitHub</a>
+  </section>
+
+  <footer>
+    © 2025 Meco | Built with ❤️ and HTML & CSS
+  </footer>
+</body>
+</html>

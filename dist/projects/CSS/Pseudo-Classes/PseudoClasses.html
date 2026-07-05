@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Pseudo-Classes Öğrenme Sitesi (Tam Liste)</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f9f9f9;
+    color: #333;
+  }
+  h1 {
+    text-align: center;
+  }
+  section {
+    margin: 30px 0;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  label.pseudo {
+    display: inline-block;
+    background: #007BFF;
+    color: white;
+    padding: 4px 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  a {
+   	margin: 5px;
+  }
+  input, button {
+    margin: 5px;
+    padding: 6px 10px;
+  }
+  ul {
+    margin:10px 0;
+    padding-left: 20px;
+  }
+
+  /* -------------------------
+     Pseudo-classes (Duruma göre)
+     ------------------------- */
+
+  /* :link → Henüz ziyaret edilmemiş link */
+  a:link {
+    color: blue;
+  }
+
+  /* :visited → Daha önce ziyaret edilmiş link */
+  a:visited {
+    color: purple;
+  }
+
+  /* :hover → Fare üzerine geldiğinde */
+  a:hover {
+    color: red;
+  }
+
+  /* :active → Link tıklanma anında */
+  a:active {
+    color: green;
+  }
+
+  /* :focus → Input ya da form elemanı odaklandığında */
+  input:focus {
+    outline: 2px solid orange;
+    background-color: #eef;
+  }
+
+  /* :checked → Checkbox veya radio işaretlendiğinde */
+  input:checked + label {
+    font-weight: bold;
+    color: darkgreen;
+  }
+
+  /* :disabled → Kullanılamayan form elemanı */
+  button:disabled {
+    background: #ccc;
+    color: #666;
+  }
+
+  /* :enabled → Kullanılabilir durumdaki form elemanı */
+  button:enabled {
+    background: #28a745;
+    color: white;
+  }
+
+  /* -------------------------
+     Yapısal pseudo-classes
+     ------------------------- */
+
+  /* :first-child → Parent içindeki ilk element */
+  p:first-child {
+    border: 1px solid #ffa;
+    padding: 5px;
+    background: #fffbcc;
+  }
+
+  /* :last-child → Parent içindeki son element */
+  p:last-child {
+    border: 1px solid #aff;
+    padding: 5px;
+    background: #ccffff;
+  }
+
+  /* :only-child → Parent içinde tek çocuk */
+  .only-child-parent > span:only-child {
+    background: #ffe6e6;
+    padding: 5px;
+  }
+
+  /* :nth-child(n) → Parent içindeki n. eleman */
+  ul li:nth-child(2) {
+    background: #f9d5ec;
+  }
+
+  /* :nth-last-child(n) → Parent’ın sonundan n. eleman */
+  ul li:nth-last-child(1) {
+    border: 2px dashed #f0a;
+  }
+
+  /* :first-of-type → Parent içindeki ilk o türden element */
+  div.type-example p:first-of-type {
+    color: darkred;
+  }
+
+  /* :last-of-type → Parent içindeki son o türden element */
+  div.type-example p:last-of-type {
+    color: darkblue;
+  }
+
+  /* :only-of-type → Parent içinde o türden tek element */
+  div.type-example p:only-of-type {
+    font-style: italic;
+    background: #eef;
+  }
+
+  /* :nth-of-type(n) → O türden n. element */
+  div.type-example p:nth-of-type(2) {
+    text-decoration: underline;
+  }
+
+  /* :nth-last-of-type(n) → O türden sondan n. element */
+  div.type-example p:nth-last-of-type(1) {
+    font-weight: bold;
+  }
+
+  /* -------------------------
+     Fonksiyonel pseudo-classes
+     ------------------------- */
+
+  /* :not(selector) → Seçiciye uymayanları seç */
+  .not-example div:not(.skip) {
+    background: #ddffdd;
+  }
+
+  /* :is(selector, selector...) → Birden fazla seçiciyi grupla */
+  .is-where-example :is(h2, h3, .special) {
+    color: #d2691e;
+  }
+
+  /* :where(selector, selector...) → :is gibi ama öncelik (specificity) sıfır */
+  .is-where-example :where(h2, h3, .special) {
+    border: 1px solid #d2691e;
+    padding: 3px;
+  }
+
+  /* :has(selector) → Parent’ı seçer eğer içinde verilen seçici varsa */
+  .has-example:has(img) {
+    border: 2px solid green;
+    padding: 5px;
+  }
+
+  /* -------------------------
+     Diğer durum bazlı pseudo-classes
+     ------------------------- */
+
+  /* :focus-within → İçinde odaklanmış bir eleman varsa parent etkilenir */
+  .focus-within-example:focus-within {
+    border: 2px solid magenta;
+    padding: 5px;
+  }
+
+  /* :empty → Hiç çocuk (text veya element) içermeyen element */
+  .empty-example div:empty {
+    border: 1px solid #aaa;
+    padding: 5px;
+    background: #f5f5f5;
+  }
+
+  /* :target → URL’de #id ile hedeflenen element */
+  #mytarget:target {
+    background-color: yellow;
+    border: 2px solid red;
+    padding:5px;
+  }
+
+</style>
+</head>
+<body>
+  <h1>Pseudo-Classes Öğrenme Sitesi (Tam Liste)</h1>
+
+  <section>
+    <label class="pseudo">:link , :visited , :hover , :active</label>
+    <p>Link durumlarını test et:</p>
+    <a href="#">Henüz ziyaret edilmemiş link</a> |
+    <a href="https://example.com" target="_blank">Dış link (visited olabilir)</a>
+  </section>
+
+  <section>
+    <label class="pseudo">:focus</label>
+    <input type="text" placeholder="Buraya odaklanınca değişirim" />
+  </section>
+
+  <section>
+    <label class="pseudo">:checked</label>
+    <input type="checkbox" id="chk1">
+    <label for="chk1">Checkbox işaretlenirse ben değişirim</label>
+  </section>
+
+  <section>
+    <label class="pseudo">:disabled / :enabled</label>
+    <button disabled>Devre Dışı</button>
+    <button>Aktif</button>
+  </section>
+
+  <section>
+    <label class="pseudo">:first-child , :last-child , :only-child , :nth-child , :nth-last-child</label>
+    <div>
+      <p>İlk paragraf (first-child)</p>
+      <p>Orta paragraf</p>
+      <p>Son paragraf (last-child)</p>
+    </div>
+    <div class="only-child-parent">
+      <span>Ben tek çocuğum (only-child)</span>
+    </div>
+    <ul>
+      <li>Birinci</li>
+      <li>İkinci (nth-child(2))</li>
+      <li>Üçüncü (nth-last-child(1))</li>
+    </ul>
+  </section>
+
+  <section>
+    <label class="pseudo">:first-of-type , :last-of-type , :only-of-type , :nth-of-type , :nth-last-of-type</label>
+    <div class="type-example">
+      <p>Paragraf 1 (first-of-type)</p>
+      <p>Paragraf 2 (nth-of-type(2))</p>
+      <p>Paragraf 3 (last-of-type + nth-last-of-type(1))</p>
+    </div>
+    <div class="type-example">
+      <p>Tek paragraf (only-of-type)</p>
+    </div>
+  </section>
+
+  <section>
+    <label class="pseudo">:not() , :is() , :where() , :has()</label>
+    <div class="not-example">
+      <div>Ben seçildim (:not .skip)</div>
+      <div class="skip">Ben seçilmedim</div>
+    </div>
+    <div class="is-where-example">
+      <h2>h2 seçildi (:is , :where)</h2>
+      <h3>h3 seçildi</h3>
+      <p class="special">Özel p seçildi</p>
+      <p>Normal p seçilmedi</p>
+    </div>
+    <div class="has-example">
+      <p>Benim içimde resim varsa parent seçilir (:has)</p>
+      <img src="https://via.placeholder.com/50" alt="örnek">
+    </div>
+  </section>
+
+  <section>
+    <label class="pseudo">:focus-within</label>
+    <div class="focus-within-example">
+      <p>İçindeki input odaklanırsa ben değişirim</p>
+      <input type="text" placeholder="Buraya odaklan" />
+    </div>
+  </section>
+
+  <section>
+    <label class="pseudo">:empty</label>
+    <div class="empty-example">
+      <div></div>
+      <div>Ben boş değilim</div>
+    </div>
+  </section>
+
+  <section>
+    <label class="pseudo">:target</label>
+    <p><a href="#mytarget">#mytarget'a git</a></p>
+    <div id="mytarget">Ben :target oldum!</div>
+  </section>
+
+</body>
+</html>

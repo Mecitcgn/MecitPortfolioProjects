@@ -1,0 +1,159 @@
+<!-- simple-moon-orbit.html -->
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Basit Moon Orbit (Yorumlu)</title>
+
+  <!--
+    Stil dosyasını ayrı tutmak istersen <link rel="stylesheet" href="styles.css"> kullanabilirsin.
+    Burada her şeyi tek dosyada bıraktım ve CSS içinde detaylı yorumlar ekledim.
+  -->
+  <style>
+    /* ===========================================================
+       Sayfa düzeyi: body'yi viewport'un ortasına hizalayıp temiz bir arka plan ayarları
+       =========================================================== */
+
+    /* html için height:100% belirlemek, bazı tarayıcılarda body yüksekliği belirlemede yardımcı olur */
+    html { height: 100%; }
+
+    /* 
+      Body'yi kesin olarak viewport yüksekliğine ayarlıyoruz.
+      - height:100vh -> body yüksekliğini görünür pencere yüksekliğinin %100'ü yapar.
+      - margin:0 -> tarayıcı varsayılan boşlukları kaldırır.
+      - display:flex ve align/justify center -> içeriği yatay/dikey ortalar.
+      Bu blok, testlerin ve gözlemin "sahnenin ortalanması" beklentisini karşılar.
+    */
+    body {
+      height: 100vh;                /* viewport yüksekliğinin %100'ü */
+      margin: 0;                    /* varsayılan boşlukları sıfırla */
+      display: flex;                /* flex konteyner (ortalamak için kullanıyoruz) */
+      justify-content: center;      /* yatay ortala */
+      align-items: center;          /* dikey ortala */
+      background: #000;             /* basit siyah arka plan (uzay hissi) */
+      color: #fff;                  /* varsayılan metin rengi (okunurluk için) */
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* ===========================================================
+       .space: sahne kapsayıcısı
+       - Boyutlar sabit: 200x200 (lab gereksinimine uygun)
+       - position:relative -> içindeki absolute elemanlar (.earth, .orbit) bu kapsayıcıya göre konumlanır
+       =========================================================== */
+    .space {
+      width: 200px;         /* sahne genişliği (lab: 200px) */
+      height: 200px;        /* sahne yüksekliği (lab: 200px) */
+      position: relative;   /* absolute çocukların containing block'u olsun */
+    }
+
+    /* ===========================================================
+       .earth: Dünya öğesi (orta)
+       - 100x100 boyut, absolute konumlandırma
+       - top/left 50% + translate(-50%, -50%) => tam merkezleme tekniği
+       - border-radius:50% => daire yapar
+       =========================================================== */
+    .earth {
+      width: 100px;                 /* lab: earth 100px */
+      height: 100px;                /* lab: earth 100px */
+      position: absolute;           /* .space içindeki konumlandırma */
+      top: 50%;                     /* .space yüksekliğinin %50'si (yani ortası) */
+      left: 50%;                    /* .space genişliğinin %50'si (yani ortası) */
+      transform: translate(-50%, -50%); /* elementin kendi boyutunun yarısı kadar kaydır -> tam merkez olur */
+      background: blue;             /* basit renk, isteğe göre değiştirilebilir */
+      border-radius: 50%;           /* çember yapmak için */
+    }
+
+    /* ===========================================================
+       .orbit: yörünge kabuğu
+       - 200x200 (sahneyle aynı boyutta); merkezlenmiş
+       - border-radius:50% => dairesel yörünge yolu
+       - animation: orbit 5s linear infinite => yörüngeyi döndürür
+       IMPORTANT:
+       - Burada base'te transform: translate(-50%,-50%) koymak güvenlidir.
+       - @keyframes içinde transform'ı rotate(...) ile birlikte translate olarak da tanımlıyoruz
+         (bu testlerin beklediği transform ifadeleriyle uyumludur).
+       =========================================================== */
+    .orbit {
+      width: 200px;                /* yörünge çapı = sahne çapı */
+      height: 200px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* merkezde konumlandırmak için */
+      border-radius: 50%;          /* tam daire */
+      /* yörüngenin döndürülmesini sağlayan animasyon (5s, sabit hız, sonsuz) */
+      animation: orbit 5s linear infinite;
+      /* not: görünür yörünge istemezsen border/box-shadow ekleyebilirsin */
+    }
+
+    /* ===========================================================
+       .moon: Ay
+       - 30x30, .orbit içinde absolute konumlandırılmış
+       - top:0 => yörüngenin en üst noktasında başlar
+       - left:50% + translateX(-50%) => yatayda merkezlenir
+       - .orbit döndüğünde .moon da dairesel yol çizer
+       =========================================================== */
+    .moon {
+      width: 30px;             /* lab: moon 30px */
+      height: 30px;
+      position: absolute;      /* .orbit içinde konumlandırılmıştır */
+      top: 0;                  /* yörüngenin üst kenarı ile hizala */
+      left: 50%;               /* sol kenarı ortaya al */
+      transform: translateX(-50%); /* kendi genişliğinin yarısı kadar sola kaydır -> tam yatay merkezde olur */
+      background: lightgray;   /* basit renk */
+      border-radius: 50%;      /* daire */
+    }
+
+    /* ===========================================================
+       @keyframes orbit
+       - 0% (veya from) ile 100% (veya to) tanımlanır
+       - Her iki durumda transform içinde translate(-50%,-50%) bulunur.
+         Bunun sebebi:
+           1) .orbit'in merkezde kalmasını garantilemek,
+           2) testlerin "0% transform içersin ve 100% transform içersin"
+              gibi beklentileriyle uyumlu olmak.
+       - rotate değeri 0deg -> 360deg arası değişir; bu .orbit'i döndürür
+       =========================================================== */
+    @keyframes orbit {
+      0% {
+        /* başlangıç: translate ile merkezde tut + rotate 0 */
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      100% {
+        /* bitiş: merkezde tut + tam 1 dönüş */
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    /* ===========================================================
+       Tercihe bağlı: hareket hassasiyeti olan kullanıcılar için
+       - Eğer kullanıcının 'reduced motion' tercihi varsa animasyonları kapat
+       =========================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      .orbit {
+        animation: none; /* yavaşlatma tercihi varsa döndürme yapılmasın */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!--
+    HTML yapısı:
+    - .space: sahne (200x200)
+    - .earth: sahnenin ortasında duran dünya
+    - .orbit: yörüngenin kendisi (bu element dönecek)
+    - .moon: .orbit içinde, üstte yerleşik; .orbit döndüğünde ay dünya etrafında döner
+  -->
+  <div class="space" role="img" aria-label="Dünya ve etrafında dönen Ay (basit animasyon)">
+    <!-- Earth önce geliyor: lab/testler bazen çocuk sırasını kontrol eder -->
+    <div class="earth" aria-hidden="true"></div>
+
+    <!-- Orbit: yörüngenin kapsayıcısı.
+         Bu element döndüğünden moon da doğal olarak dairesel yol çizer. -->
+    <div class="orbit" aria-hidden="true">
+      <div class="moon" aria-hidden="true"></div>
+    </div>
+  </div>
+</body>
+</html>

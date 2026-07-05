@@ -1,0 +1,383 @@
+:root {
+  --building-color1: #aa80ff;
+  --building-color2: #66cc99;
+  --building-color3: #cc6699;
+  --building-color4: #538cc6;
+  --window-color1: #bb99ff;
+  --window-color2: #8cd9b3;
+  --window-color3: #d98cb3;
+  --window-color4: #8cb3d9;
+  --sky-color: #BBEDFF;
+  --sun-color: #FFCF31;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+.background-buildings,
+.foreground-buildings {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  position: absolute;
+  top: 0;
+}
+
+.building-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.window-wrapper,
+.window-wrapper-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.window-wrapper-2 {
+  gap: 20px
+}
+
+.sky {
+  background: var(--sky-color);
+}
+
+.sun {
+  position: absolute;
+  top: 10vh;
+  left: 10vw;
+  width: 9vw;
+  height: 9vh;
+  border-radius: 50%;
+  background-color: var(--sun-color);
+  box-shadow: 0 0 50px 50px rgba(255, 255, 0, 0.5),
+    0 0 150px 150px rgba(255, 255, 0, 0.5);
+}
+
+.bb1 {
+  width: 10%;
+  height: 70%;
+}
+
+.bb1a {
+  width: 70%;
+  height: 10%;
+  background: linear-gradient(to bottom, var(--building-color1) 50%, var(--window-color1) 100%);
+
+}
+
+.bb1b {
+  width: 80%;
+  height: 10%;
+  background: linear-gradient(to bottom, var(--building-color1) 50%, var(--window-color1) 100%);
+
+}
+
+.bb1c {
+  width: 90%;
+  height: 10%;
+  background: linear-gradient(to bottom, var(--building-color1) 50%, var(--window-color1) 100%);
+}
+
+.bb1d {
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to bottom, var(--building-color1) 50%, var(--window-color1) 100%);
+}
+
+.bb2 {
+  width: 10%;
+  height: 49%;
+}
+
+.bb2a {
+  width: 100%;
+  height: 10%;
+  border-bottom: 5vh solid var(--building-color2);
+  border-left: 5vw solid transparent;
+  border-right: 5vw solid transparent;
+}
+
+.bb2b {
+  width: 100%;
+  height: 90%;
+  background: repeating-linear-gradient(var(--building-color2) 0%, var(--building-color2) 6%, var(--window-color2) 6%, var(--window-color2) 9%)
+}
+
+
+.bb3 {
+  width: 10%;
+  height: 53%;
+}
+
+.bb3a {
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, var(--building-color3) 0%, var(--building-color3) 10%, var(--window-color3) 15%)
+}
+
+.bb4 {
+  width: 12%;
+  height: 55%;
+}
+
+.bb4a {
+  width: 3%;
+  height: 12%;
+  background: var(--building-color4);
+}
+
+.bb4b {
+  width: 80%;
+  height: 7%;
+  background: var(--building-color4);
+}
+
+.bb4c {
+  width: 100%;
+  height: 100%;
+  background-color: var(--building-color4);
+}
+
+.bb4-window {
+  width: 18%;
+  height: 80%;
+  background: var(--window-color4);
+}
+
+.fb1 {
+  width: 10%;
+  height: 60%;
+}
+
+.fb1a {
+  width: 20%;
+  height: 10%;
+  border-left: 4vh solid transparent;
+  border-right: 4vh solid transparent;
+  border-bottom: 7vh solid var(--building-color4);
+}
+
+.fb1b {
+  width: 60%;
+  height: 15%;
+  background: var(--building-color4);
+}
+
+.fb1c {
+  width: 100%;
+  height: 100%;
+  background: var(--building-color4)
+}
+
+.fb1-window {
+  width: 5%;
+  height: 80%;
+  background: var(--window-color4)
+}
+
+.fb2 {
+  width: 10%;
+  height: 40%;
+}
+
+.fb2b {
+  width: 100%;
+  height: 100%;
+  background: var(--building-color3);
+}
+
+.fb2a {
+  width: 100%;
+  border-bottom: 10vh solid var(--building-color3);
+  border-left: 1vw solid transparent;
+  border-right: 1vw solid transparent;
+}
+
+.fb2-window {
+  width: 20%;
+  height: 100%;
+  background-color: var(--window-color3);
+}
+
+.fb3 {
+  width: 10%;
+  height: 35%;
+}
+
+.fb3a {
+  width: 80%;
+  height: 15%;
+  background: var(--building-color1);
+
+}
+
+.fb3b {
+  width: 100%;
+  height: 35%;
+  background: var(--building-color1);
+
+}
+
+.fb3c {
+  width: 80%;
+  height: 15%;
+  background: var(--building-color1);
+}
+
+.fb3d {
+  width: 100%;
+  height: 35%;
+  background: var(--building-color1);
+}
+
+.fb3-window {
+  width: 25%;
+  height: 80%;
+  background: var(--window-color1);
+}
+
+.fb4 {
+  width: 8%;
+  height: 45%;
+}
+
+.fb4a {
+  border-top: 5vh solid transparent;
+  border-left: 8vw solid var(--building-color1);
+}
+
+.fb4b {
+  width: 100%;
+  height: 100%;
+  background: var(--building-color1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+
+
+
+.fb4-window {
+  width: 30%;
+  height: 10%;
+  border-radius: 50%;
+  background: var(--window-color1);
+}
+
+.fb5 {
+  width: 10%;
+  height: 35%;
+  position: absolute;
+  left: 1075px;
+}
+
+.fb5a {
+  width: 100%;
+  height: 100%;
+  background: var(--building-color2);
+}
+
+.fb5b {
+  width: 80%;
+  height: 80%;
+}
+
+.extra-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.window-wrapper-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+
+.fb5-window {
+  width: 40%;
+  height: 5%;
+  background: var(--window-color2);
+}
+
+.fb6 {
+  width: 10%;
+  height: 40%;
+}
+
+.fb6a {
+  width: 100%;
+  height: 100%;
+  background: var(--building-color3);
+}
+
+.fb6b {
+  width: 80%;
+  height: 80%;
+}
+
+.extra-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.window-wrapper-4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+
+.fb6-window {
+  width: 25%;
+  height: 30%;
+  background: var(--window-color3);
+}
+
+@media(width < 1000px) {
+  :root {
+    --building-color1: #000;
+    --building-color2: #000;
+    --building-color3: #000;
+    --building-color4: #000;
+    --window-color1: #777;
+    --window-color2: #777;
+    --window-color3: #777;
+    --window-color4: #777;
+    --sky-color: #222233;
+    --sun-color: #fff;
+  }
+
+  .sun {
+    box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.5),
+      0 0 150px 150px rgba(255, 255, 255, 0.5);
+  }
+}

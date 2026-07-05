@@ -1,0 +1,76 @@
+body{
+    background: rgb(235, 247, 235);
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-size: 24px;
+}
+
+div p:nth-child(1){
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    position: relative;
+    top: 45px;
+}
+div p:nth-child(2){
+    font-size: 16px;
+    text-align: center;
+    position: relative;
+    top: 10px;
+}
+
+div p:nth-child(3){
+    font-size: 32px;
+    text-align: left;
+    font-weight: bold;
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+div p:nth-child(4){
+    font-size: 25px;
+    text-align: left;
+    font-style: italic;
+    position: relative;
+    top: 10px;
+    left: 20px;
+}
+
+div p:nth-child(5){
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    left: 20px;
+}
+
+div p:nth-child(6)::before{
+    content:"I";
+    font-size: 40px;
+}
+
+div p:nth-child(7)::before{
+    content:"T";
+    font-size: 40px;
+}
+
+div p:nth-child(6),
+div p:nth-child(7){
+    position: relative;
+    left: 20px;
+    text-indent: 30px;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+div{
+    width: 825px;
+    height: 600px;
+    background-color: white;
+    margin: 75px 0px 20px 14px;
+  font-family: 'Open Sans', sans-serif;
+    box-shadow: 0 0 5px 5px rgba(0,0,0,0.05);
+}

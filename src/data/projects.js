@@ -11,6 +11,9 @@
  *   mine      — true = benim versiyonum, false = FreeCodeCamp/ChatGPT versiyonu
  *   description — kısa açıklama
  *   cover     — { gradient, accent, pattern }
+ *   previewMode — 'iframe' | 'code'
+ *   thumbnail   — /previews/{id}.png (CSS)
+ *   files       — kod modalı dosya listesi (JS)
  *
  * Yeni proje eklemek için bu diziye bir eleman ekle.
  * Dosyayı public/projects/ altındaki ilgili klasöre koy.
@@ -33,6 +36,8 @@ const _PROJECTS = [
 			accent: '#f97316',
 			pattern: 'hex',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/three-column-fem.png',
 	},
 	{
 		id: 'google-analytics-icode',
@@ -49,6 +54,8 @@ const _PROJECTS = [
 			accent: '#60a5fa',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/google-analytics-icode.png',
 	},
 	{
 		id: 'dialog-animated',
@@ -65,6 +72,12 @@ const _PROJECTS = [
 			accent: '#22d3ee',
 			pattern: 'circles',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/DomManipulationAndEvents/dialogAnimatedExample/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/DomManipulationAndEvents/dialogAnimatedExample/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/DomManipulationAndEvents/dialogAnimatedExample/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'availability-table-mecit',
@@ -80,21 +93,8 @@ const _PROJECTS = [
 			accent: '#34d399',
 			pattern: 'grid',
 		},
-	},
-	{
-		id: 'balance-sheet-mecit',
-		title: 'Balance Sheet',
-		category: 'CSS',
-		sub: 'Attribute Selectors',
-		path: '/projects/CSS/Attribute Selectors/BalanceSheetMecit.html',
-		tech: ['HTML', 'CSS'],
-		mine: true,
-		description: 'Attribute seçiciler ile bilanço tablosu.',
-		cover: {
-			gradient: 'linear-gradient(135deg,#001520 0%,#002535 100%)',
-			accent: '#38bdf8',
-			pattern: 'grid',
-		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/availability-table-mecit.png',
 	},
 	{
 		id: 'bento-grid-fem',
@@ -111,6 +111,8 @@ const _PROJECTS = [
 			accent: '#d946ef',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/bento-grid-fem.png',
 	},
 	{
 		id: 'blog-preview-card-fem',
@@ -127,6 +129,8 @@ const _PROJECTS = [
 			accent: '#facc15',
 			pattern: 'dots',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/blog-preview-card-fem.png',
 	},
 	{
 		id: 'book-inventory-mecit',
@@ -142,6 +146,8 @@ const _PROJECTS = [
 			accent: '#fbbf24',
 			pattern: 'diagonal',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/book-inventory-mecit.png',
 	},
 	{
 		id: 'buy-form-icode',
@@ -157,6 +163,8 @@ const _PROJECTS = [
 			accent: '#2dd4bf',
 			pattern: 'waves',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/buy-form-icode.png',
 	},
 	{
 		id: 'calorie-counter-mecit',
@@ -172,6 +180,12 @@ const _PROJECTS = [
 			accent: '#4ade80',
 			pattern: 'dots',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/FormValidation/BenimCalorieCounter/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/FormValidation/BenimCalorieCounter/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/FormValidation/BenimCalorieCounter/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'card-mecit',
@@ -187,6 +201,8 @@ const _PROJECTS = [
 			accent: '#818cf8',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/card-mecit.png',
 	},
 	{
 		id: 'chat-app-illustration-fem',
@@ -203,6 +219,8 @@ const _PROJECTS = [
 			accent: '#e879f9',
 			pattern: 'waves',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/chat-app-illustration-fem.png',
 	},
 	{
 		id: 'circle-analytics-icode',
@@ -219,6 +237,8 @@ const _PROJECTS = [
 			accent: '#34d399',
 			pattern: 'rings',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/circle-analytics-icode.png',
 	},
 	{
 		id: 'city-mecit',
@@ -234,6 +254,8 @@ const _PROJECTS = [
 			accent: '#818cf8',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/city-mecit.png',
 	},
 	{
 		id: 'clipboard-landing-fem',
@@ -250,6 +272,8 @@ const _PROJECTS = [
 			accent: '#4ade80',
 			pattern: 'hex',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/clipboard-landing-fem.png',
 	},
 	{
 		id: 'collection-card-icode',
@@ -266,6 +290,8 @@ const _PROJECTS = [
 			accent: '#22d3ee',
 			pattern: 'diagonal',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/collection-card-icode.png',
 	},
 	{
 		id: 'colored-boxes',
@@ -281,6 +307,8 @@ const _PROJECTS = [
 			accent: '#f472b6',
 			pattern: 'spectrum',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/colored-boxes.png',
 	},
 	{
 		id: 'conf-email-mecit',
@@ -296,6 +324,8 @@ const _PROJECTS = [
 			accent: '#4ade80',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/conf-email-mecit.png',
 	},
 	{
 		id: 'contact-form-mecit',
@@ -311,6 +341,8 @@ const _PROJECTS = [
 			accent: '#38bdf8',
 			pattern: 'waves',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/contact-form-mecit.png',
 	},
 	{
 		id: 'css-animation-mecit',
@@ -326,6 +358,8 @@ const _PROJECTS = [
 			accent: '#e879f9',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/css-animation-mecit.png',
 	},
 	{
 		id: 'cat-mecit',
@@ -341,6 +375,8 @@ const _PROJECTS = [
 			accent: '#fbbf24',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/cat-mecit.png',
 	},
 	{
 		id: 'clip-path-icode',
@@ -357,6 +393,8 @@ const _PROJECTS = [
 			accent: '#818cf8',
 			pattern: 'spectrum',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/clip-path-icode.png',
 	},
 	{
 		id: 'gradients',
@@ -372,6 +410,8 @@ const _PROJECTS = [
 			accent: '#f0ece4',
 			pattern: 'spectrum',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/gradients.png',
 	},
 	{
 		id: 'complaint-form',
@@ -387,6 +427,12 @@ const _PROJECTS = [
 			accent: '#f87171',
 			pattern: 'grid',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/FormValidation/CustomerComplaintForm/Benim/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/FormValidation/CustomerComplaintForm/Benim/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/FormValidation/CustomerComplaintForm/Benim/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'dialog-transition',
@@ -403,6 +449,12 @@ const _PROJECTS = [
 			accent: '#34d399',
 			pattern: 'waves',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/DomManipulationAndEvents/dialogTransitionExample/safCSS/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/DomManipulationAndEvents/dialogTransitionExample/safCSS/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/DomManipulationAndEvents/dialogTransitionExample/safCSS/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'drum-machine-mecit',
@@ -418,6 +470,12 @@ const _PROJECTS = [
 			accent: '#f87171',
 			pattern: 'circles',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/AudioAndVideo/DrumMachine/BenimDrumMachine/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/AudioAndVideo/DrumMachine/BenimDrumMachine/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/AudioAndVideo/DrumMachine/BenimDrumMachine/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'emoji-reactor',
@@ -433,6 +491,12 @@ const _PROJECTS = [
 			accent: '#fbbf24',
 			pattern: 'dots',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/DomManipulationAndEvents/emojiReactor/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/DomManipulationAndEvents/emojiReactor/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/DomManipulationAndEvents/emojiReactor/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'enter-password-icode',
@@ -448,6 +512,8 @@ const _PROJECTS = [
 			accent: '#a78bfa',
 			pattern: 'dots',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/enter-password-icode.png',
 	},
 	{
 		id: 'expenses-analytics-icode',
@@ -464,6 +530,8 @@ const _PROJECTS = [
 			accent: '#ef4444',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/expenses-analytics-icode.png',
 	},
 	{
 		id: 'favorite-icon-toggler',
@@ -480,6 +548,12 @@ const _PROJECTS = [
 			accent: '#fb7185',
 			pattern: 'dots',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/DomManipulationAndEvents/favoriteIconToggler/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/DomManipulationAndEvents/favoriteIconToggler/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/DomManipulationAndEvents/favoriteIconToggler/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'flappy-penguin',
@@ -495,6 +569,8 @@ const _PROJECTS = [
 			accent: '#38bdf8',
 			pattern: 'waves',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/flappy-penguin.png',
 	},
 	{
 		id: 'football-team-cards',
@@ -510,6 +586,12 @@ const _PROJECTS = [
 			accent: '#86efac',
 			pattern: 'hex',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/DomManipulationAndEvents/footballTeamCards/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/DomManipulationAndEvents/footballTeamCards/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/DomManipulationAndEvents/footballTeamCards/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'four-card-fem',
@@ -526,6 +608,8 @@ const _PROJECTS = [
 			accent: '#6366f1',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/four-card-fem.png',
 	},
 	{
 		id: 'friend-request-icode',
@@ -542,6 +626,8 @@ const _PROJECTS = [
 			accent: '#f472b6',
 			pattern: 'dots',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/friend-request-icode.png',
 	},
 	{
 		id: 'fylo-data-storage-fem',
@@ -558,6 +644,8 @@ const _PROJECTS = [
 			accent: '#60a5fa',
 			pattern: 'waves',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/fylo-data-storage-fem.png',
 	},
 	{
 		id: 'greeting-card-mecit',
@@ -574,6 +662,8 @@ const _PROJECTS = [
 			accent: '#fb7185',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/greeting-card-mecit.png',
 	},
 	{
 		id: 'house-paint-mecit',
@@ -589,6 +679,8 @@ const _PROJECTS = [
 			accent: '#fb923c',
 			pattern: 'diagonal',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/house-paint-mecit.png',
 	},
 	{
 		id: 'huddle-landing-fem',
@@ -605,6 +697,8 @@ const _PROJECTS = [
 			accent: '#c084fc',
 			pattern: 'rings',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/huddle-landing-fem.png',
 	},
 	{
 		id: 'ixmas-icode',
@@ -620,6 +714,8 @@ const _PROJECTS = [
 			accent: '#f87171',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/ixmas-icode.png',
 	},
 	{
 		id: 'js-documentation',
@@ -635,6 +731,8 @@ const _PROJECTS = [
 			accent: '#facc15',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/js-documentation.png',
 	},
 	{
 		id: 'lightbox-viewer',
@@ -650,6 +748,12 @@ const _PROJECTS = [
 			accent: '#c084fc',
 			pattern: 'circles',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/DomManipulationAndEvents/lightboxViewer/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/DomManipulationAndEvents/lightboxViewer/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/DomManipulationAndEvents/lightboxViewer/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'magazine-freec',
@@ -665,6 +769,8 @@ const _PROJECTS = [
 			accent: '#fb923c',
 			pattern: 'diagonal',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/magazine-freec.png',
 	},
 	{
 		id: 'markdown-converter',
@@ -680,6 +786,12 @@ const _PROJECTS = [
 			accent: '#86efac',
 			pattern: 'grid',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/BasicRegex/MardownToHTMLConveter/Benim/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/BasicRegex/MardownToHTMLConveter/Benim/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/BasicRegex/MardownToHTMLConveter/Benim/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'moon-orbit-mecit',
@@ -695,6 +807,8 @@ const _PROJECTS = [
 			accent: '#a5b4fc',
 			pattern: 'rings',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/moon-orbit-mecit.png',
 	},
 	{
 		id: 'music-instrument-filter',
@@ -710,6 +824,12 @@ const _PROJECTS = [
 			accent: '#e879f9',
 			pattern: 'waves',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/DomManipulationAndEvents/musicInstrumentFilter/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/DomManipulationAndEvents/musicInstrumentFilter/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/DomManipulationAndEvents/musicInstrumentFilter/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'music-player-mecit',
@@ -725,6 +845,12 @@ const _PROJECTS = [
 			accent: '#e879f9',
 			pattern: 'waves',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/AudioAndVideo/MusicPlayer/BenimMusicPlayer/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/AudioAndVideo/MusicPlayer/BenimMusicPlayer/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/AudioAndVideo/MusicPlayer/BenimMusicPlayer/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'music-store-icode',
@@ -741,6 +867,8 @@ const _PROJECTS = [
 			accent: '#c084fc',
 			pattern: 'waves',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/music-store-icode.png',
 	},
 	{
 		id: 'newspaper-typography-mecit',
@@ -756,6 +884,8 @@ const _PROJECTS = [
 			accent: '#d4d4d4',
 			pattern: 'diagonal',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/newspaper-typography-mecit.png',
 	},
 	{
 		id: 'newspaper-mecit',
@@ -771,6 +901,8 @@ const _PROJECTS = [
 			accent: '#f0ece4',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/newspaper-mecit.png',
 	},
 	{
 		id: 'nft-preview-card-fem',
@@ -787,6 +919,8 @@ const _PROJECTS = [
 			accent: '#06b6d4',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/nft-preview-card-fem.png',
 	},
 	{
 		id: 'note-taking-app',
@@ -802,6 +936,12 @@ const _PROJECTS = [
 			accent: '#fbbf24',
 			pattern: 'dots',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/javascriptAndAccessibility/noteTakingApp/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/javascriptAndAccessibility/noteTakingApp/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/javascriptAndAccessibility/noteTakingApp/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'nutritional-label',
@@ -817,6 +957,8 @@ const _PROJECTS = [
 			accent: '#000000',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/nutritional-label.png',
 	},
 	{
 		id: 'order-summary-fem',
@@ -833,6 +975,8 @@ const _PROJECTS = [
 			accent: '#38bdf8',
 			pattern: 'waves',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/order-summary-fem.png',
 	},
 	{
 		id: 'page-loading-icode',
@@ -848,6 +992,8 @@ const _PROJECTS = [
 			accent: '#fbbf24',
 			pattern: 'diagonal',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/page-loading-icode.png',
 	},
 	{
 		id: 'palindrome-checker',
@@ -863,6 +1009,12 @@ const _PROJECTS = [
 			accent: '#22d3ee',
 			pattern: 'circles',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/BasicRegex/PalindromeChecker/Benim/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/BasicRegex/PalindromeChecker/Benim/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/BasicRegex/PalindromeChecker/Benim/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'personal-port-mecit',
@@ -878,6 +1030,8 @@ const _PROJECTS = [
 			accent: '#60a5fa',
 			pattern: 'diagonal',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/personal-port-mecit.png',
 	},
 	{
 		id: 'photo-gallery-mecit',
@@ -893,6 +1047,8 @@ const _PROJECTS = [
 			accent: '#86efac',
 			pattern: 'dots',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/photo-gallery-mecit.png',
 	},
 	{
 		id: 'photography-app-icode',
@@ -909,6 +1065,8 @@ const _PROJECTS = [
 			accent: '#d97706',
 			pattern: 'dots',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/photography-app-icode.png',
 	},
 	{
 		id: 'piano-freec',
@@ -924,6 +1082,8 @@ const _PROJECTS = [
 			accent: '#f0ece4',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/piano-freec.png',
 	},
 	{
 		id: 'planets-tablist',
@@ -939,6 +1099,12 @@ const _PROJECTS = [
 			accent: '#a5b4fc',
 			pattern: 'rings',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/javascriptAndAccessibility/planetsTablist/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/javascriptAndAccessibility/planetsTablist/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/javascriptAndAccessibility/planetsTablist/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'post-card-icode',
@@ -955,6 +1121,8 @@ const _PROJECTS = [
 			accent: '#fb923c',
 			pattern: 'diagonal',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/post-card-icode.png',
 	},
 	{
 		id: 'pricing-form-icode',
@@ -971,6 +1139,8 @@ const _PROJECTS = [
 			accent: '#facc15',
 			pattern: 'hex',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/pricing-form-icode.png',
 	},
 	{
 		id: 'product-landing-mecit',
@@ -986,6 +1156,8 @@ const _PROJECTS = [
 			accent: '#4ade80',
 			pattern: 'hex',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/product-landing-mecit.png',
 	},
 	{
 		id: 'profile-card-fem',
@@ -1002,6 +1174,8 @@ const _PROJECTS = [
 			accent: '#06b6d4',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/profile-card-fem.png',
 	},
 	{
 		id: 'profile-grid-icode',
@@ -1018,6 +1192,8 @@ const _PROJECTS = [
 			accent: '#6366f1',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/profile-grid-icode.png',
 	},
 	{
 		id: 'profile-header-icode',
@@ -1034,6 +1210,8 @@ const _PROJECTS = [
 			accent: '#fbbf24',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/profile-header-icode.png',
 	},
 	{
 		id: 'pseudo-form-mecit',
@@ -1049,6 +1227,8 @@ const _PROJECTS = [
 			accent: '#c084fc',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/pseudo-form-mecit.png',
 	},
 	{
 		id: 'pseudo-classes-mecit',
@@ -1065,6 +1245,8 @@ const _PROJECTS = [
 			accent: '#f0abfc',
 			pattern: 'dots',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/pseudo-classes-mecit.png',
 	},
 	{
 		id: 'pseudo-elements-mecit',
@@ -1080,6 +1262,8 @@ const _PROJECTS = [
 			accent: '#e879f9',
 			pattern: 'diagonal',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/pseudo-elements-mecit.png',
 	},
 	{
 		id: 'quiz-app-css-mecit',
@@ -1095,6 +1279,8 @@ const _PROJECTS = [
 			accent: '#34d399',
 			pattern: 'hex',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/quiz-app-css-mecit.png',
 	},
 	{
 		id: 'random-bg-color',
@@ -1111,6 +1297,12 @@ const _PROJECTS = [
 			accent: '#818cf8',
 			pattern: 'spectrum',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/debugging/randomBackgroundColor/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/debugging/randomBackgroundColor/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/debugging/randomBackgroundColor/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'real-time-counter',
@@ -1126,6 +1318,12 @@ const _PROJECTS = [
 			accent: '#38bdf8',
 			pattern: 'grid',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/DomManipulationAndEvents/BenimrealTimeCharacterCounter/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/DomManipulationAndEvents/BenimrealTimeCharacterCounter/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/DomManipulationAndEvents/BenimrealTimeCharacterCounter/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'regex-sandbox',
@@ -1141,6 +1339,12 @@ const _PROJECTS = [
 			accent: '#818cf8',
 			pattern: 'hex',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/BasicRegex/RegexSandbox/Benim/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/BasicRegex/RegexSandbox/Benim/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/BasicRegex/RegexSandbox/Benim/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'register-form-icode',
@@ -1157,6 +1361,8 @@ const _PROJECTS = [
 			accent: '#38bdf8',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/register-form-icode.png',
 	},
 	{
 		id: 'registration-form',
@@ -1172,6 +1378,8 @@ const _PROJECTS = [
 			accent: '#c084fc',
 			pattern: 'dots',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/registration-form.png',
 	},
 	{
 		id: 'results-summary-fem',
@@ -1188,6 +1396,8 @@ const _PROJECTS = [
 			accent: '#818cf8',
 			pattern: 'diagonal',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/results-summary-fem.png',
 	},
 	{
 		id: 'rock-paper-scissors',
@@ -1203,6 +1413,12 @@ const _PROJECTS = [
 			accent: '#4ade80',
 			pattern: 'hex',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/DomManipulationAndEvents/rockPaperScissors/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/DomManipulationAndEvents/rockPaperScissors/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/DomManipulationAndEvents/rockPaperScissors/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'single-price-grid-fem',
@@ -1219,6 +1435,8 @@ const _PROJECTS = [
 			accent: '#2dd4bf',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/single-price-grid-fem.png',
 	},
 	{
 		id: 'social-proof-fem',
@@ -1235,6 +1453,8 @@ const _PROJECTS = [
 			accent: '#f472b6',
 			pattern: 'dots',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/social-proof-fem.png',
 	},
 	{
 		id: 'spam-filter',
@@ -1250,6 +1470,12 @@ const _PROJECTS = [
 			accent: '#ef4444',
 			pattern: 'diagonal',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/BasicRegex/SpamFilter/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/BasicRegex/SpamFilter/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/BasicRegex/SpamFilter/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'wheel-mecit',
@@ -1265,6 +1491,8 @@ const _PROJECTS = [
 			accent: '#fbbf24',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/wheel-mecit.png',
 	},
 	{
 		id: 'starwars-icode',
@@ -1280,6 +1508,8 @@ const _PROJECTS = [
 			accent: '#fde68a',
 			pattern: 'dots',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/starwars-icode.png',
 	},
 	{
 		id: 'stats-preview-fem',
@@ -1296,6 +1526,8 @@ const _PROJECTS = [
 			accent: '#c084fc',
 			pattern: 'diagonal',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/stats-preview-fem.png',
 	},
 	{
 		id: 'story-telling-app',
@@ -1311,6 +1543,12 @@ const _PROJECTS = [
 			accent: '#fb923c',
 			pattern: 'waves',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/DomManipulationAndEvents/storyTellingApp/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/DomManipulationAndEvents/storyTellingApp/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/DomManipulationAndEvents/storyTellingApp/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'subscriptions-icode',
@@ -1327,6 +1565,8 @@ const _PROJECTS = [
 			accent: '#a78bfa',
 			pattern: 'hex',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/subscriptions-icode.png',
 	},
 	{
 		id: 'taskbar-icode',
@@ -1342,6 +1582,8 @@ const _PROJECTS = [
 			accent: '#94a3b8',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/taskbar-icode.png',
 	},
 	{
 		id: 'testimonial-grid-fem',
@@ -1358,6 +1600,8 @@ const _PROJECTS = [
 			accent: '#d4d4d4',
 			pattern: 'grid',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/testimonial-grid-fem.png',
 	},
 	{
 		id: 'testimonial-grid-colored-fem',
@@ -1374,6 +1618,8 @@ const _PROJECTS = [
 			accent: '#a5b4fc',
 			pattern: 'spectrum',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/testimonial-grid-colored-fem.png',
 	},
 	{
 		id: 'theme-switcher',
@@ -1389,6 +1635,12 @@ const _PROJECTS = [
 			accent: '#d4d4d4',
 			pattern: 'grid',
 		},
+		previewMode: 'code',
+		files: [
+			{ path: '/projects/JS/javascriptAndAccessibility/themeSwitcher/script.js', label: 'JavaScript', lang: 'javascript' },
+			{ path: '/projects/JS/javascriptAndAccessibility/themeSwitcher/index.html', label: 'HTML', lang: 'html' },
+			{ path: '/projects/JS/javascriptAndAccessibility/themeSwitcher/styles.css', label: 'CSS', lang: 'css' },
+		],
 	},
 	{
 		id: 'trees-community-icode',
@@ -1405,6 +1657,8 @@ const _PROJECTS = [
 			accent: '#4ade80',
 			pattern: 'hex',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/trees-community-icode.png',
 	},
 	{
 		id: 'tribute-page',
@@ -1420,6 +1674,8 @@ const _PROJECTS = [
 			accent: '#f87171',
 			pattern: 'circles',
 		},
+		previewMode: 'iframe',
+		thumbnail: '/previews/tribute-page.png',
 	},
 ];
 

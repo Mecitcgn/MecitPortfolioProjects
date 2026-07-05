@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Form</title>
+		<style>
+			/* 1. Use a more-intuitive box-sizing model */
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			/* 2. Remove default margin */
+			* {
+				margin: 0;
+			}
+
+			/* 3. Enable keyword animations */
+			@media (prefers-reduced-motion: no-preference) {
+				html {
+					interpolate-size: allow-keywords;
+				}
+			}
+
+			body {
+				/* 4. Add accessible line-height */
+				line-height: 1.5;
+				/* 5. Improve text rendering */
+				-webkit-font-smoothing: antialiased;
+			}
+
+			/* 6. Improve media defaults */
+			img,
+			picture,
+			video,
+			canvas,
+			svg {
+				display: block;
+				max-width: 100%;
+			}
+
+			/* 7. Inherit fonts for form controls */
+			input,
+			button,
+			textarea,
+			select {
+				font: inherit;
+			}
+
+			/* 8. Avoid text overflows */
+			p,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				overflow-wrap: break-word;
+			}
+
+			/* 9. Improve line wrapping */
+			p {
+				text-wrap: pretty;
+			}
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				text-wrap: balance;
+			}
+
+			/* 10. Create a root stacking context */
+			#root,
+			#__next {
+				isolation: isolate;
+			}
+
+			:root {
+				/* hsl (fallback color) */
+				--bg-dark: hsl(358 100% 3%);
+				--bg: hsl(8 100% 5%);
+				--bg-light: hsl(18 100% 7%);
+				--text: hsl(25 100% 92%);
+				--text-muted: hsl(25 66% 66%);
+				--highlight: hsl(33 100% 24%);
+				--border: hsl(28 100% 17%);
+				--border-muted: hsl(14 100% 13%);
+				--primary: hsl(27 92% 62%);
+				--secondary: hsl(200 100% 62%);
+				--danger: hsl(8 79% 66%);
+				--warning: hsl(54 100% 31%);
+				--success: hsl(156 68% 43%);
+				--info: hsl(217 94% 69%);
+				/* oklch */
+				--bg-dark: oklch(0.1 0.075 57);
+				--bg: oklch(0.15 0.075 57);
+				--bg-light: oklch(0.2 0.075 57);
+				--text: oklch(0.96 0.1 57);
+				--text-muted: oklch(0.76 0.1 57);
+				--highlight: oklch(0.5 0.15 57);
+				--border: oklch(0.4 0.15 57);
+				--border-muted: oklch(0.3 0.15 57);
+				--primary: oklch(0.76 0.15 57);
+				--secondary: oklch(0.76 0.15 237);
+				--danger: oklch(0.7 0.15 30);
+				--warning: oklch(0.7 0.15 100);
+				--success: oklch(0.7 0.15 160);
+				--info: oklch(0.7 0.15 260);
+			}
+
+			body {
+				width: 100%;
+				height: 100dvh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: var(--bg-dark);
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			form {
+				width: 400px;
+				background-color: var(--bg);
+				border-radius: 1rem;
+				box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+				padding-bottom: 2rem; /* Alt kısımdan biraz boşluk */
+			}
+
+			.container {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				padding: 2rem;
+			}
+
+			label {
+				color: var(--text);
+			}
+
+			input,
+			select,
+			option {
+				background-color: var(--bg-dark);
+				border: 1px solid var(--border-muted);
+				border-radius: 0.2rem;
+				padding: 0.2rem 0;
+				width: 100%; /* Inputlar container'ı doldursun */
+			}
+
+			input {
+				color: var(--text);
+				border-radius: 0.2rem;
+				padding: 0.2rem 0.5rem;
+			}
+
+			/* Focus Effects */
+			input:focus,
+			select:focus {
+				background-color: var(--bg-dark);
+				outline: 1px solid var(--primary);
+			}
+
+			.flex-column {
+				width: 85%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				padding: 0.3rem;
+				position: relative; /* Tooltip konumlandırması için gerekli */
+				margin-bottom: 0.5rem; /* Hata mesajı taşarsa diye boşluk */
+			}
+
+			.flex-column2 {
+				align-items: flex-start;
+			}
+
+			.textInput {
+				align-self: flex-start;
+				font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+				margin-bottom: 0.2rem; /* Label ile input arası mesafe */
+			}
+
+			.textInput2 {
+				align-self: flex-start;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			h1 {
+				text-align: center;
+				color: var(--text);
+				margin-block-start: 2rem;
+				font-size: 2.5rem;
+				font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			}
+
+			.input-normal {
+				width: 100%;
+			}
+
+			#selectMenu {
+				width: 100%;
+				height: 2rem;
+				font-family: Georgia, 'Times New Roman', Times, serif;
+				color: var(--text);
+			}
+
+			button {
+				background-color: var(--primary);
+				color: var(--bg-dark);
+				border: none;
+				padding: 0.4rem 2rem;
+				margin-top: 1rem;
+				cursor: pointer;
+				border-radius: 0.2rem;
+				font-weight: bold;
+				transition: background-color 0.3s ease;
+			}
+
+			button:hover {
+				background-color: var(--highlight);
+			}
+
+			/* --- CUSTOM VALIDATION CSS BAŞLANGICI --- */
+
+			/* Hata mesajı kutusu stili (başlangıçta gizli) */
+			.error-tooltip {
+				visibility: hidden; /* Görünmez */
+				opacity: 0;
+				background-color: var(--danger); /* Kırmızı uyarı rengi */
+				color: white;
+				text-align: center;
+				border-radius: 4px;
+				padding: 5px 10px;
+				position: absolute;
+				z-index: 1;
+				bottom: 100%; /* Inputun tam üstüne koy */
+				right: 0; /* Sağ tarafa yasla */
+				margin-bottom: 5px; /* Input ile arasına boşluk */
+				font-size: 0.75rem;
+				font-family: Arial, sans-serif;
+				transition: opacity 0.3s;
+				pointer-events: none; /* Tıklamayı engelle */
+				white-space: nowrap;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+			}
+
+			/* Tooltip için küçük ok işareti (aşağı bakan) */
+			.error-tooltip::after {
+				content: '';
+				position: absolute;
+				top: 100%; /* Kutunun altı */
+				right: 15px; /* Sağdan mesafe */
+				border-width: 5px;
+				border-style: solid;
+				border-color: var(--danger) transparent transparent transparent; /* Sadece üst kenar renkli = aşağı ok */
+			}
+
+			/* Mantık: Input geçersizse (:invalid) VE placeholder görünmüyorsa (:not(:placeholder-shown))
+         yani kullanıcı bir şeyler yazmaya başladıysa tooltip'i göster.
+      */
+			input:not(:focus):not(:placeholder-shown):invalid + .error-tooltip {
+				visibility: visible;
+				opacity: 1;
+			}
+
+			/* Input geçerliyse (:valid) kenarlığı yeşil yap (isteğe bağlı UX iyileştirmesi) */
+			input:not(:placeholder-shown):valid {
+				border-color: var(--success);
+			}
+
+			/* Input geçersizse kenarlığı kırmızı yap */
+			input:not(:placeholder-shown):invalid {
+				border-color: var(--danger);
+			}
+
+			/* --- CUSTOM VALIDATION CSS BİTİŞİ --- */
+		</style>
+	</head>
+	<body>
+		<form action="#" method="get" novalidate>
+			<h1>REGISTER FORM</h1>
+			<div class="container">
+				<div class="flex-column">
+					<label for="nameValue" class="textInput">Name:</label>
+					<input
+						type="text"
+						name="nameValue"
+						class="input-normal"
+						required
+						placeholder=" "
+					/>
+					<span class="error-tooltip">İsim alanı boş bırakılamaz</span>
+				</div>
+
+				<div class="flex-column">
+					<label for="emailValue" class="textInput">Email:</label>
+					<input
+						type="email"
+						name="emailValue"
+						class="input-normal"
+						required
+						placeholder=" "
+					/>
+					<span class="error-tooltip"
+						>Lütfen geçerli bir e-posta giriniz (@ işareti dahil)</span
+					>
+				</div>
+
+				<div class="flex-column">
+					<label for="passwordValue" class="textInput">Password:</label>
+					<input
+						type="password"
+						name="passwordValue"
+						class="input-normal"
+						required
+						minlength="6"
+						placeholder=" "
+					/>
+					<span class="error-tooltip">Şifre en az 6 karakter olmalı</span>
+				</div>
+
+				<div class="flex-column">
+					<label for="confirmValue" class="textInput">Confirm Password:</label>
+					<input
+						type="password"
+						name="confirmValue"
+						class="input-normal"
+						required
+						placeholder=" "
+					/>
+					<span class="error-tooltip">Şifreler eşleşmiyor</span>
+				</div>
+
+				<div class="flex-column flex-column2">
+					<label class="textInput">Gender:</label>
+					<div class="radio-container">
+						<input type="radio" name="radioValue" id="boy" />
+						<label for="boy" class="textInput2">Boy</label>
+						<input type="radio" name="radioValue" id="girl" />
+						<label for="girl" class="textInput2">Girl</label>
+						<input type="radio" name="radioValue" id="other" />
+						<label for="other" class="textInput2">Other</label>
+					</div>
+				</div>
+
+				<div class="flex-column flex-column2">
+					<label for="selectMenu" class="textInput">Security Questions:</label>
+					<select name="securityValue" id="selectMenu">
+						<option value="">En Sevdiğin Renk</option>
+						<option value="">En Sevdiğin Yemek</option>
+						<option value="">En Sevdiğin Websitesi</option>
+						<option value="">En Sevdiğin Web Tarayıcısı</option>
+						<option value="">En Sevdiğin Yazılım Dili</option>
+					</select>
+				</div>
+				<button type="submit">Submit</button>
+			</div>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="tr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WeakMap ile Widget State Yönetimi</title>
+		<style>
+			body {
+				margin: 0;
+				font-family: Inter, system-ui, Arial, sans-serif;
+				background: #10131f;
+				color: #eef2ff;
+			}
+			.app {
+				max-width: 1200px;
+				margin: 24px auto;
+				padding: 0 16px;
+			}
+			.hero,
+			.card {
+				background: #181c2c;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 18px;
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+			}
+			.hero {
+				padding: 24px;
+				margin-bottom: 16px;
+			}
+			.grid {
+				display: grid;
+				grid-template-columns: 1fr 0.95fr;
+				gap: 16px;
+			}
+			.card {
+				padding: 18px;
+			}
+			h1,
+			h2 {
+				margin: 0 0 10px;
+			}
+			p {
+				line-height: 1.7;
+				color: #b8c2e6;
+			}
+			.row {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+			}
+			.row > * {
+				flex: 1 1 180px;
+			}
+			input,
+			button,
+			select,
+			textarea {
+				font: inherit;
+			}
+			input,
+			textarea {
+				width: 100%;
+				box-sizing: border-box;
+				background: #0f1526;
+				color: #fff;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: 12px;
+				padding: 12px;
+			}
+			button {
+				background: #7c8cff;
+				color: #0d1020;
+				border: 0;
+				border-radius: 12px;
+				padding: 11px 14px;
+				font-weight: 700;
+				cursor: pointer;
+			}
+			button.secondary {
+				background: #242c47;
+				color: #eef2ff;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+			}
+			button.danger {
+				background: #ff6b8b;
+				color: #fff;
+			}
+			.widgets {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				gap: 12px;
+			}
+			.widget {
+				background: #101629;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 16px;
+				padding: 14px;
+			}
+			.widget.on {
+				outline: 1px solid rgba(124, 140, 255, 0.35);
+				background: linear-gradient(
+					180deg,
+					rgba(124, 140, 255, 0.08),
+					rgba(255, 255, 255, 0.03)
+				);
+			}
+			.widget .head {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 8px;
+				margin-bottom: 10px;
+			}
+			.pill {
+				font-size: 12px;
+				padding: 4px 8px;
+				border-radius: 999px;
+				background: #223154;
+				color: #d4dbff;
+			}
+			.small {
+				font-size: 13px;
+				color: #9da7cb;
+			}
+			.muted {
+				color: #9da7cb;
+				font-size: 14px;
+				line-height: 1.65;
+			}
+			.log {
+				background: #0e1322;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 14px;
+				padding: 12px;
+				min-height: 145px;
+				white-space: pre-wrap;
+				line-height: 1.7;
+			}
+			.stats {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 10px;
+				margin-top: 12px;
+			}
+			.stat {
+				background: #101629;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 14px;
+				padding: 12px;
+			}
+			.stat b {
+				display: block;
+				font-size: 22px;
+				margin-top: 6px;
+			}
+			@media (max-width: 980px) {
+				.grid {
+					grid-template-columns: 1fr;
+				}
+				.stats {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="app">
+			<section class="hero">
+				<h1>WeakMap ile gerçek hayat: Dashboard widget state yönetimi</h1>
+				<p>
+					Burada her widget bir DOM elemanı olarak üretiliyor, ama onun
+					açık/kapalı bilgisi veya tercihleri DOM üzerinde görünür tutulmuyor.
+					Bunun yerine WeakMap ile widget elemana bağlı gizli state saklanıyor.
+					Widget kaldırılırsa state de zorla tutulmuyor.
+				</p>
+			</section>
+
+			<section class="grid">
+				<article class="card">
+					<h2>Widget paneli</h2>
+					<p class="muted">
+						<b>Neden WeakMap?</b> Çünkü widget DOM node'u anahtar olarak
+						kullanılıyor ve node kaldırıldığında ilgili state de gereksiz yere
+						bellekte kalmamalı. <br /><b>Neden Map değil?</b> Map, kaldırılmış
+						widget'ı bile güçlü şekilde referanslayabilir. <br /><b
+							>Neden Set/WeakSet değil?</b
+						>
+						Burada ihtiyaç sadece var/yok değil, widget'a özel veri saklamak.
+					</p>
+					<div class="row" style="margin-bottom: 12px">
+						<input id="titleInput" placeholder="Widget başlığı" />
+						<input id="noteInput" placeholder="Gizli not" />
+					</div>
+					<div class="row" style="margin-bottom: 12px">
+						<button id="addBtn">Widget ekle</button>
+						<button id="demoBtn" class="secondary">Demo yükle</button>
+						<button id="clearBtn" class="danger">Hepsini kaldır</button>
+					</div>
+					<div class="widgets" id="widgets"></div>
+				</article>
+
+				<article class="card">
+					<h2>Debug / State</h2>
+					<p class="muted">
+						Her widget için açık/kapalı durumu, son etkileşim zamanı ve gizli
+						not WeakMap içinde tutulur. UI'da görünse de bunu doğrudan widget
+						dataset'ine yazmıyoruz; çünkü bu bilgi widget yaşam döngüsü boyunca
+						özel kalmalı.
+					</p>
+					<div class="stats">
+						<div class="stat">
+							<span class="small">Widget sayısı</span><b id="count">0</b>
+						</div>
+						<div class="stat">
+							<span class="small">Açık widget</span><b id="openCount">0</b>
+						</div>
+						<div class="stat">
+							<span class="small">Kapalı widget</span><b id="closedCount">0</b>
+						</div>
+						<div class="stat">
+							<span class="small">Son işlem</span><b id="lastAction">-</b>
+						</div>
+					</div>
+					<div style="margin-top: 12px" class="log" id="log"></div>
+				</article>
+			</section>
+		</main>
+
+		<script>
+			const widgetsEl = document.getElementById('widgets');
+			const logEl = document.getElementById('log');
+			const state = new WeakMap();
+			let widgets = [];
+			let idSeed = 1;
+
+			function createWidget(title, note) {
+				const widget = { id: idSeed++, title, note, open: true };
+				state.set(widget, {
+					note,
+					createdAt: new Date().toLocaleString('tr-TR'),
+					lastTouched: new Date().toLocaleTimeString('tr-TR'),
+				});
+				widgets.push(widget);
+				render();
+				writeLog(
+					`Widget eklendi: ${title}. WeakMap burada widget'a özel gizli state tuttu.`,
+				);
+			}
+
+			function toggleWidget(id) {
+				const w = widgets.find((x) => x.id === id);
+				if (!w) return;
+				w.open = !w.open;
+				const meta = state.get(w);
+				if (meta) meta.lastTouched = new Date().toLocaleTimeString('tr-TR');
+				render();
+				writeLog(`Widget #${id} ${w.open ? 'açıldı' : 'kapandı'}.`);
+			}
+
+			function removeWidget(id) {
+				const index = widgets.findIndex((x) => x.id === id);
+				if (index === -1) return;
+				const removed = widgets[index];
+				widgets.splice(index, 1);
+				render();
+				writeLog(
+					`Widget #${id} kaldırıldı. Eğer başka referans yoksa WeakMap kaydı da GC tarafından bırakılabilir.`,
+				);
+			}
+
+			function render() {
+				widgetsEl.innerHTML = '';
+				let openCount = 0;
+				let closedCount = 0;
+
+				for (const widget of widgets) {
+					if (widget.open) openCount++;
+					else closedCount++;
+					const meta = state.get(widget) || {};
+					const card = document.createElement('div');
+					card.className = 'widget' + (widget.open ? ' on' : '');
+					card.innerHTML = `
+      <div class="head">
+        <b>${escapeHtml(widget.title)}</b>
+        <span class="pill">#${widget.id}</span>
+      </div>
+      <div class="small">Durum: ${widget.open ? 'Açık' : 'Kapalı'}</div>
+      <div class="small">Gizli not: ${escapeHtml(meta.note || widget.note || '-')}</div>
+      <div class="small">Oluşturulma: ${escapeHtml(meta.createdAt || '-')}</div>
+      <div class="small">Son dokunma: ${escapeHtml(meta.lastTouched || '-')}</div>
+      <div class="row" style="margin-top:10px">
+        <button data-action="toggle">Aç/Kapa</button>
+        <button data-action="remove" class="secondary">Sil</button>
+      </div>
+    `;
+					card.querySelector('[data-action="toggle"]').onclick = () =>
+						toggleWidget(widget.id);
+					card.querySelector('[data-action="remove"]').onclick = () =>
+						removeWidget(widget.id);
+					widgetsEl.appendChild(card);
+				}
+
+				document.getElementById('count').textContent = widgets.length;
+				document.getElementById('openCount').textContent = openCount;
+				document.getElementById('closedCount').textContent = closedCount;
+				document.getElementById('lastAction').textContent =
+					new Date().toLocaleTimeString('tr-TR');
+			}
+
+			function writeLog(text) {
+				logEl.textContent = [
+					text,
+					'',
+					'Neden WeakMap?',
+					'- Widget DOM/objesi anahtar olarak kullanılır.',
+					'- Widget kaldırıldığında state zorla tutulmaz.',
+					'- Map olsaydı eski widget kayıtları gereksiz yere bellekte kalabilirdi.',
+				].join('\n');
+			}
+
+			function resetAll() {
+				widgets = [];
+				idSeed = 1;
+				render();
+				writeLog('Tüm widgetlar kaldırıldı.');
+			}
+
+			function loadDemo() {
+				widgets = [];
+				idSeed = 1;
+				createWidget('Hızlı İstatistik', 'Sadece dashboard içinde görünen not');
+				createWidget('Sipariş Uyarıları', 'Kullanıcıya özel alarm eşiği');
+				createWidget(
+					'Görev Özeti',
+					'Sürükle bırak sırası gizli state olarak tutulur',
+				);
+				render();
+			}
+
+			document.getElementById('addBtn').onclick = () => {
+				const title = document.getElementById('titleInput').value.trim();
+				const note = document.getElementById('noteInput').value.trim();
+				if (!title) return;
+				createWidget(title, note || '');
+				document.getElementById('titleInput').value = '';
+				document.getElementById('noteInput').value = '';
+			};
+
+			document.getElementById('demoBtn').onclick = loadDemo;
+			document.getElementById('clearBtn').onclick = resetAll;
+
+			function escapeHtml(str) {
+				return String(str)
+					.replaceAll('&', '&amp;')
+					.replaceAll('<', '&lt;')
+					.replaceAll('>', '&gt;')
+					.replaceAll('"', '&quot;')
+					.replaceAll("'", '&#39;');
+			}
+
+			loadDemo();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,203 @@
+/* Temel ayarlar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Padding ve border hesaplamayı kolaylaştırır */
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Form container */
+form {
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 90%;
+    max-width: 600px; /* Masaüstü için maksimum genişlik sınırı */
+}
+
+/* Input, textarea ve select kutularını responsive yapmak için */
+.responsive-input,
+.dropbox,
+.rich-text-area {
+    width: 100%; /* Ekrana göre genişlik */
+    max-width: 100%; /* Taşmayı önler */
+}
+
+/* Header ve logo */
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  flex-wrap: wrap; /* Mobilde alt alta geçiş için */
+  background-color: #1B1B32;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+.main-title {
+  color: rgb(233, 192, 81);
+  font-size: 23px;
+  font-weight: bold;
+}
+
+/* Navigation */
+.navigation {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap; /* Mobilde menü alt alta geçebilir */
+}
+
+.navigation>* {
+  color: #DFDFE2;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+/* Divider */
+.divider {
+    width: 100%;
+    height: 2px;
+    background-color: #DFDFE2;
+}
+
+/* Sections */
+.first-section,
+.second-section,
+.third-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Input grupları */
+.second-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 20px;
+  gap: 10px;
+}
+
+/* Input boyutları (esnek hale getirildi) */
+.birth-input,
+.email-input,
+.name-input {
+  font-size: 1.25rem;
+  width: 100%; /* Mobil uyumluluk */
+  max-width: 25rem; /* Masaüstünde genişlik sınırı */
+  box-sizing: border-box;
+  padding: 0.5rem;
+}
+
+/* Sorular */
+.question-1,
+.question-2{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  margin-left: 20px;
+}
+
+/* Son bölüm */
+.main-last-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.last-content-first-elem,
+.last-content-second-elem {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dropdown */
+.dropbox {
+  width: 100%; /* Mobilde taşmayı önler */
+  max-width: 20rem; /* Masaüstü sınırı */
+  padding: 0.5rem; /* Daha rahat tıklama alanı */
+}
+
+/* Textarea */
+.rich-text-area {
+  width: 100%; /* Responsive genişlik */
+  max-width: 35rem; /* Masaüstü sınırı */
+  height: 80px;
+  padding: 0.5rem;
+}
+
+/* Button */
+.send-button {
+  width: 100%; /* Mobilde tam genişlik */
+  max-width: 60%; /* Masaüstü sınırı */
+  height: 60px;
+  font-size: 1.5rem;
+  background: #D0D0D5;
+  border: 2px solid black;
+  margin: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.send-button:hover {
+  transform: skew(10deg) scale(1.1);
+}
+
+/* Footer */
+footer {
+  width: 100%; /* 100vw yerine yüzde kullanıldı, taşmayı önler */
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #2A2A40;
+}
+
+footer > * {
+  color: white;
+  font-style: italic;
+}
+
+/* ========================= */
+/* Responsive Media Queries  */
+/* ========================= */
+
+@media (max-width: 600px) {
+  .second-group,
+  .question-1,
+  .question-2,
+  .main-last-content {
+    margin-left: 0; /* Küçük ekranda soldan boşluk kaldırıldı */
+  }
+
+  .birth-input,
+  .email-input,
+  .name-input,
+  .dropbox,
+  .rich-text-area,
+  .send-button {
+    width: 100%; /* Küçük ekranlarda tam genişlik */
+    max-width: 100%;
+  }
+
+  .main-title {
+    font-size: 20px; /* Küçük ekranlarda başlık boyutu düşürüldü */
+  }
+
+  .navigation > * {
+    font-size: 16px; /* Küçük ekranlarda link boyutu optimize edildi */
+  }
+}

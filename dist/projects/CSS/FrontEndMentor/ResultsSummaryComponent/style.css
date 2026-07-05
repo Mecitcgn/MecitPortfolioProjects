@@ -1,0 +1,254 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+:root {
+	--lightred: hsl(0, 100%, 67%);
+	--orangeyellow: hsl(39, 100%, 56%);
+	--green: hsl(166, 100%, 37%);
+	--darkblue: hsl(234, 85%, 45%);
+	--gradientbluebackground: hsl(252, 100%, 67%);
+	--gradientbluebackground2: hsl(241, 81%, 54%);
+	--gradientbluecircle: hsla(256, 72%, 46%, 1);
+	--gradientbluecircle2: hsla(241, 72%, 46%, 0);
+	--white: hsl(0, 0%, 100%);
+	--paleblue: hsl(221, 100%, 96%);
+	--lightlavender: hsl(241, 100%, 89%);
+	--darkgrayblue: hsl(224, 30%, 27%);
+	--fs-reg: 1rem;
+	--fs-sm: 1.125rem;
+	--fs-md: 1.25rem;
+	--fs-lg: 1.5rem;
+	--fs-xl: 3.25rem;
+}
+
+html {
+	font-size: 18px;
+	font-family: 'Hanken Grotesk', sans-serif;
+	font-weight: 500;
+}
+
+body {
+	height: 100dvh;
+	width: 100%;
+	background-color: hsl(0 0% 90%);
+	color: white;
+	font-size: 1rem;
+}
+
+.main-grid {
+	max-inline-size: 1200px;
+	margin-inline: auto;
+	display: grid;
+	gap: 24px;
+}
+
+.result-section {
+	background: linear-gradient(
+		180deg,
+		var(--gradientbluebackground),
+		var(--gradientbluebackground2)
+	);
+	display: grid;
+	place-items: center;
+	gap: 1rem;
+	padding: 1rem 3rem 2rem 3rem;
+	border-radius: 0 0 2rem 2rem;
+}
+
+.result-section p:nth-child(1) {
+	color: var(--lightlavender);
+	font-weight: 700;
+}
+.result-section p:nth-child(3) {
+	font-size: var(--fs-lg);
+	font-weight: 700;
+}
+.result-section p:nth-child(4) {
+	font-size: var(--fs-reg);
+	color: var(--lightlavender);
+	line-height: 1.2;
+	margin-top: -1rem;
+	text-align: center;
+}
+.circle {
+	width: 175px;
+	height: 175px;
+	border-radius: 50%;
+	background: linear-gradient(
+		180deg,
+		var(--gradientbluecircle),
+		var(--gradientbluecircle2)
+	);
+	display: grid;
+	place-items: center;
+	text-align: center;
+	h1 {
+		font-weight: 800;
+		font-size: var(--fs-xl);
+		> span {
+			display: block;
+			font-size: var(--fs-sm);
+			color: var(--lightlavender);
+		}
+	}
+}
+
+.summary-section {
+	color: var(--darkgrayblue);
+	font-weight: 800;
+	display: grid;
+	place-items: center;
+	padding: 0 2rem 2rem 2rem;
+	gap: 1rem;
+}
+.card {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 0.8rem;
+	background-color: hsl(0 100% 67% / 0.1);
+	border-radius: 0.75rem;
+	> div {
+		display: flex;
+		gap: 0.5rem;
+		> p {
+			color: var(--lightred);
+		}
+	}
+}
+.card:nth-child(3) {
+	background-color: hsl(39 100% 56% / 0.1);
+	> div p {
+		color: var(--orangeyellow);
+	}
+}
+.card:nth-child(4) {
+	background-color: hsl(166 100% 37% / 0.1);
+	> div p {
+		color: var(--green);
+	}
+}
+.card:nth-child(5) {
+	background-color: hsl(234 85% 45% / 0.1);
+	> div p {
+		color: var(--darkblue);
+	}
+}
+
+.btn {
+	justify-self: stretch;
+	padding: 0.8rem;
+	border-radius: 3rem;
+	background-color: var(--darkgrayblue);
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+.btn:hover {
+	background: linear-gradient(
+		var(--gradientbluebackground),
+		var(--gradientbluebackground2)
+	);
+}
+.btn:active {
+	scale: 0.997;
+}
+.percent-span {
+	color: gray;
+}
+
+@media (width > 960px) {
+	body {
+		display: grid;
+		place-items: center;
+	}
+	.main-grid {
+		max-inline-size: 750px;
+		grid-template-columns: 1fr 1fr;
+		block-size: 500px;
+	}
+	.result-section {
+		border-radius: 1rem;
+	}
+	.summary-section {
+		position: relative;
+		left: -30px;
+		border-radius: 0 1rem 1rem 0;
+		background-color: white;
+		z-index: -1;
+		padding: 1rem;
+	}
+}

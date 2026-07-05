@@ -1,0 +1,196 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+body {
+	width: 100%;
+	height: 100dvh;
+	background-color: #1a7491;
+	color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	display: flex;
+	align-items: center;
+}
+.main-card {
+	background-color: #eaf5fc;
+	max-width: 1200px;
+	height: 900px;
+	padding-inline: 1rem;
+	margin-inline: auto;
+	text-align: center;
+	padding-block: 5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 3rem;
+}
+
+.title-container {
+	width: 70%;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+	div:nth-child(1) {
+		border: 5px solid #24718f;
+		&::before {
+			content: 'NEW';
+			position: absolute;
+			inset: 0;
+			width: 70px;
+			height: 40px;
+			background-color: #24718f;
+			color: white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	div:nth-child(2) {
+		&::before {
+			content: '-23%';
+			position: absolute;
+			inset: 0;
+			width: 70px;
+			height: 40px;
+			background-color: #e55a4e;
+			color: white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	> * {
+		background-color: #f9fbfc;
+		position: relative;
+	}
+}
+.bottom-grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 3rem;
+	width: 60%;
+	height: 400px;
+	.left-bottom-grid {
+		background-color: #f9fbfc;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.right-bottom-grid {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		flex-direction: column;
+		text-align: start;
+		.pricing-up {
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+			p:nth-child(2) {
+				font-size: 1.5rem;
+				font-weight: bold;
+			}
+			p:nth-child(3) {
+				color: #687076;
+			}
+			.star-container {
+				i {
+					font-size: 16px; /* önemli */
+					background: linear-gradient(#f9ce67, #f9ce67);
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+					-webkit-text-stroke: 2px #f9ce67;
+				}
+				i:last-child {
+					font-size: 16px; /* önemli */
+					background: linear-gradient(90deg, #f9ce67 0 50%, white 50% 100%);
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+					-webkit-text-stroke: 2px #f9ce67;
+				}
+			}
+		}
+		.btn {
+			padding: 0.5rem 1rem;
+			border: none;
+			background-color: #24718f;
+			color: white;
+		}
+	}
+}

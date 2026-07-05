@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <style>
+      /* 1. Use a more-intuitive box-sizing model */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      /* 2. Remove default margin */
+      * {
+        margin: 0;
+      }
+
+      /* 3. Enable keyword animations */
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          interpolate-size: allow-keywords;
+        }
+      }
+
+      body {
+        /* 4. Add accessible line-height */
+        line-height: 1.5;
+        /* 5. Improve text rendering */
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* 6. Improve media defaults */
+      img,
+      picture,
+      video,
+      canvas,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      /* 7. Inherit fonts for form controls */
+      input,
+      button,
+      textarea,
+      select {
+        font: inherit;
+      }
+
+      /* 8. Avoid text overflows */
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        overflow-wrap: break-word;
+      }
+
+      /* 9. Improve line wrapping */
+      p {
+        text-wrap: pretty;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        text-wrap: balance;
+      }
+
+      /*
+  10. Create a root stacking context
+*/
+      #root,
+      #__next {
+        isolation: isolate;
+      }
+
+      :root {
+  /* hsl (fallback color) */
+  --bg-dark: hsl(358 100% 3%);
+  --bg: hsl(8 100% 5%);
+  --bg-light: hsl(18 100% 7%);
+  --text: hsl(25 100% 92%);
+  --text-muted: hsl(25 66% 66%);
+  --highlight: hsl(33 100% 24%);
+  --border: hsl(28 100% 17%);
+  --border-muted: hsl(14 100% 13%);
+  --primary: hsl(27 92% 62%);
+  --secondary: hsl(200 100% 62%);
+  --danger: hsl(8 79% 66%);
+  --warning: hsl(54 100% 31%);
+  --success: hsl(156 68% 43%);
+  --info: hsl(217 94% 69%);
+  /* oklch */
+  --bg-dark: oklch(0.1 0.075 57);
+  --bg: oklch(0.15 0.075 57);
+  --bg-light: oklch(0.2 0.075 57);
+  --text: oklch(0.96 0.1 57);
+  --text-muted: oklch(0.76 0.1 57);
+  --highlight: oklch(0.5 0.15 57);
+  --border: oklch(0.4 0.15 57);
+  --border-muted: oklch(0.3 0.15 57);
+  --primary: oklch(0.76 0.15 57);
+  --secondary: oklch(0.76 0.15 237);
+  --danger: oklch(0.7 0.15 30);
+  --warning: oklch(0.7 0.15 100);
+  --success: oklch(0.7 0.15 160);
+  --info: oklch(0.7 0.15 260);
+}
+ /*
+body.light {
+ 
+  --bg-dark: hsl(25 100% 88%);
+  --bg: hsl(25 100% 93%);
+  --bg-light: hsl(25 100% 98%);
+  --text: hsl(350 100% 6%);
+  --text-muted: hsl(28 100% 17%);
+  --highlight: hsl(26 100% 95%);
+  --border: hsl(33 100% 35%);
+  --border-muted: hsl(28 76% 54%);
+  --primary: hsl(28 100% 17%);
+  --secondary: hsl(200 100% 17%);
+  --danger: hsl(6 60% 41%);
+  --warning: hsl(52 100% 14%);
+  --success: hsl(161 100% 13%);
+  --info: hsl(217 62% 44%);
+
+  --bg-dark: oklch(0.92 0.075 57);
+  --bg: oklch(0.96 0.075 57);
+  --bg-light: oklch(1 0.075 57);
+  --text: oklch(0.15 0.15 57);
+  --text-muted: oklch(0.4 0.15 57);
+  --highlight: oklch(1 0.15 57);
+  --border: oklch(0.6 0.15 57);
+  --border-muted: oklch(0.7 0.15 57);
+  --primary: oklch(0.4 0.15 57);
+  --secondary: oklch(0.4 0.15 237);
+  --danger: oklch(0.5 0.15 30);
+  --warning: oklch(0.5 0.15 100);
+  --success: oklch(0.5 0.15 160);
+  --info: oklch(0.5 0.15 260);
+}
+*/
+      body {
+        width: 100%;
+        height: 100dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--bg-dark);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      form {
+        width: 400px;
+        background-color: var(--bg-light); /* Form container için var(--bg) daha dengeli olabilir, light biraz parlak kaçabilir. */
+        border-radius: 1rem;
+        box-shadow: 0 0 25px var(--highlight); /* Gölge için highlight çok parlak/neon durabilir, genelde siyah veya var(--bg-dark) kullanılır. */
+      }
+
+      .container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 2rem;
+      }
+
+      label{
+        color: var(--text);
+      }
+
+      input, select, option{
+        background-color: var(--primary); /* ÖNEMLİ: Input arkaplanı primary (turuncu) olmamalı, yazı okunmaz. var(--bg-dark) veya var(--bg) kullanın. */
+        border: 1px solid var(--border);
+        border-radius: 0.2rem;
+        padding: 0.2rem 0;
+      }
+
+      input{
+        color: var(--text);
+        border-radius: 0.2rem;
+        padding: 0.2rem 0.5rem;
+      }
+
+      input:focus{
+        background-color: var(--bg);
+        outline: 1px solid var(--border-muted); /* Focus olduğunda border-muted yerine var(--primary) veya var(--highlight) kullanmak kullanıcıya daha net geri bildirim verir. */
+      }
+
+      .flex-column{
+        width: 85%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0.3rem;
+      }
+      .flex-column2{
+        align-items: flex-start;
+      }
+      .textInput{
+        align-self: flex-start;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        
+      }
+      .textInput2{
+        align-self: flex-start;
+        font-family: Arial, Helvetica, sans-serif;
+
+      }
+      h1{
+        text-align: center;
+        color: var(--text);
+        margin-block-start: 2rem;
+        font-size: 2.5rem;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      }
+
+      .input-normal{
+        width: 100%;
+      }
+      #selectMenu{
+        width: 100%;
+        height: 2rem;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+      }
+
+      button{
+        background-color: var(--primary);
+        color: var(--text); /* Primary rengi parlak olduğu için text rengi beyaz yerine koyu (var(--bg-dark)) olursa okunabilirlik artabilir. */
+        border: 2px solid var(--border); /* Buton background'ı zaten renkli olduğu için border genelde 'none' veya şeffaf yapılır. */
+        padding: 0.4rem 2rem;
+        margin-top: 0.5rem;
+        cursor: pointer;
+        border-radius: 0.2rem;
+      }
+
+      button:hover{
+        background-color: var(--highlight);
+      }
+    </style>
+  </head>
+  <body>
+    <form action="#" method="get">
+        <h1>REGISTER FORM</h1>
+        <div class="container">
+            <div class="flex-column">
+                <label for="sss" class="textInput">Name:</label
+                ><input type="text" name="nameValue" class="input-normal" />
+              </div>
+              <div class="flex-column">
+                <label for="sss" class="textInput">Email:</label
+                ><input type="email" name="emailValue" class="input-normal" />
+              </div>
+              <div class="flex-column">
+                <label for="sss" class="textInput">Password:</label
+                ><input type="password" name="passwordValue" class="input-normal" />
+              </div>
+              <div class="flex-column">
+                <label for="sss" class="textInput">Confirm Password:</label
+                ><input type="password" name="confirmValue" class="input-normal" />
+              </div>
+              <div class="flex-column flex-column2">
+                <label for="sss" class="textInput">Gender:</label>
+                <div class="radio-container">
+                  <input type="radio" name="radioValue" id="boy" />
+                  <label for="boy" class="textInput2">Boy</label>
+                  <input type="radio" name="radioValue" id="girl" />
+                  <label for="girl" class="textInput2">Girl</label>
+                  <input type="radio" name="radioValue" id="other" />
+                  <label for="other" class="textInput2">Other</label>
+                </div>
+              </div>
+              <div class="flex-column flex-column2">
+                <label for="sss" class="textInput">Security Questions:</label
+                >
+                <select name="securityValue" id="selectMenu">
+                    <option value="">En Sevdiğin Renk</option>
+                    <option value="">En Sevdiğin Yemek</option>
+                    <option value="">En Sevdiğin Websitesi</option>
+                    <option value="">En Sevdiğin Web Tarayıcısı</option>
+                    <option value="">En Sevdiğin Yazılım Dili</option>
+                </select>
+              </div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+  </body>
+</html>

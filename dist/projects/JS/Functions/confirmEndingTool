@@ -1,0 +1,13 @@
+const confirmEnding = (checkString,againstString) => {
+  let againstStringLength = againstString.length;
+  let checkStringLength = checkString.length;
+  let checkStringEnd = checkString.slice(checkStringLength - againstStringLength, checkStringLength)
+  if(checkStringEnd === againstString){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
+console.log(confirmEnding("Congratulation", "on")); 

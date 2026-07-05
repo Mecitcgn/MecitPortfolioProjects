@@ -1,0 +1,29 @@
+body {
+	margin: 0;
+	font-family: sans-serif;
+	transition:
+		background 0.3s,
+		color 0.3s;
+}
+.theme-dark {
+	background-color: black;
+}
+.theme-light {
+	background-color: white;
+}
+.theme-blue {
+	background-color: blue;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+}
+
+#status {
+	text-align: center;
+	min-height: 20px;
+}
